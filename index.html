@@ -1,0 +1,780 @@
+<!doctype html>
+<!-- Portfolio Simone · v1.29 · da v1.28: pagina completa per la pubblicazione su GitHub Pages (doctype, head, body), icona "SB" e immagine di anteprima del link (la Home) · 01/10/2026 -->
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simone Buzzoni — Visual designer</title>
+<meta name="description" content="Portfolio di Simone Buzzoni, visual designer: identità visiva, impaginazione editoriale, fotografia, motion design e artwork per la musica.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:title" content="Simone Buzzoni — Visual designer">
+<meta property="og:description" content="Portfolio di Simone Buzzoni, visual designer: identità visiva, impaginazione editoriale, fotografia, motion design e artwork per la musica.">
+<meta property="og:url" content="https://simonebuzzoni.github.io/">
+<meta property="og:image" content="https://simonebuzzoni.github.io/anteprima.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="La Home del portfolio di Simone Buzzoni">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://simonebuzzoni.github.io/">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600&display=swap">
+<style>
+  /* Sistema di misura: tutte le quote sono i pixel del template su una finestra larga 1500 px.
+     --u è un pixel del template; il sito scala in proporzione con la larghezza della finestra. */
+  :root {
+    color-scheme: light;
+    --bg: #ffffff;
+    --ink: #111111;
+    --ph: #ececea;
+    --u: calc(100vw / 1500);
+    --m: calc(14.5 * var(--u));            /* margine esterno */
+    --fs-nav: calc(14 * var(--u));
+    --fs-l: calc(17.55 * var(--u));        /* bio, pagina contatti */
+    --fs-list: calc(14.55 * var(--u));     /* lista lavori */
+    --fs-cap: calc(14.85 * var(--u));      /* didascalie home */
+    --fs-s: calc(13.13 * var(--u));        /* testi piccoli About */
+    --lh-l: 1.168;
+    --lh-list: 1.206;
+    --lh-s: 1.229;
+    --serif: "Noto Serif", Georgia, "Times New Roman", serif;
+  }
+  html { overflow-x: clip; }
+  html, body { background: var(--bg); color: var(--ink); }
+  body { margin: 0; font-family: var(--serif); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible, [tabindex]:focus-visible { outline: 1px solid currentColor; outline-offset: 3px; }
+  p, h2, ul, figure { margin: 0; }
+  ul { list-style: none; padding: 0; }
+  img { display: block; }
+  .view { position: relative; }
+
+  /* ---------- Nav fissa al centro verticale ---------- */
+  .nav {
+    position: fixed; left: 0; right: 0; top: 50%;
+    height: var(--fs-nav);
+    z-index: 20;
+    font-size: var(--fs-nav);
+    font-weight: 500;
+    line-height: 1;
+    pointer-events: none;
+    --ns: 1;
+    transform: translateY(-50%) scale(var(--ns));
+    transform-origin: 50% 50%;
+    transition: transform .8s cubic-bezier(.22, .8, .2, 1);
+  }
+  body:not([data-view="home"]) .nav { --ns: .8527; }
+  .nav a { position: absolute; top: 0; pointer-events: auto; white-space: nowrap; transition: opacity .2s; }
+  .nav a:hover { opacity: .45; }
+  /* Il link della pagina che stai guardando non ha hover (menu e lista delle pagine progetto) */
+  .nav a[aria-current]:hover, .w-title[aria-current]:hover { opacity: 1; }
+  .nav a[aria-current], .w-title[aria-current] { cursor: default; }
+  .n-name    { left: calc(15.2 * var(--u)); }
+  .n-work    { left: calc(260.3 * var(--u)); }
+  .n-about   { left: calc(384 * var(--u)); }
+  .n-contact { left: calc(508.7 * var(--u)); }
+  .n-li      { right: calc((1500 - 1365.9) * var(--u)); }
+  .n-ig      { right: calc((1500 - 1487.9) * var(--u)); }
+
+  /* ---------- Home: 11 immagini, coordinate esatte ---------- */
+  .home { position: relative; height: calc(5623.5 * var(--u)); overflow: hidden; } /* come il frame Figma: ciò che esce dal bordo viene tagliato */
+  .shot {
+    position: absolute;
+    left: calc(var(--x) * var(--u));
+    top: calc(var(--y) * var(--u));
+    width: calc(var(--w) * var(--u));
+    height: calc(var(--h) * var(--u));
+  }
+  .shot img, .shot video, .shot .empty { display: block; width: 100%; height: 100%; object-fit: cover; background: var(--ph); transition: opacity .25s ease; }
+  /* .empty = blocco ancora senza foto: resta un riquadro grigio */
+  /* Hover (misurato sul template): l'immagine scende all'80% di opacità sul fondo bianco
+     e sotto compare la didascalia. Misure e posizione non cambiano. */
+  .shot:hover img, .shot:hover video, .shot:hover .empty { opacity: .8; }
+  .shot figcaption {
+    position: absolute; top: 100%; left: 0; width: max-content;
+    padding-top: calc(5.4 * var(--u));
+    font-size: var(--fs-cap);
+    line-height: 1.2;
+    opacity: 0;
+    transition: opacity .25s ease;
+    pointer-events: none;
+  }
+  .shot:hover figcaption { opacity: 1; }
+  @media (hover: none) { .shot figcaption { opacity: 1; } }
+
+  /* ---------- Lavori ---------- */
+  .work { position: relative; min-height: 100vh; font-size: var(--fs-list); line-height: var(--lh-list); }
+  .w-prev {
+    position: absolute; left: calc(15 * var(--u)); top: calc(15 * var(--u));
+    width: calc(228 * var(--u)); height: calc(334 * var(--u));
+  }
+  /* Un'anteprima per progetto (foto o video), sovrapposte: si vede solo quella attiva */
+  .w-prev > * { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .18s ease; }
+  .w-prev > .on { opacity: 1; }
+  .w-count { position: absolute; left: calc(636 * var(--u)); top: var(--m); font-weight: 600; }
+  .w-list { position: absolute; left: calc(760 * var(--u)); top: var(--m); width: calc(600 * var(--u)); }
+  .row { display: grid; grid-template-columns: calc(249 * var(--u)) 1fr; }
+  .row.head { font-weight: 600; margin-bottom: calc(var(--lh-list) * 1em); }
+  #wList .row { cursor: default; }
+  /* Titoli dei progetti: unico punto attivo della riga (anteprima + clic), hover come il menu */
+  .w-title { justify-self: start; cursor: pointer; transition: opacity .2s; }
+  .w-title:hover { opacity: .45; }
+
+  /* ---------- Chi sono / CV (coordinate dal frame About della bozza) ---------- */
+  .about { position: relative; height: calc(1057.2 * var(--u)); font-size: var(--fs-s); line-height: var(--lh-s); }
+  .a-bio {
+    position: absolute; left: var(--m); top: var(--m); width: calc(723.5 * var(--u));
+    font-size: var(--fs-l); line-height: var(--lh-l);
+  }
+  .a-portrait { position: absolute; left: calc(882 * var(--u)); top: var(--m); width: calc(234 * var(--u)); height: calc(334 * var(--u)); }
+  .a-portrait img { width: 100%; height: 100%; object-fit: cover; background: var(--ph); }
+  .a-contact { position: absolute; left: calc(1254 * var(--u)); top: var(--m); display: flex; flex-direction: column; align-items: flex-start; }
+  .cv > div { position: absolute; top: calc(677 * var(--u)); }
+  .cv h2 { font-size: inherit; font-weight: 600; margin-bottom: calc(var(--lh-s) * 1em); }
+  .cv-1 { left: calc(14 * var(--u)); width: calc(229 * var(--u)); }
+  .cv-2 { left: calc(388 * var(--u)); width: calc(231 * var(--u)); }
+  .cv-3 { left: calc(760 * var(--u)); width: calc(231 * var(--u)); }   /* Clienti, sulla colonna della lista Lavori */
+  /* Due paragrafi sotto il menu, come nella reference (y 489.7), sulle colonne del CV */
+  .a-p { position: absolute; top: calc(489.7 * var(--u)); width: calc(352 * var(--u)); margin: 0; }
+  .a-p1 { left: var(--m); }
+  .a-p2 { left: calc(388 * var(--u)); }
+  .cv .entries li + li { margin-top: calc(var(--lh-s) * 1em); }
+  /* Voci del CV: gli a capo seguono riga per riga quelli della bozza Figma */
+
+  /* ---------- Pagina progetto (coordinate dal frame del progetto nella bozza Figma) ---------- */
+  .proj { position: relative; height: calc(var(--page-h) * var(--u)); }
+  .pp-img, .pp-txt { position: absolute; left: calc(var(--x) * var(--u)); top: calc(var(--y) * var(--u)); margin: 0; }
+  .pp-img { width: calc(var(--w) * var(--u)); height: calc(var(--h) * var(--u)); }
+  .pp-img img, .pp-img video { display: block; width: 100%; height: 100%; object-fit: cover; background: var(--ph); }
+  .pp-txt { white-space: nowrap; }
+  .pp-txt .ln { display: block; }
+  .pp-desc { font-size: calc(13 * var(--u)); line-height: calc(16 * var(--u)); }
+  .pp-small { font-size: calc(11 * var(--u)); line-height: calc(16.14 * var(--u)); }
+  .pp-count { font-size: var(--fs-list); line-height: var(--lh-list); font-weight: 600; }
+  .pp-list { position: absolute; left: calc(760 * var(--u)); top: calc(14.5 * var(--u)); width: calc(600 * var(--u)); font-size: var(--fs-list); line-height: var(--lh-list); }
+  /* Nella lista del progetto gli altri progetti sono al 20%; passando sul titolo tornano pieni */
+  .pp-list .row.dim { opacity: .2; transition: opacity .2s; }
+  .pp-list .row.dim:has(.w-title:hover), .pp-list .row.dim:has(.w-title:focus-visible) { opacity: 1; }
+  .pp-list .row.dim .w-title:hover { opacity: 1; }
+  .shot.has-page { cursor: pointer; }
+  /* In fondo a ogni pagina progetto: il progetto successivo, impaginato come una riga della lista */
+  /* "Progetto successivo": nel margine destro, allineato a destra (bordo delle immagini, x 1485) */
+  .pp-txt.pp-next { left: auto; right: calc(15 * var(--u)); text-align: right; }
+  .pp-next .w-title { display: inline-block; }
+
+  /* ---------- Contatti ---------- */
+  .contact-block {
+    position: absolute; left: var(--m); top: var(--m);
+    font-size: var(--fs-l); line-height: var(--lh-l);
+    display: flex; flex-direction: column; align-items: flex-start;
+  }
+  .contact-block a:hover, .a-contact a:hover { opacity: .45; }
+  #v-contact { min-height: 100vh; }
+
+  /* ---------- Transizioni ---------- */
+  @keyframes enter { from { opacity: 0; } to { opacity: 1; } }
+  .view.enter { animation: enter .5s ease both; }
+  @media (prefers-reduced-motion: reduce) {
+    .view.enter { animation: none; }
+    .nav, .nav a, .shot img, .shot video, .shot .empty, .shot figcaption, .w-prev > *, .w-title { transition: none; }
+  }
+
+  /* ---------- Telefono (sotto i 600 px): impaginazione in colonna ---------- */
+  @media (max-width: 600px) {
+    :root { --m: 16px; --fs-nav: 13px; --fs-l: 17px; --fs-list: 14px; --fs-cap: 14px; --fs-s: 13px; }
+    .nav { left: 16px; right: 16px; display: flex; justify-content: space-between; }
+    .nav a { position: static; }
+    .n-li, .n-ig { display: none; }
+    body:not([data-view="home"]) .nav { --ns: 1; }
+
+    .home { height: auto; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); column-gap: 10px; row-gap: 20vw; padding: 16px 16px 40vh; }
+    .shot { position: relative; left: auto; top: auto; width: auto; height: auto; grid-column: var(--mc); }
+    .shot img, .shot video, .shot .empty { height: auto; aspect-ratio: var(--ar); }
+    .shot figcaption { padding-top: 6px; }
+
+    .work, .about, #v-contact { padding: 16px; min-height: 0; height: auto; }
+    .proj { height: auto; display: flex; flex-direction: column; gap: 16px; padding: 16px 16px 40vh; }
+    .pp-img, .pp-txt, .pp-list { position: static; width: auto; height: auto; }
+    .pp-img img, .pp-img video { height: auto; aspect-ratio: var(--w) / var(--h); }
+    .pp-txt { white-space: normal; }
+    .pp-txt .ln { display: inline; }
+    .pp-desc { font-size: 14px; line-height: 1.3; }
+    .pp-small { font-size: 12px; line-height: 1.3; }
+    .w-prev, .w-count, .w-list, .a-bio, .a-portrait, .a-contact, .a-p, .cv > div, .contact-block { position: static; width: auto; height: auto; }
+    .pp-next { margin-top: 24px; text-align: right; }
+    .pp-txt.pp-next .ln { display: block; }
+    .w-prev { position: relative; width: 40%; aspect-ratio: 228 / 334; }
+    .w-count { margin-top: 20px; }
+    .w-list { margin-top: 8px; }
+    .row { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .about { display: grid; gap: 20px; }
+    .a-portrait { width: 55%; aspect-ratio: .7; }
+    .cv { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 10px; margin-top: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Navigazione principale">
+  <a class="n-name" href="#home" data-go="home">Simone Buzzoni</a>
+  <a class="n-work" href="#lavori" data-go="work">Lavori</a>
+  <a class="n-about" href="#chi-sono" data-go="about">Chi sono</a>
+  <a class="n-contact" href="#contatti" data-go="contact">Contatti</a>
+  <a class="n-li" href="https://www.linkedin.com/in/simone-buzzoni-6178a221a/" target="_blank" rel="noopener">LinkedIn</a>
+  <a class="n-ig" href="https://www.instagram.com/simone_buzzoni/" target="_blank" rel="noopener">Instagram</a>
+</nav>
+
+<main>
+  <!-- HOME -->
+  <section class="view" id="v-home" aria-label="Home">
+    <div class="home" id="homeGrid"></div>
+  </section>
+
+  <!-- LAVORI -->
+  <section class="view" id="v-work" aria-label="Lavori" hidden>
+    <div class="work">
+      <div class="w-prev" id="wPrev" aria-hidden="true"></div>
+      <div class="w-count" id="wCount"></div>
+      <div class="w-list">
+        <div class="row head"><span>Progetto</span><span>Cliente</span></div>
+        <ul id="wList"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHI SONO / CURRICULUM -->
+  <section class="view" id="v-about" aria-label="Chi sono" hidden>
+    <div class="about">
+      <p class="a-bio">Creatività e attenzione ai dettagli sono i miei punti di forza. Sono positivo, collaborativo e capace di integrarmi in un team, contribuendo con idee e supporto in ogni fase del progetto.</p>
+      <figure class="a-portrait"><img id="aImg" src="img/ritratto.jpg" alt="Ritratto di Simone Buzzoni" loading="lazy" decoding="async"></figure>
+      <div class="a-contact">
+        <a href="mailto:buzzonisimone80@gmail.com">buzzonisimone80@gmail.com</a>
+        <span>+39 329 754 0738</span>
+        <a href="https://www.instagram.com/simone_buzzoni/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.linkedin.com/in/simone-buzzoni-6178a221a/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+
+      <p class="a-p a-p1">Il mio lavoro si muove tra identità visiva, impaginazione editoriale, fotografia e motion design. Ogni progetto parte dal contenuto (un brano, un testo, un tema) e cerca la forma che lo renda chiaro e riconoscibile. Mi piace capire prima cosa c’è da raccontare, e solo dopo come raccontarlo.</p>
+      <p class="a-p a-p2">Dal 2024 lavoro in Plural come Associate Junior Art Director, su campagne e progetti editoriali per clienti come ENGIE e Humana People to People. Dal 2021 collaboro con artisti della scena musicale, curando artwork, fotografia e immaginario visivo. Uso l’AI come strumento di produzione, sempre guidato da una direzione creativa precisa.</p>
+
+      <div class="cv">
+        <div class="cv-1">
+          <h2>Esperienza</h2>
+          <ul class="entries">
+            <li>Associate Junior Art Director<br>Plural<br>26.06.2024 - attualmente in corso</li>
+            <li>Visual Designer<br>Rude Records<br>8.05.2023 - 28.07.2023</li>
+            <li>Visual Designer e Fotografo<br>Freelance<br>2021 - Attualmente in corso</li>
+          </ul>
+        </div>
+        <div class="cv-2">
+          <h2>Formazione</h2>
+          <ul class="entries">
+            <li>ITS Strategic Visual Designer per la<br>Cultura e il Territorio<br>2022-2024</li>
+            <li>Corso di Graphic Design, Job<br>Formazione<br>2021-2022</li>
+            <li>Diploma di maturità, indirizzo<br>Grafico W. Kandinsky<br>2016-2021</li>
+          </ul>
+        </div>
+        <div class="cv-3">
+          <h2>Clienti</h2>
+          <ul class="clients">
+            <li>ENGIE</li>
+            <li>Humana People to People</li>
+            <li>Pavesini</li>
+            <li>Associazione Futuri Probabili</li>
+            <li>Off Nova</li>
+            <li>Peva</li>
+            <li>Luca Vigentini</li>
+            <li>Sofia Del Grande</li>
+            <li>Lucky</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGINE PROGETTO: create dallo script a partire da PAGES -->
+  <div id="pages"></div>
+
+  <!-- CONTATTI -->
+  <section class="view" id="v-contact" aria-label="Contatti" hidden>
+    <div class="contact-block">
+      <span>Simone Buzzoni</span>
+      <a href="mailto:buzzonisimone80@gmail.com">buzzonisimone80@gmail.com</a>
+      <span>+39 329 754 0738</span>
+      <a href="https://www.instagram.com/simone_buzzoni/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.linkedin.com/in/simone-buzzoni-6178a221a/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </section>
+</main>
+
+<script>
+/* =========================================================
+   CONTENUTI — modifica qui.
+
+   PROJECTS: i progetti, nell'ordine della lista Lavori.
+     title  = nome del progetto (è anche la didascalia delle sue immagini)
+     client = cliente nella lista Lavori
+     preview = cosa compare in Lavori passando sul titolo: una foto o un video del progetto (il video va in loop).
+     previewPos = (facoltativo) quale parte dell'immagine resta nel riquadro verticale dell'anteprima, es. "95% 50%" = tutta a destra.
+               Se manca, si usa la prima immagine del progetto in Home (dall'alto).
+
+   IMAGES: le immagini della Home. Ogni immagine appartiene a un progetto (p = numero del progetto).
+     src    = percorso della foto (es. "img/03-engie-adv-1.webp") o del video .mp4 (va in loop, senza audio);
+              con null il blocco resta vuoto (grigio)
+     poster = solo per i video: fotogramma mostrato finché il video non parte
+     x, y, w, h = posizione e misure in pixel su una finestra larga 1500 px
+                  (sono quelle della bozza Figma, pagina Draft, frame "Home · v1.3.1")
+   ========================================================= */
+const PROJECTS = [
+  { n: "01", title: "Expo Osaka 2025",             client: "Associazione Futuri Probabili", previewPos: "95% 50%" },   // anteprima spostata a destra, sul volto
+  { n: "02", title: "Come cadono i fiori",         client: "CFP Bauer",             preview: "img/02-come-cadono-i-fiori-2.webp" },
+  { n: "03", title: "ENGIE adv",                   client: "Plural" },
+  { n: "04", title: "Artwork Design",              client: "Progetti indipendenti", preview: "img/04-artwork-design-2.webp" },
+  { n: "05", title: "Humana Bilancio 2025-2026",   client: "Plural" },   // anteprima = la sua immagine in Home (blocco 10)
+  { n: "06", title: "Archivio",                    client: "",                      preview: "video/06-archivio-2.mp4" },
+];
+
+const IMAGES = [
+  { p: "01", src: "img/01-expo-osaka-2025-1.webp",                                           x: 14,   y: 15,     w: 478,   h: 272 },
+  { p: "01", src: "video/01-expo-osaka-2025-2.mp4", poster: "video/01-expo-osaka-2025-2.webp", x: 263,  y: 2021,   w: 477,   h: 477 }, // v1.8: quadrato 1:1 come il video
+  { p: "02", src: "img/02-come-cadono-i-fiori-1.webp",                                       x: 1008, y: 478,    w: 477,   h: 688 },
+  { p: "02", src: "img/02-come-cadono-i-fiori-2.webp",                                       x: 14.5, y: 1047.5, w: 353,   h: 469.5 },
+  { p: "03", src: "img/03-engie-adv-1.webp",                                                 x: 884,  y: 1588,   w: 477,   h: 689 },
+  { p: "03", src: "img/03-engie-adv-2.webp",                                                 x: 388,  y: 3532,   w: 352,   h: 468 },
+  { p: "04", src: "img/04-artwork-design-2.webp",                                            x: 15,   y: 2977,   w: 228,   h: 322 },
+  { p: "04", src: "img/04-artwork-design-1.jpg",                                            x: 884,  y: 2759,   w: 601,   h: 480 },
+  { p: "05", src: "img/05-humana-bilancio-2025-2026-1.webp",                                 x: 15,   y: 4418,   w: 477,   h: 689 },   // v1.23: copertina del bilancio (foto 2 della sua pagina, in verticale)
+  { p: "06", src: "video/06-archivio-1.mp4",        poster: "video/06-archivio-1.webp",        x: 1133, y: 3917,   w: 352,   h: 268 },
+  { p: "06", src: "video/06-archivio-2.mp4",        poster: "video/06-archivio-2.webp",        x: 884,  y: 5032,   w: 477,   h: 354 },
+];
+
+
+/* =========================================================
+   Costruzione pagine
+   ========================================================= */
+function mobileCols(x, w) {
+  if (w > 450) return x < 500 ? "1 / span 5" : "2 / span 5";
+  if (w > 300) return x < 200 ? "1 / span 4" : x > 800 ? "3 / span 4" : "2 / span 4";
+  return "1 / span 3";
+}
+/* PAGES: le pagine progetto, una per numero di progetto (dalla bozza Figma, un frame per progetto).
+     slug  = indirizzo della pagina (es. #come-cadono-i-fiori)
+     h     = altezza della pagina in pixel su finestra larga 1500 px
+     media = immagini o video (.mp4) con posizione e misure (x, y, w, h) come nella bozza.
+             Video: in loop e senza audio; poster = immagine mostrata finché parte;
+             fit "contain" = video intero dentro il riquadro (pos = dove sta, bg = colore attorno)
+     texts = testi: stile "desc" (descrizione), "small" (crediti e didascalie); lines = righe come nella bozza
+   I progetti senza pagina aprono la Home sulla loro prima immagine. */
+const PAGES = {
+  "01": {
+    slug: "expo-osaka-2025", h: 5094,
+    media: [
+      { src: "img/expo-osaka-2025/01.webp", x: 14, y: 15, w: 478, h: 272 },
+      { src: "video/expo-osaka-2025/02.mp4", poster: "img/expo-osaka-2025/02.webp", x: 760, y: 381, w: 726, h: 514 },
+      { src: "video/expo-osaka-2025/03.mp4", poster: "img/expo-osaka-2025/03.webp", x: 15, y: 1195, w: 1470, h: 856 },
+      { src: "video/expo-osaka-2025/04.mp4", poster: "img/expo-osaka-2025/04.webp", x: 139, y: 2351, w: 849, h: 477.282 },
+      { src: "video/expo-osaka-2025/05.mp4", poster: "img/expo-osaka-2025/05.webp", x: 636, y: 3129, w: 849, h: 472 },
+      { src: "video/expo-osaka-2025/06.mp4", poster: "img/expo-osaka-2025/06.webp", x: 15, y: 3701, w: 477, h: 472 },
+      { src: "video/01-expo-osaka-2025-2.mp4", poster: "img/expo-osaka-2025/07.webp", fit: "contain", bg: "#000", x: 512, y: 4473, w: 477, h: 520.812 },   // stesso video "scuola" della Home, intero su fondo nero
+      { src: "video/expo-osaka-2025/08.mp4", poster: "img/expo-osaka-2025/08.webp", fit: "contain", pos: "center top", bg: "#000", x: 1009, y: 4473, w: 477, h: 521 }   // intero, in alto, fascia nera sotto come nella bozza
+    ],
+    texts: [
+      { style: "small", x: 760, y: 334, lines: ["Motion design, Identità visiva, 2025"] },
+      { style: "desc",  x: 15, y: 713, lines: ["Ho collaborato alla realizzazione della videoinstallazione FuturiProbabili,", "esposta nella sala principale del Padiglione Italia a Expo 2025 Osaka e", "proiettata in loop su due schermi verticali alti 3 metri.", "", "Il progetto raccoglie pensieri, speranze e paure di circa 40 ragazze e ragazzi", "di diversa età, provenienza ed estrazione sociale: gli italiani del futuro", "raccontati attraverso le loro parole, la musica, la danza e le loro idee."] },
+      { style: "desc",  x: 137, y: 3505, lines: ["Il mio contributo è stato la progettazione dei type in", "motion che aprivano i diversi temi affrontati dai ragazzi,", "dando ritmo e identità visiva alla narrazione. I titoli", "introducevano ogni sezione, accompagnando lo", "spettatore tra i grandi nodi del progetto: bullismo e", "mondo digitale, empatia, continuità culturale, inclusione."] },
+      { style: "desc",  x: 15, y: 4473, lines: ["Il Padiglione Italia, diretto da Roberto Malfatto", "(Multimedia Director e Set Designer), ha ricevuto il", "primo premio assoluto della Giuria del Bureau", "International des Expositions (BIE) nella categoria", "\"Theme Development”."] },
+    ],
+  },
+  "02": {
+    slug: "come-cadono-i-fiori", h: 5399,
+    media: [
+      { src: "img/come-cadono-i-fiori/01.webp", x: 15, y: 15, w: 477, h: 602 },
+      { src: "img/come-cadono-i-fiori/02.webp", x: 759, y: 522, w: 353, h: 284 },
+      { src: "img/come-cadono-i-fiori/03.webp", x: 139, y: 1106, w: 725, h: 934 },
+      { src: "img/come-cadono-i-fiori/04.jpg", x: 1132, y: 1106, w: 353, h: 456 },
+      { src: "img/come-cadono-i-fiori/05.webp", x: 1132, y: 1584, w: 353, h: 456 },
+      { src: "img/come-cadono-i-fiori/06.webp", x: 263, y: 2340, w: 477, h: 598.936 },
+      { src: "img/come-cadono-i-fiori/07.webp", x: 760, y: 2340, w: 477, h: 599 },
+      { src: "img/come-cadono-i-fiori/08.webp", x: 15, y: 3239, w: 1470, h: 979.755 },
+      { src: "img/come-cadono-i-fiori/09.jpg", x: 15, y: 4319, w: 1470, h: 979.755 }
+    ],
+    texts: [
+      { style: "desc",  x: 139,  y: 681,  lines: ["Il progetto finale del corso “Cultura Visiva” prevedeva la produzione di un", "libro fotografico, fedele alle opere di Edward Ruscha. Ho deciso quindi di", "dare una visione personale alla città nella quale sono cresciuto, Rozzano,", "cercando di creare un racconto attraverso i miei scatti. Il titolo che ho scelto", "indica il processo che porta un edificio al suo decadimento strutturale. La", "mia scelta è stata quella di mettere in relazione i nomi delle vie, rispetto a", "ciò che esiste e accade in quella strada. Si nota quindi un parallelismo netto,", "che ho scelto di ripetere creando un costante confronto e controsenso", "all’intero del libro."] },
+      { style: "small", x: 1257, y: 677,  lines: ["Fotografia, Impaginazione", "editoriale, 2024"] },
+      { style: "small", x: 139,  y: 2070, lines: ["Via delle Ginestre"] },
+      { style: "small", x: 760,  y: 2969, lines: ["Via delle Margherite"] },
+      { style: "small", x: 15,   y: 4249, lines: ["Via Mandorli"] },
+      { style: "small", x: 15,   y: 5329, lines: ["Via Giacinti"] },
+    ],
+  },
+  "03": {
+    slug: "engie-adv", h: 7754,
+    media: [
+      { src: "img/engie-adv/01.webp", x: 760, y: 323, w: 353, h: 502 },
+      { src: "img/engie-adv/02.webp", x: 15, y: 541, w: 353, h: 284 },
+      { src: "img/engie-adv/03.webp", x: 1008.1, y: 1122.97, w: 352.9, h: 292.49 },
+      { src: "img/engie-adv/04.webp", x: 512, y: 1367.53, w: 352, h: 468.87 },
+      { src: "img/engie-adv/05.webp", x: 1008, y: 1560.18, w: 352.58, h: 469.64 },
+      { src: "img/engie-adv/06.webp", x: 15, y: 2140.06, w: 849, h: 800.887 },      // schermata della tavola dei personaggi
+      { src: "img/engie-adv/07.webp", x: 512, y: 3241, w: 973, h: 389.581 },        // foto + figurina + prompt, composti come nella bozza
+      { src: "img/engie-adv/08.webp", x: 139, y: 3931, w: 601, h: 486 },
+      { src: "img/engie-adv/09.webp", x: 760, y: 3932, w: 601, h: 485 },
+      { src: "img/engie-adv/10.webp", x: 15, y: 4717, w: 725, h: 417 },
+      { src: "img/engie-adv/11.webp", x: 1133, y: 4717, w: 352, h: 417 },
+      { src: "img/engie-adv/12.webp", x: 15, y: 5234, w: 353, h: 508 },
+      { src: "img/engie-adv/13.webp", x: 759, y: 5234, w: 726, h: 508 },
+      { src: "img/engie-adv/14.webp", x: 15, y: 6042, w: 726, h: 726 },             // post social 1080×1080
+      { src: "img/engie-adv/15.webp", x: 1008, y: 6042, w: 363, h: 726 },           // banner 300×600, composto come nella bozza (ragazza specchiata, dalla v1.14)
+      { src: "img/engie-adv/16.webp", x: 15, y: 7069, w: 1345, h: 585 }             // schermata della tavola di lavoro
+    ],
+    texts: [
+      { style: "desc",  x: 15,   y: 15,   lines: ["L’energia è presente nei momenti di ogni giorno, anche quando non la", "notiamo. Il lavoro ha preso forma per passaggi: prima gli ambienti e gli", "oggetti che rendono riconoscibile una casa; poi lo studio dei personaggi,", "delle loro proporzioni e delle texture; infine le scene abitate, in cui un gesto", "o una relazione suggeriscono una storia."] },
+      { style: "small", x: 1257, y: 677,  lines: ["Art direction, Character design,", "Immagini AI, 2025-26"] },   // dalla v1.28 (prima "Fotografia, Impaginazione editoriale, 2024", copiato da Come cadono i fiori)
+      { style: "desc",  x: 15,   y: 1125, lines: ["Per raccontarla in una campagna social luce e gas, siamo partiti dalle", "immagini fornite da DUDE e abbiamo esplorato un linguaggio visivo a metà", "tra scena quotidiana e diorama contemporaneo."] },
+      { style: "desc",  x: 1008, y: 2333, lines: ["L’AI è stata lo strumento di produzione, guidato da una", "direzione creativa precisa. L’obiettivo non era ottenere", "immagini isolate, ma costruire un linguaggio capace di", "passare dalle scene narrative ai diversi formati social,", "mantenendo riconoscibili personaggi e atmosfera."] },
+    ],
+  },
+  "04": {
+    slug: "artwork-design", h: 4045,
+    media: [
+      { src: "img/artwork-design/01.webp", x: 15, y: 15, w: 353, h: 353 },
+      { src: "img/artwork-design/02.webp", x: 760, y: 469, w: 353, h: 353 },
+      { src: "img/artwork-design/03.jpg", x: 885, y: 1119, w: 477, h: 842 },
+      { src: "img/artwork-design/04.jpg", x: 25, y: 1122, w: 839, h: 839 },
+      { src: "img/artwork-design/05.webp", x: 139, y: 2261, w: 353, h: 545 },
+      { src: "img/artwork-design/06.webp", x: 512, y: 2261, w: 353, h: 545 },
+      { src: "img/artwork-design/07.jpg", x: 646, y: 3106, w: 839, h: 839 },
+      { src: "img/artwork-design/08.webp", x: 139, y: 3253, w: 353, h: 545 }
+    ],
+    texts: [
+      { style: "small", x: 388,  y: 15,   lines: ["COP O FAN - Off Nova"] },     // a destra della copertina, in alto
+      { style: "small", x: 1257, y: 677,  lines: ["Branding, Visual design,", "Motion design"] },
+      { style: "desc",  x: 15,   y: 745,  lines: ["Dal 2021 collaboro con diversi artisti nel campo musicale creando contenuti", "visivi per i loro progetti. Partendo da un’attenta comprensione del brano,", "sviluppo progetti coerenti con l’identità dell’artista. Ho iniziato come", "fotografo, imparando a gestire shooting, e ho poi esteso il mio ruolo, fino a", "curare l’intero immaginario visivo."] },
+      { style: "small", x: 760,  y: 852,  lines: ["Con Te - Peva feat. Hurri Keight"] },
+      { style: "small", x: 25,   y: 1991, lines: ["5 Secondi - Luca Vigentini"] },
+      { style: "small", x: 885,  y: 1991, lines: ["Inedito"] },
+      { style: "desc",  x: 1008, y: 2401, lines: ["Questi progetti stimolano la mia creatività e", "rappresentano una sfida continua nel comprendere", "l’artista e il suo stile. Inoltre, sono ottime opportunità per", "costruire relazioni, crescere professionalmente e vivere", "nuove esperienze."] },
+      { style: "small", x: 139,  y: 2836, lines: ["Correre - Sofia Del Grande"] },
+      { style: "small", x: 139,  y: 3828, lines: ["Polo G nel ‘19 - Off Nova feat. Lucky"] },
+      { style: "small", x: 646,  y: 3975, lines: ["È OK - Lucky"] },
+    ],
+  },
+  "05": {
+    slug: "humana-bilancio-2025-2026", h: 2998,
+    media: [
+      { src: "img/humana-bilancio-2025-2026/01.webp", x: 15, y: 333, w: 725, h: 483 },
+      { src: "img/humana-bilancio-2025-2026/02.webp", x: 1008, y: 577, w: 477, h: 317.921 },
+      { src: "img/humana-bilancio-2025-2026/03.webp", x: 15, y: 1116, w: 477, h: 442 },
+      { src: "img/humana-bilancio-2025-2026/04.webp", x: 760, y: 1195, w: 725, h: 517 },
+      { src: "img/humana-bilancio-2025-2026/05.webp", x: 15, y: 2012, w: 849, h: 624 },
+      { src: "img/humana-bilancio-2025-2026/06.webp", x: 1008, y: 2242, w: 477, h: 318 },
+      { src: "img/humana-bilancio-2025-2026/07.webp", x: 1008, y: 2580, w: 477, h: 318 }
+    ],
+    texts: [
+      { style: "desc",  x: 15,  y: 15,   lines: ["Durante la mia esperienza in Plural ho collaborato alla realizzazione del", "bilancio di sostenibilità di Humana People to People. Il progetto ha previsto", "la riorganizzazione di un ampio volume di testi in una struttura più chiara e", "leggibile."] },   // nella bozza "SUBSENSE": sostituito con Plural come nel resto del sito
+      { style: "small", x: 810, y: 683,  lines: ["Impaginazione editoriale", "2024-25"] },
+      { style: "desc",  x: 388, y: 1822, lines: ["Rispetto alle edizioni precedenti, caratterizzate esclusivamente dal verde", "istituzionale, abbiamo introdotto un sistema cromatico che assegna un", "colore diverso a ciascun capitolo, rendendo la lettura più fluida e i contenuti", "più riconoscibili. La copertina combina il tema dell’economia tessile con", "l’impegno umanitario e sociale dell’organizzazione."] },
+    ],
+  },
+  "06": {
+    slug: "archivio", h: 4249,
+    media: [
+      { src: "img/archivio/01.webp", x: 15, y: 15, w: 353, h: 365.094 },
+      { src: "video/06-archivio-1.mp4", poster: "video/06-archivio-1.webp", x: 760, y: 277.976, w: 353.001, h: 352.534 },   // nella bozza c'è uno screenshot di questo video: qui va il video in loop
+      { src: "img/archivio/03.webp", x: 15, y: 890, w: 339, h: 484 },
+      { src: "img/archivio/04.webp", x: 354, y: 890, w: 646, h: 484 },
+      { src: "video/06-archivio-2.mp4", poster: "video/06-archivio-2.webp", x: 1000, y: 890, w: 485, h: 484 },   // v1.20: diamante che ruota (stesso video della Home), al posto della foto
+      { src: "img/archivio/06.webp", x: 15, y: 1374, w: 510, h: 511 },
+      { src: "img/archivio/07.webp", x: 524, y: 1374, w: 452, h: 511 },
+      { src: "img/archivio/08.webp", x: 975, y: 1374, w: 510, h: 511 },
+      { src: "img/archivio/09.jpg", x: 15, y: 1885, w: 491, h: 490 },
+      { src: "img/archivio/10.webp", x: 506, y: 1885, w: 490, h: 490 },
+      { src: "img/archivio/11.jpg", x: 995, y: 1885, w: 490, h: 490 },
+      { src: "video/archivio/12.mp4", poster: "img/archivio/12.webp", x: 15, y: 2375, w: 351, h: 630 },   // animazione Pavesini "Gioca a Pave Beach", in loop
+      { src: "img/archivio/13.webp", x: 366, y: 2375, w: 1119, h: 630 },
+      { src: "img/archivio/14.webp", x: 15, y: 3005, w: 630.52, h: 503.204 },
+      { src: "img/archivio/15.webp", x: 645.52, y: 3005, w: 839.48, h: 503.204 },   // fondo grigio scuro con 6 mockup, composto come nella bozza
+      { src: "img/archivio/16.webp", x: 15, y: 3508, w: 563, h: 641 },
+      { src: "img/archivio/17.webp", x: 577, y: 3508, w: 481, h: 641 },
+      { src: "img/archivio/18.webp", x: 1058, y: 3508, w: 427, h: 641 }
+    ],
+    texts: [],
+  },
+};
+
+document.documentElement.lang = "it";
+const projectByN = Object.fromEntries(PROJECTS.map(P => [P.n, P]));
+const FIRST_MEDIA = {};                  // prima foto o video (dall'alto) di ogni progetto: anteprima di riserva in Lavori
+const POSTER = {};                       // fotogramma di ogni video, per src
+const FIRST_FIG = {};                    // e il suo riquadro in Home, per il clic sul titolo in Lavori
+const homeGrid = document.getElementById("homeGrid");
+// Chi ha chiesto al sistema di ridurre le animazioni vede il fotogramma fisso al posto del video
+const NO_MOTION = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+// Video in loop, senza audio (i browser li fanno partire da soli solo se muti).
+// Partono quando entrano nello schermo e si fermano quando escono, così la pagina resta leggera.
+const VIDEO_IO = "IntersectionObserver" in window ? new IntersectionObserver(entries => {
+  for (const e of entries) { const v = e.target; if (e.isIntersecting) { if (!NO_MOTION) v.play().catch(() => {}); } else v.pause(); }
+}, { rootMargin: "300px 0px" }) : null;
+// Caricamento su richiesta: un video (e il suo fotogramma d'attesa) si scarica solo quando arriva
+// a meno di 800 px dallo schermo. Le pagine nascoste non entrano mai nello schermo, quindi non pesano
+// finché non le apri. Le foto fanno lo stesso con loading="lazy".
+const LAZY_IO = "IntersectionObserver" in window ? new IntersectionObserver(entries => {
+  for (const e of entries) if (e.isIntersecting) { LAZY_IO.unobserve(e.target); wake(e.target); }
+}, { rootMargin: "800px 0px" }) : null;
+function wake(v) {
+  if (v.dataset.poster) { v.poster = v.dataset.poster; delete v.dataset.poster; }
+  if (v.dataset.src) { v.src = v.dataset.src; delete v.dataset.src; }
+  if (VIDEO_IO) VIDEO_IO.observe(v); else if (!NO_MOTION) { v.autoplay = true; v.play().catch(() => {}); }
+}
+function loopVideo(src, poster, preload) {
+  const v = document.createElement("video");
+  v.muted = true; v.defaultMuted = true; v.setAttribute("muted", "");
+  v.loop = true; v.playsInline = true; v.setAttribute("playsinline", "");
+  v.preload = preload || "auto";
+  if (poster) v.dataset.poster = poster;
+  v.dataset.src = src;
+  if (LAZY_IO) LAZY_IO.observe(v); else wake(v);
+  return v;
+}
+[...IMAGES].sort((a, b) => a.y - b.y).forEach((I, i) => {
+  const P = projectByN[I.p];
+  const ar = I.w / I.h;
+  const isVideo = !!I.src && /\.mp4$/i.test(I.src);
+  if (I.src && !FIRST_MEDIA[I.p]) FIRST_MEDIA[I.p] = I.src;
+  if (isVideo && I.poster) POSTER[I.src] = I.poster;
+
+  const fig = document.createElement("figure");
+  fig.className = "shot";
+  for (const k of ["x", "y", "w", "h"]) fig.style.setProperty("--" + k, I[k]);
+  fig.style.setProperty("--ar", ar);
+  fig.style.setProperty("--mc", mobileCols(I.x, I.w));
+  let img;
+  if (isVideo) {
+    img = loopVideo(I.src, I.poster, "auto");
+    img.setAttribute("aria-label", P.title);
+  } else if (I.src) {
+    img = document.createElement("img");
+    img.alt = P.title; img.decoding = "async";
+    if (I.y > 895) img.loading = "lazy";            // sotto la prima schermata: si scarica scorrendo
+    else if (I.y < 100) img.fetchPriority = "high";  // la prima immagine arriva per prima
+    img.src = I.src;
+  } else {
+    img = document.createElement("div");
+    img.className = "empty";
+  }
+  const cap = document.createElement("figcaption");
+  cap.textContent = P.title;
+  fig.append(img, cap);
+  if (PAGES[I.p]) { fig.classList.add("has-page"); fig.addEventListener("click", () => go(PAGES[I.p].slug)); }
+  homeGrid.append(fig);
+  if (!FIRST_FIG[I.p]) FIRST_FIG[I.p] = fig;
+});
+
+// Lavori
+const wList = document.getElementById("wList"), wPrev = document.getElementById("wPrev");
+document.getElementById("wCount").textContent = `(${PROJECTS.length})`;
+// Righe della lista progetti (usata in Lavori e nelle pagine progetto). current = progetto della pagina.
+function fillList(ul, current) {
+  PROJECTS.forEach((P, i) => {
+    const li = document.createElement("li");
+    li.className = "row" + (current && P.n !== current ? " dim" : "");
+    const t = document.createElement("a");
+    t.className = "w-title"; t.href = "#" + (PAGES[P.n] ? PAGES[P.n].slug : "home"); t.dataset.i = i; t.textContent = P.title;
+    if (current && P.n === current) t.setAttribute("aria-current", "page");   // progetto della pagina aperta: niente hover
+    const c = document.createElement("span");
+    c.className = "w-client"; c.textContent = P.client;
+    li.append(t, c);
+    ul.append(li);
+  });
+}
+fillList(wList, null);
+// Anteprime: una per progetto, create una volta sola (i video si caricano subito e restano pronti)
+const PREV = PROJECTS.map(P => {
+  const src = P.preview || FIRST_MEDIA[P.n];
+  if (!src) return null;
+  let el;
+  if (/\.mp4$/i.test(src)) {
+    el = document.createElement("video");
+    el.muted = true; el.defaultMuted = true; el.setAttribute("muted", "");
+    el.loop = true; el.playsInline = true; el.setAttribute("playsinline", "");
+    el.preload = "auto";
+    if (POSTER[src]) el.dataset.poster = POSTER[src];
+    el.dataset.src = src;
+  } else {
+    el = document.createElement("img");
+    el.dataset.src = src; el.alt = ""; el.decoding = "async";
+  }
+  if (P.previewPos) el.style.objectPosition = P.previewPos;   // quale parte dell'immagine resta nel riquadro verticale
+  wPrev.append(el);
+  return el;
+});
+// Le anteprime si scaricano la prima volta che apri Lavori, non all'arrivo sul sito
+let prevLoaded = false;
+function loadPreviews() {
+  if (prevLoaded) return; prevLoaded = true;
+  for (const el of PREV) { if (!el) continue;
+    if (el.dataset.poster) { el.poster = el.dataset.poster; delete el.dataset.poster; }
+    if (el.dataset.src) { el.src = el.dataset.src; delete el.dataset.src; } }
+}
+let prevOn = null;
+function hideEl(el) { el.classList.remove("on"); if (el.tagName === "VIDEO") el.pause(); }
+function showPrev(i) {
+  const el = PREV[i];
+  if (prevOn && prevOn !== el) hideEl(prevOn);
+  prevOn = el || null;
+  if (!el) return;
+  el.classList.add("on");
+  if (el.tagName === "VIDEO" && !NO_MOTION) el.play().catch(() => {});
+}
+function hidePrev() { if (prevOn) { hideEl(prevOn); prevOn = null; } }
+const titleOf = el => el && el.closest ? el.closest(".w-title") : null;
+// L'anteprima compare solo sopra il titolo del progetto, non sul cliente
+wList.addEventListener("pointerover", e => { const t = titleOf(e.target); if (t) showPrev(+t.dataset.i); });
+wList.addEventListener("pointerout", e => { const t = titleOf(e.target); if (t && !t.contains(e.relatedTarget)) hidePrev(); });
+wList.addEventListener("focusin", e => { const t = titleOf(e.target); if (t) showPrev(+t.dataset.i); });
+wList.addEventListener("focusout", e => { if (!titleOf(e.relatedTarget)) hidePrev(); });
+// Clic sul titolo: apre la pagina del progetto; se non c'è ancora, la Home sulla sua prima immagine
+wList.addEventListener("click", e => {
+  const t = titleOf(e.target); if (!t) return;
+  e.preventDefault();
+  openProject(PROJECTS[+t.dataset.i].n);
+});
+function openProject(n) {
+  if (PAGES[n]) { go(PAGES[n].slug); return; }
+  go("home");
+  const fig = FIRST_FIG[n]; if (!fig) return;
+  const m = window.innerWidth > 600 ? 14.5 * window.innerWidth / 1500 : 16;
+  window.scrollTo({ top: Math.max(0, fig.getBoundingClientRect().top + window.scrollY - m), behavior: "auto" });
+}
+
+// About
+
+
+// Pagine progetto
+const pagesRoot = document.getElementById("pages");
+const NEXT_H = 190;   // spazio aggiunto in fondo per "Progetto successivo" (px su finestra da 1500)
+const NEXT_GAP = 60;  // distanza in più tra la fine della pagina della bozza e "Progetto successivo"
+function nextProject(n) {   // il primo progetto dopo n che ha una pagina, ripartendo dall'inizio
+  const i = PROJECTS.findIndex(P => P.n === n);
+  for (let k = 1; k < PROJECTS.length; k++) { const P = PROJECTS[(i + k) % PROJECTS.length]; if (PAGES[P.n]) return P; }
+  return null;
+}
+for (const [n, PG] of Object.entries(PAGES)) {
+  const P = projectByN[n];
+  const sec = document.createElement("section");
+  sec.className = "view"; sec.id = "v-" + PG.slug; sec.hidden = true;
+  sec.setAttribute("aria-label", P ? P.title : PG.slug);
+  const box = document.createElement("div");
+  box.className = "proj"; box.style.setProperty("--page-h", PG.h + NEXT_H);
+  const place = (el, o) => { for (const k of ["x", "y", "w", "h"]) if (o[k] !== undefined) el.style.setProperty("--" + k, o[k]); };
+  const items = [];
+  // Immagine a cui appartiene una didascalia: quella subito sopra (stessa colonna) o subito a sinistra (stessa altezza)
+  const ownerOf = T => PG.media.find(M => {
+    const below = T.y - (M.y + M.h), beside = T.x - (M.x + M.w);
+    return (T.x >= M.x - 2 && T.x < M.x + M.w && below >= 0 && below <= 60) || (beside >= 0 && beside <= 40 && Math.abs(T.y - M.y) <= 4);
+  });
+  PG.media.forEach((M, k) => {
+    const f = document.createElement("figure"); f.className = "pp-img"; place(f, M);
+    let im;
+    if (/\.mp4$/i.test(M.src)) {
+      im = loopVideo(M.src, M.poster, "metadata");
+      im.setAttribute("aria-label", (P ? P.title : "") + " · " + (k + 1));
+    } else {
+      im = document.createElement("img"); im.alt = (P ? P.title : "") + " · " + (k + 1); im.decoding = "async";
+      im.loading = "lazy"; im.src = M.src;   // si scarica solo quando apri la pagina e l'immagine sta per entrare nello schermo
+    }
+    if (M.fit) im.style.objectFit = M.fit;
+    if (M.pos) im.style.objectPosition = M.pos;
+    if (M.bg) im.style.background = M.bg;
+    f.append(im); items.push([M.y, M.x, 0, f]);
+  });
+  PG.texts.forEach(T => {
+    const p = document.createElement("p"); p.className = "pp-txt pp-" + T.style; place(p, T);
+    T.lines.forEach((l, k) => { const s = document.createElement("span"); s.className = "ln"; s.textContent = (l || "\u00a0") + (k < T.lines.length - 1 ? " " : ""); p.append(s); });   // riga vuota = spazio tra paragrafi
+    const M = T.style === "small" ? ownerOf(T) : null;
+    items.push(M ? [M.y, M.x, 1, p] : [T.y, T.x, 0, p]);
+  });
+  const cnt = document.createElement("div"); cnt.className = "pp-txt pp-count"; place(cnt, { x: 636, y: 14.5 });
+  cnt.textContent = "(" + parseInt(n, 10) + ")";
+  box.append(cnt);
+  const list = document.createElement("div"); list.className = "pp-list";
+  list.innerHTML = '<div class="row head"><span>Progetto</span><span>Cliente</span></div>';
+  const ul = document.createElement("ul"); fillList(ul, n); list.append(ul);
+  ul.addEventListener("click", e => { const t = titleOf(e.target); if (!t) return; e.preventDefault(); openProject(PROJECTS[+t.dataset.i].n); });
+  box.append(list);
+  // Ordine di lettura (conta su telefono): numero e lista, poi dall'alto; ogni didascalia subito dopo la sua immagine
+  items.sort((a, b) => a[0] - b[0] || a[1] - b[1] || a[2] - b[2]).forEach(it => box.append(it[3]));
+  // In fondo, nel margine destro e in piccolo (come crediti e didascalie): il progetto successivo.
+  // Dopo l'ultimo si riparte dal primo.
+  const nx = nextProject(n);
+  if (nx) {
+    const nb = document.createElement("p"); nb.className = "pp-txt pp-small pp-next"; place(nb, { x: 15, y: PG.h + NEXT_GAP });
+    const l1 = document.createElement("span"); l1.className = "ln"; l1.textContent = "Progetto successivo";
+    const l2 = document.createElement("span"); l2.className = "ln";
+    const a = document.createElement("a"); a.className = "w-title"; a.href = "#" + PAGES[nx.n].slug; a.textContent = nx.title;
+    a.addEventListener("click", e => { e.preventDefault(); openProject(nx.n); });
+    l2.append(a); nb.append(l1, l2);
+    box.append(nb);
+  }
+  sec.append(box); pagesRoot.append(sec);
+}
+
+/* =========================================================
+   Navigazione tra le pagine
+   ========================================================= */
+const VIEWS = { home: "v-home", work: "v-work", about: "v-about", contact: "v-contact",
+  ...Object.fromEntries(Object.values(PAGES).map(PG => [PG.slug, "v-" + PG.slug])) };
+// Indirizzi in italiano (#lavori, #chi-sono, #contatti); quelli vecchi (#work, #about, #contact) funzionano ancora
+const ROUTE_OUT = { work: "lavori", about: "chi-sono", contact: "contatti" };
+const ROUTE_IN = { lavori: "work", "chi-sono": "about", contatti: "contact", archivie: "archivio" };   // #archivie: indirizzo della pagina fino alla v1.24
+const route = () => { let h = location.hash.slice(1); try { h = decodeURIComponent(h); } catch (err) {} h = h || "home"; return ROUTE_IN[h] || h; };
+const hashOf = v => "#" + (ROUTE_OUT[v] || v);
+// Titolo della scheda del browser per ogni pagina
+const SITE = "Simone Buzzoni";
+const TITLES = { home: SITE + " — Visual designer", work: "Lavori — " + SITE, about: "Chi sono — " + SITE, contact: "Contatti — " + SITE,
+  ...Object.fromEntries(Object.entries(PAGES).map(([n, PG]) => [PG.slug, (projectByN[n] ? projectByN[n].title : PG.slug) + " — " + SITE])) };
+// Punto in cui eri in ogni pagina: tornando indietro (freccia del browser) si riparte da lì
+const SCROLL = {};
+try { history.scrollRestoration = "manual"; } catch (err) {}
+let current = null;
+function show(v, animate, restore) {
+  if (!VIEWS[v]) v = "home";
+  if (v === current) return;
+  if (current) SCROLL[current] = window.scrollY;
+  current = v;
+  for (const [k, id] of Object.entries(VIEWS)) {
+    const el = document.getElementById(id);
+    el.hidden = k !== v;
+    el.classList.remove("enter");
+    if (k === v && animate) { void el.offsetWidth; el.classList.add("enter"); }
+  }
+  document.body.dataset.view = v;
+  document.querySelectorAll("[data-go]").forEach(a => a.toggleAttribute("aria-current", a.dataset.go === v && v !== "home"));
+  hidePrev();
+  if (v === "work") loadPreviews();
+  document.title = TITLES[v] || SITE;
+  window.scrollTo(0, restore && SCROLL[v] != null ? SCROLL[v] : 0);
+}
+const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+// Voci del menu: portano alla pagina; se sei già lì, riportano in cima.
+// "Simone Buzzoni" funziona da logo: riporta sempre all'inizio della Home.
+function go(v) {
+  if (v === current) { window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" }); return; }
+  show(v, true);
+  try { history.pushState(null, "", hashOf(v)); } catch (err) {}
+}
+document.querySelectorAll("[data-go]").forEach(a => a.addEventListener("click", e => {
+  e.preventDefault();
+  go(a.dataset.go);
+}));
+window.addEventListener("popstate", () => show(route(), true, true));
+window.addEventListener("hashchange", () => show(route(), true, true));
+show(route(), false);
+</script>
+</body>
+</html>
