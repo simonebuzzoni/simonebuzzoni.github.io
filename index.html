@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Portfolio Simone · v1.30 · da v1.29: il sito chiede ai motori di ricerca di non mostrarlo (meta robots noindex) e non dichiara più un indirizzo canonico; il link e l'anteprima funzionano come prima · 01/10/2026 -->
+<!-- Portfolio Simone · v1.31 · da v1.30: su iPhone (Safari, Arc) i video della Home restavano fermi alla prima visita; ora partono quando sono davvero sullo schermo e riprovano appena pronti e a ogni tocco · 01/10/2026 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -518,10 +518,26 @@ const homeGrid = document.getElementById("homeGrid");
 // Chi ha chiesto al sistema di ridurre le animazioni vede il fotogramma fisso al posto del video
 const NO_MOTION = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 // Video in loop, senza audio (i browser li fanno partire da soli solo se muti).
-// Partono quando entrano nello schermo e si fermano quando escono, così la pagina resta leggera.
+// Partono quando sono davvero sullo schermo (almeno il 15% visibile) e si fermano quando escono del tutto.
+// v1.31: prima partivano già 300 px prima di entrare; Safari su iPhone a volte rifiutava quell'avvio
+// (o lo rifiuta sempre col risparmio energetico) e il video restava fermo sul fotogramma.
+// Ora, oltre a partire solo quando si vedono, i video visibili ma fermi riprovano a partire
+// appena il video è pronto e a ogni tocco, clic o tasto sulla pagina.
+const IN_VIEW = new Set();
+function tryPlay(v) {
+  if (NO_MOTION || !v.paused || !v.currentSrc && !v.src) return;
+  const p = v.play(); if (p && p.catch) p.catch(() => {});
+}
 const VIDEO_IO = "IntersectionObserver" in window ? new IntersectionObserver(entries => {
-  for (const e of entries) { const v = e.target; if (e.isIntersecting) { if (!NO_MOTION) v.play().catch(() => {}); } else v.pause(); }
-}, { rootMargin: "300px 0px" }) : null;
+  for (const e of entries) {
+    const v = e.target;
+    if (e.isIntersecting && e.intersectionRatio >= 0.15) { IN_VIEW.add(v); tryPlay(v); }
+    else if (!e.isIntersecting) { IN_VIEW.delete(v); v.pause(); }
+  }
+}, { threshold: [0, 0.15] }) : null;
+const retryInView = () => IN_VIEW.forEach(v => { if (v.isConnected && v.offsetParent !== null) tryPlay(v); });
+["touchend", "click", "keydown"].forEach(t => document.addEventListener(t, retryInView, { passive: true }));
+document.addEventListener("visibilitychange", () => { if (!document.hidden) retryInView(); });
 // Caricamento su richiesta: un video (e il suo fotogramma d'attesa) si scarica solo quando arriva
 // a meno di 800 px dallo schermo. Le pagine nascoste non entrano mai nello schermo, quindi non pesano
 // finché non le apri. Le foto fanno lo stesso con loading="lazy".
@@ -540,6 +556,8 @@ function loopVideo(src, poster, preload) {
   v.preload = preload || "auto";
   if (poster) v.dataset.poster = poster;
   v.dataset.src = src;
+  // Se era sullo schermo quando non era ancora pronto, parte appena può
+  v.addEventListener("canplay", () => { if (IN_VIEW.has(v)) tryPlay(v); });
   if (LAZY_IO) LAZY_IO.observe(v); else wake(v);
   return v;
 }
