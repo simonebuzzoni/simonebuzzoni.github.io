@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Portfolio Simone · v1.31 · da v1.30: su iPhone (Safari, Arc) i video della Home restavano fermi alla prima visita; ora partono quando sono davvero sullo schermo e riprovano appena pronti e a ogni tocco · 01/10/2026 -->
+<!-- Portfolio Simone · v1.32 · da v1.31: se Safari rifiuta di far partire un video senza un tocco (es. risparmio energetico su iPhone), il video diventa un'immagine animata con lo stesso file .mp4, che parte da sola · 01/10/2026 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -526,7 +526,29 @@ const NO_MOTION = window.matchMedia && window.matchMedia("(prefers-reduced-motio
 const IN_VIEW = new Set();
 function tryPlay(v) {
   if (NO_MOTION || !v.paused || !v.currentSrc && !v.src) return;
-  const p = v.play(); if (p && p.catch) p.catch(() => {});
+  const p = v.play();
+  if (p && p.catch) p.catch(err => { if (err && err.name === "NotAllowedError") asAnimatedImage(v); });
+}
+// v1.32: se il browser rifiuta di far partire il video senza un tocco (Safari su iPhone col risparmio
+// energetico, o con l'avvio automatico disattivato), il video diventa un'immagine animata.
+// Safari sa mostrare un .mp4 dentro un <img>, come una GIF, e quella parte da sola e va in loop.
+// Gli altri browser non caricano l'<img>: lì resta il video col suo fotogramma, come prima.
+function asAnimatedImage(v) {
+  if (v.dataset.asImg) return;
+  v.dataset.asImg = "1";
+  const src = v.currentSrc || v.src;
+  if (!src) return;
+  const im = new Image();
+  im.onload = () => {
+    if (!v.isConnected) return;
+    im.className = v.className;
+    const st = v.getAttribute("style"); if (st) im.setAttribute("style", st);
+    im.alt = "";
+    if (VIDEO_IO) VIDEO_IO.unobserve(v);
+    IN_VIEW.delete(v); v.pause();
+    v.replaceWith(im);
+  };
+  im.src = src;
 }
 const VIDEO_IO = "IntersectionObserver" in window ? new IntersectionObserver(entries => {
   for (const e of entries) {
