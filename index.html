@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Portfolio Simone · v1.33 · da v1.32 (prova v1.32-e): sul computer l'header parte al centro e appena scorri sale e si ancora in alto su una fascia bianca; sul telefono è sempre in alto · 02/10/2026 -->
+<!-- Portfolio Simone · v1.34 · da v1.33: corpi dei testi presi dal PDF di Simone (8, 9 e 10 pt → 14,25, 16,04 e 17,82 px, interlinea 1,2); didascalie della Home uguali a quelle dei progetti, tutte a 40 px sotto l'immagine; a capo delle descrizioni come nel PDF · 02/10/2026 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -36,16 +36,21 @@
     --ph: #ececea;
     --u: calc(100vw / 1500);
     --m: calc(14.5 * var(--u));            /* margine esterno */
-    --fs-nav: calc(14 * var(--u));
-    --fs-l: calc(17.55 * var(--u));        /* bio, pagina contatti */
-    --fs-list: calc(14.55 * var(--u));     /* lista lavori */
-    --fs-cap: calc(14.85 * var(--u));      /* didascalie home */
-    --fs-s: calc(13.13 * var(--u));        /* testi piccoli About */
-    --lh-l: 1.168;
-    --lh-list: 1.206;
-    --lh-s: 1.229;
+    /* v1.34: corpi presi dal PDF di Simone (A4 orizzontale: 1 pt = 1500 / 841,89 = 1,7817 px), interlinea 1,2 ovunque.
+       10 pt = 17,82 px (bio, contatti) · 9 pt = 16,04 px (menu in Medium, descrizioni dei progetti)
+       8 pt = 14,25 px (lista lavori, didascalie, crediti, testi piccoli di Chi sono) */
+    --fs-nav: calc(16.04 * var(--u));
+    --fs-l: calc(17.82 * var(--u));        /* bio, pagina contatti */
+    --fs-list: calc(14.25 * var(--u));     /* lista lavori */
+    --fs-cap: calc(14.25 * var(--u));      /* didascalie: Home e pagine progetto uguali */
+    --fs-s: calc(14.25 * var(--u));        /* testi piccoli Chi sono */
+    --fs-desc: calc(16.04 * var(--u));     /* descrizioni dei progetti */
+    --cap-gap: calc(40.2 * var(--u));      /* dal fondo dell'immagine all'inizio della didascalia (linea di base a 30,5 pt, come nel PDF) */
+    --lh-l: 1.2;
+    --lh-list: 1.2;
+    --lh-s: 1.2;
     --serif: "Noto Serif", Georgia, "Times New Roman", serif;
-    --hh: calc(43 * var(--u));             /* v1.33: altezza della fascia quando l'header è in alto */
+    --hh: calc(45 * var(--u));             /* altezza della fascia quando l'header è in alto: 14,5 + menu 16 + 14,5 */
   }
   html { overflow-x: clip; }
   html, body { background: var(--bg); color: var(--ink); }
@@ -110,7 +115,7 @@
   .shot:hover img, .shot:hover video, .shot:hover .empty { opacity: .8; }
   .shot figcaption {
     position: absolute; top: 100%; left: 0; width: max-content;
-    padding-top: calc(5.4 * var(--u));
+    padding-top: var(--cap-gap);           /* v1.34: stessa distanza delle didascalie dei progetti (prima 5,4) */
     font-size: var(--fs-cap);
     line-height: 1.2;
     opacity: 0;
@@ -166,8 +171,9 @@
   .pp-img img, .pp-img video { display: block; width: 100%; height: 100%; object-fit: cover; background: var(--ph); }
   .pp-txt { white-space: nowrap; }
   .pp-txt .ln { display: block; }
-  .pp-desc { font-size: calc(13 * var(--u)); line-height: calc(16 * var(--u)); }
-  .pp-small { font-size: calc(11 * var(--u)); line-height: calc(16.14 * var(--u)); }
+  .pp-desc { font-size: var(--fs-desc); line-height: 1.2; }
+  .pp-desc .ln.gap { height: var(--fs-desc); }   /* tra due paragrafi 9 pt di spazio, come nel PDF */
+  .pp-small { font-size: var(--fs-cap); line-height: 1.2; }
   .pp-count { font-size: var(--fs-list); line-height: var(--lh-list); font-weight: 600; }
   .pp-list { position: absolute; left: calc(760 * var(--u)); top: calc(14.5 * var(--u)); width: calc(600 * var(--u)); font-size: var(--fs-list); line-height: var(--lh-list); }
   /* Nella lista del progetto gli altri progetti sono al 20%; passando sul titolo tornano pieni */
@@ -199,7 +205,7 @@
 
   /* ---------- Telefono (sotto i 600 px): impaginazione in colonna ---------- */
   @media (max-width: 600px) {
-    :root { --m: 16px; --fs-nav: 13px; --fs-l: 17px; --fs-list: 14px; --fs-cap: 14px; --fs-s: 13px; }
+    :root { --m: 16px; --fs-nav: 13px; --fs-l: 17px; --fs-list: 14px; --fs-cap: 12px; --fs-s: 13px; --fs-desc: 14px; }
     .nav { left: 16px; right: 16px; display: flex; justify-content: space-between; }
     .nav a { position: static; }
     .n-li, .n-ig { display: none; }
@@ -213,7 +219,7 @@
     .home { height: auto; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); column-gap: 10px; row-gap: 20vw; padding: 16px 16px 40vh; }
     .shot { position: relative; left: auto; top: auto; width: auto; height: auto; grid-column: var(--mc); }
     .shot img, .shot video, .shot .empty { height: auto; aspect-ratio: var(--ar); }
-    .shot figcaption { padding-top: 6px; }
+    .shot figcaption { padding-top: 16px; }   /* come lo spazio tra immagine e didascalia nelle pagine progetto */
 
     .work, .about, #v-contact { padding: 16px; min-height: 0; height: auto; }
     .proj { height: auto; display: flex; flex-direction: column; gap: 16px; padding: 16px 16px 40vh; }
@@ -222,6 +228,7 @@
     .pp-txt { white-space: normal; }
     .pp-txt .ln { display: inline; }
     .pp-desc { font-size: 14px; line-height: 1.3; }
+    .pp-desc .ln.gap { height: 14px; }
     .pp-small { font-size: 12px; line-height: 1.3; }
     .w-prev, .w-count, .w-list, .a-bio, .a-portrait, .a-contact, .a-p, .cv > div, .contact-block { position: static; width: auto; height: auto; }
     .pp-next { margin-top: 24px; text-align: right; }
@@ -404,9 +411,9 @@ const PAGES = {
     ],
     texts: [
       { style: "small", x: 760, y: 334, lines: ["Motion design, Identità visiva, 2025"] },
-      { style: "desc",  x: 15, y: 713, lines: ["Ho collaborato alla realizzazione della videoinstallazione FuturiProbabili,", "esposta nella sala principale del Padiglione Italia a Expo 2025 Osaka e", "proiettata in loop su due schermi verticali alti 3 metri.", "", "Il progetto raccoglie pensieri, speranze e paure di circa 40 ragazze e ragazzi", "di diversa età, provenienza ed estrazione sociale: gli italiani del futuro", "raccontati attraverso le loro parole, la musica, la danza e le loro idee."] },
-      { style: "desc",  x: 137, y: 3505, lines: ["Il mio contributo è stato la progettazione dei type in", "motion che aprivano i diversi temi affrontati dai ragazzi,", "dando ritmo e identità visiva alla narrazione. I titoli", "introducevano ogni sezione, accompagnando lo", "spettatore tra i grandi nodi del progetto: bullismo e", "mondo digitale, empatia, continuità culturale, inclusione."] },
-      { style: "desc",  x: 15, y: 4473, lines: ["Il Padiglione Italia, diretto da Roberto Malfatto", "(Multimedia Director e Set Designer), ha ricevuto il", "primo premio assoluto della Giuria del Bureau", "International des Expositions (BIE) nella categoria", "\"Theme Development”."] },
+      { style: "desc", x: 15, y: 713, lines: ["Ho collaborato alla realizzazione della videoinstallazione", "FuturiProbabili, esposta nella sala principale del Padiglione", "Italia a Expo 2025 Osaka e proiettata in loop su due schermi", "verticali alti 3 metri.", "", "Il progetto raccoglie pensieri, speranze e paure di circa 40", "ragazze e ragazzi di diversa età, provenienza ed estrazione", "sociale: gli italiani del futuro raccontati attraverso le loro", "parole, la musica, la danza e le loro idee."] },   // v1.34: a capo come nel PDF di Simone
+      { style: "desc", x: 137, y: 3505, lines: ["Il mio contributo è stato la progettazione dei", "type in motion che aprivano i diversi temi", "affrontati dai ragazzi, dando ritmo e identità", "visiva alla narrazione. I titoli introducevano", "ogni sezione, accompagnando lo spettatore", "tra i grandi nodi del progetto: bullismo e", "mondo digitale, empatia, continuità", "culturale, inclusione."] },   // v1.34: a capo come nel PDF di Simone
+      { style: "desc", x: 15, y: 4473, lines: ["Il Padiglione Italia, diretto da Roberto", "Malfatto (Multimedia Director e Set", "Designer), ha ricevuto il primo premio", "assoluto della Giuria del Bureau", "International des Expositions (BIE) nella", "categoria \"Theme Development”."] },   // v1.34: a capo come nel PDF di Simone
     ],
   },
   "02": {
@@ -423,12 +430,12 @@ const PAGES = {
       { src: "img/come-cadono-i-fiori/09.jpg", x: 15, y: 4319, w: 1470, h: 979.755 }
     ],
     texts: [
-      { style: "desc",  x: 139,  y: 681,  lines: ["Il progetto finale del corso “Cultura Visiva” prevedeva la produzione di un", "libro fotografico, fedele alle opere di Edward Ruscha. Ho deciso quindi di", "dare una visione personale alla città nella quale sono cresciuto, Rozzano,", "cercando di creare un racconto attraverso i miei scatti. Il titolo che ho scelto", "indica il processo che porta un edificio al suo decadimento strutturale. La", "mia scelta è stata quella di mettere in relazione i nomi delle vie, rispetto a", "ciò che esiste e accade in quella strada. Si nota quindi un parallelismo netto,", "che ho scelto di ripetere creando un costante confronto e controsenso", "all’interno del libro."] },
-      { style: "small", x: 1257, y: 677,  lines: ["Fotografia, Impaginazione", "editoriale, 2024"] },
-      { style: "small", x: 139,  y: 2070, lines: ["Via delle Ginestre"] },
-      { style: "small", x: 760,  y: 2969, lines: ["Via delle Margherite"] },
-      { style: "small", x: 15,   y: 4249, lines: ["Via Mandorli"] },
-      { style: "small", x: 15,   y: 5329, lines: ["Via Giacinti"] },
+      { style: "desc", x: 139, y: 681, lines: ["Il progetto finale del corso “Cultura Visiva” prevedeva la", "produzione di un libro fotografico, fedele alle opere di Edward", "Ruscha. Ho deciso quindi di dare una visione personale alla", "città nella quale sono cresciuto, Rozzano, cercando di creare", "un racconto attraverso i miei scatti. Il titolo che ho scelto", "indica il processo che porta un edificio al suo decadimento", "strutturale. La mia scelta è stata quella di mettere in relazione", "i nomi delle vie, rispetto a ciò che esiste e accade in quella", "strada. Si nota quindi un parallelismo netto, che ho scelto", "di ripetere creando un costante confronto e controsenso", "all’interno del libro."] },   // v1.34: a capo come nel PDF di Simone
+      { style: "small", x: 1257, y: 677, lines: ["Fotografia, Impaginazione", "editoriale, 2024"] },   // v1.34: a capo come nel PDF di Simone
+      { style: "small", x: 139, y: 2080.2, lines: ["Via delle Ginestre"] },   // v1.34: 40,2 px sotto l'immagine, sul suo bordo sinistro
+      { style: "small", x: 760, y: 2979.2, lines: ["Via delle Margherite"] },   // v1.34: 40,2 px sotto l'immagine, sul suo bordo sinistro
+      { style: "small", x: 15, y: 4259, lines: ["Via Mandorli"] },   // v1.34: 40,2 px sotto l'immagine, sul suo bordo sinistro
+      { style: "small", x: 15, y: 5339, lines: ["Via Giacinti"] },   // v1.34: 40,2 px sotto l'immagine, sul suo bordo sinistro
     ],
   },
   "03": {
@@ -452,10 +459,10 @@ const PAGES = {
       { src: "img/engie-adv/16.webp", x: 15, y: 7069, w: 1345, h: 585 }             // schermata della tavola di lavoro
     ],
     texts: [
-      { style: "desc",  x: 15,   y: 15,   lines: ["L’energia è presente nei momenti di ogni giorno, anche quando non la", "notiamo. Il lavoro ha preso forma per passaggi: prima gli ambienti e gli", "oggetti che rendono riconoscibile una casa; poi lo studio dei personaggi,", "delle loro proporzioni e delle texture; infine le scene abitate, in cui un gesto", "o una relazione suggeriscono una storia."] },
-      { style: "small", x: 1257, y: 677,  lines: ["Art direction, Character design,", "Immagini AI, 2025-26"] },   // dalla v1.28 (prima "Fotografia, Impaginazione editoriale, 2024", copiato da Come cadono i fiori)
-      { style: "desc",  x: 15,   y: 1125, lines: ["Per raccontarla in una campagna social luce e gas, siamo partiti dalle", "immagini fornite da DUDE e abbiamo esplorato un linguaggio visivo a metà", "tra scena quotidiana e diorama contemporaneo."] },
-      { style: "desc",  x: 1008, y: 2333, lines: ["L’AI è stata lo strumento di produzione, guidato da una", "direzione creativa precisa. L’obiettivo non era ottenere", "immagini isolate, ma costruire un linguaggio capace di", "passare dalle scene narrative ai diversi formati social,", "mantenendo riconoscibili personaggi e atmosfera."] },
+      { style: "desc", x: 15, y: 15, lines: ["L’energia è presente nei momenti di ogni giorno, anche", "quando non la notiamo. Il lavoro ha preso forma per", "passaggi: prima gli ambienti e gli oggetti che rendono", "riconoscibile una casa; poi lo studio dei personaggi, delle loro", "proporzioni e delle texture; infine le scene abitate, in cui un", "gesto o una relazione suggeriscono una storia."] },   // v1.34: a capo come nel PDF di Simone
+      { style: "small", x: 1257, y: 677, lines: ["Art direction, Character", "design, Immagini AI,", "2025-26"] },   // v1.34: a capo come nel PDF di Simone
+      { style: "desc", x: 15, y: 1125, lines: ["Per raccontarla in una campagna social luce e gas, siamo", "partiti dalle immagini fornite da DUDE e abbiamo esplorato", "un linguaggio visivo a metà tra scena quotidiana e diorama", "contemporaneo."] },   // v1.34: a capo come nel PDF di Simone
+      { style: "desc", x: 1008, y: 2333, lines: ["L’AI è stata lo strumento di produzione,", "guidato da una direzione creativa precisa.", "L’obiettivo non era ottenere immagini isolate,", "ma costruire un linguaggio capace di passare", "dalle scene narrative ai diversi formati social,", "mantenendo riconoscibili personaggi e", "atmosfera."] },   // v1.34: a capo come nel PDF di Simone
     ],
   },
   "04": {
@@ -471,16 +478,16 @@ const PAGES = {
       { src: "img/artwork-design/08.webp", x: 139, y: 3253, w: 353, h: 545 }
     ],
     texts: [
-      { style: "small", x: 388,  y: 15,   lines: ["COP O FAN - Off Nova"] },     // a destra della copertina, in alto
-      { style: "small", x: 1257, y: 677,  lines: ["Branding, Visual design,", "Motion design"] },
-      { style: "desc",  x: 15,   y: 745,  lines: ["Dal 2021 collaboro con diversi artisti nel campo musicale creando contenuti", "visivi per i loro progetti. Partendo da un’attenta comprensione del brano,", "sviluppo progetti coerenti con l’identità dell’artista. Ho iniziato come", "fotografo, imparando a gestire shooting, e ho poi esteso il mio ruolo, fino a", "curare l’intero immaginario visivo."] },
-      { style: "small", x: 760,  y: 852,  lines: ["Con Te - Peva feat. Hurri Keight"] },
-      { style: "small", x: 25,   y: 1991, lines: ["5 Secondi - Luca Vigentini"] },
-      { style: "small", x: 885,  y: 1991, lines: ["Inedito"] },
-      { style: "desc",  x: 1008, y: 2401, lines: ["Questi progetti stimolano la mia creatività e", "rappresentano una sfida continua nel comprendere", "l’artista e il suo stile. Inoltre, sono ottime opportunità per", "costruire relazioni, crescere professionalmente e vivere", "nuove esperienze."] },
-      { style: "small", x: 139,  y: 2836, lines: ["Correre - Sofia Del Grande"] },
-      { style: "small", x: 139,  y: 3828, lines: ["Polo G nel ‘19 - Off Nova feat. Lucky"] },
-      { style: "small", x: 646,  y: 3975, lines: ["È OK - Lucky"] },
+      { style: "small", x: 15, y: 408.2, lines: ["COP O FAN - Off Nova"] },   // v1.34: 40,2 px sotto l'immagine, sul suo bordo sinistro (prima a destra della copertina)
+      { style: "small", x: 1257, y: 677, lines: ["Branding, Visual design,", "Motion design"] },   // v1.34: a capo come nel PDF di Simone
+      { style: "desc", x: 15, y: 745, lines: ["Dal 2021 collaboro con diversi artisti nel campo musicale", "creando contenuti visivi per i loro progetti. Partendo da", "un’attenta comprensione del brano, sviluppo progetti", "coerenti con l’identità dell’artista. Ho iniziato come fotografo,", "imparando a gestire shooting, e ho poi esteso il mio ruolo,", "fino a curare l’intero immaginario visivo."] },   // v1.34: a capo come nel PDF di Simone
+      { style: "small", x: 760, y: 862.2, lines: ["Con Te - Peva feat. Hurri Keight"] },   // v1.34: 40,2 px sotto l'immagine, sul suo bordo sinistro
+      { style: "small", x: 25, y: 2001.2, lines: ["5 Secondi - Luca Vigentini"] },   // v1.34: 40,2 px sotto l'immagine, sul suo bordo sinistro
+      { style: "small", x: 885, y: 2001.2, lines: ["Inedito"] },   // v1.34: 40,2 px sotto l'immagine, sul suo bordo sinistro
+      { style: "desc", x: 1008, y: 2401, lines: ["Questi progetti stimolano la mia creatività", "e rappresentano una sfida continua nel", "comprendere l’artista e il suo stile.", "Inoltre, sono ottime opportunità per costruire", "relazioni, crescere professionalmente e vivere", "nuove esperienze."] },   // v1.34: a capo come nel PDF di Simone
+      { style: "small", x: 139, y: 2846.2, lines: ["Correre - Sofia Del Grande"] },   // v1.34: 40,2 px sotto l'immagine, sul suo bordo sinistro
+      { style: "small", x: 139, y: 3838.2, lines: ["Polo G nel ‘19 - Off Nova feat. Lucky"] },   // v1.34: 40,2 px sotto l'immagine, sul suo bordo sinistro
+      { style: "small", x: 646, y: 3985.2, lines: ["È OK - Lucky"] },   // v1.34: 40,2 px sotto l'immagine, sul suo bordo sinistro
     ],
   },
   "05": {
@@ -495,9 +502,9 @@ const PAGES = {
       { src: "img/humana-bilancio-2025-2026/07.webp", x: 1008, y: 2580, w: 477, h: 318 }
     ],
     texts: [
-      { style: "desc",  x: 15,  y: 15,   lines: ["Durante la mia esperienza in Plural ho collaborato alla realizzazione del", "bilancio di sostenibilità di Humana People to People. Il progetto ha previsto", "la riorganizzazione di un ampio volume di testi in una struttura più chiara e", "leggibile."] },   // nella bozza "SUBSENSE": sostituito con Plural come nel resto del sito
-      { style: "small", x: 810, y: 683,  lines: ["Impaginazione editoriale", "2024-25"] },
-      { style: "desc",  x: 388, y: 1822, lines: ["Rispetto alle edizioni precedenti, caratterizzate esclusivamente dal verde", "istituzionale, abbiamo introdotto un sistema cromatico che assegna un", "colore diverso a ciascun capitolo, rendendo la lettura più fluida e i contenuti", "più riconoscibili. La copertina combina il tema dell’economia tessile con", "l’impegno umanitario e sociale dell’organizzazione."] },
+      { style: "desc", x: 15, y: 15, lines: ["Durante la mia esperienza in Plural ho collaborato alla", "realizzazione del bilancio di sostenibilità di Humana People", "to People. Il progetto ha previsto la riorganizzazione di un", "ampio volume di testi in una struttura più chiara e leggibile."] },   // v1.34: a capo come nel PDF di Simone
+      { style: "small", x: 810, y: 683, lines: ["Impaginazione", "editoriale 2024-25"] },   // v1.34: a capo come nel PDF di Simone
+      { style: "desc", x: 388, y: 1822, lines: ["Rispetto alle edizioni precedenti, caratterizzate", "esclusivamente dal verde istituzionale, abbiamo introdotto", "un sistema cromatico che assegna un colore diverso a ciascun", "capitolo, rendendo la lettura più fluida e i contenuti più", "riconoscibili. La copertina combina il tema dell’economia", "tessile con l’impegno umanitario e sociale", "dell’organizzazione."] },   // v1.34: a capo come nel PDF di Simone
     ],
   },
   "06": {
@@ -754,7 +761,7 @@ for (const [n, PG] of Object.entries(PAGES)) {
   });
   PG.texts.forEach(T => {
     const p = document.createElement("p"); p.className = "pp-txt pp-" + T.style; place(p, T);
-    T.lines.forEach((l, k) => { const s = document.createElement("span"); s.className = "ln"; s.textContent = (l || "\u00a0") + (k < T.lines.length - 1 ? " " : ""); p.append(s); });   // riga vuota = spazio tra paragrafi
+    T.lines.forEach((l, k) => { const s = document.createElement("span"); s.className = l ? "ln" : "ln gap"; s.textContent = (l || "\u00a0") + (k < T.lines.length - 1 ? " " : ""); p.append(s); });   // riga vuota = spazio tra paragrafi
     const M = T.style === "small" ? ownerOf(T) : null;
     items.push(M ? [M.y, M.x, 1, p] : [T.y, T.x, 0, p]);
   });
@@ -822,7 +829,7 @@ function show(v, animate, restore) {
 }
 // v1.33: header al centro a inizio pagina, in alto appena la pagina scorre oltre l'altezza della fascia
 function updateNav() {
-  const limit = window.innerWidth > 600 ? 43 * window.innerWidth / 1500 : 45;
+  const limit = window.innerWidth > 600 ? 45 * window.innerWidth / 1500 : 45;
   document.body.classList.toggle("nav-top", window.scrollY > limit);
 }
 let navTick = false;
