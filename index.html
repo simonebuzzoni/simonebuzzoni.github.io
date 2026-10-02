@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Portfolio Simone · v1.32 · da v1.31: se Safari rifiuta di far partire un video senza un tocco (es. risparmio energetico su iPhone), il video diventa un'immagine animata con lo stesso file .mp4, che parte da sola · 01/10/2026 -->
+<!-- Portfolio Simone · v1.33 · da v1.32 (prova v1.32-e): sul computer l'header parte al centro e appena scorri sale e si ancora in alto su una fascia bianca; sul telefono è sempre in alto · 02/10/2026 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -45,6 +45,7 @@
     --lh-list: 1.206;
     --lh-s: 1.229;
     --serif: "Noto Serif", Georgia, "Times New Roman", serif;
+    --hh: calc(43 * var(--u));             /* v1.33: altezza della fascia quando l'header è in alto */
   }
   html { overflow-x: clip; }
   html, body { background: var(--bg); color: var(--ink); }
@@ -68,9 +69,19 @@
     --ns: 1;
     transform: translateY(-50%) scale(var(--ns));
     transform-origin: 50% 50%;
-    transition: transform .8s cubic-bezier(.22, .8, .2, 1);
+    transition: transform .8s cubic-bezier(.22, .8, .2, 1), top .8s cubic-bezier(.22, .8, .2, 1);
   }
   body:not([data-view="home"]) .nav { --ns: .8527; }
+  /* v1.33: appena la pagina scorre, l'header sale in alto (a 14,5 dal bordo, come i margini) e si ancora lì.
+     Sotto compare una fascia bianca: le immagini ci scorrono sotto e le voci restano su fondo bianco.
+     Tornando in cima alla pagina l'header torna al centro. */
+  body.nav-top .nav { --ns: 1; top: calc(14.5 * var(--u)); transform: translateY(0) scale(var(--ns)); }   /* in alto stessa misura in tutte le pagine, voci allineate ai margini */
+  .nav-band {
+    position: fixed; left: 0; right: 0; top: 0; height: var(--hh);
+    z-index: 19; background: var(--bg);
+    opacity: 0; pointer-events: none; transition: opacity .35s ease;
+  }
+  body.nav-top .nav-band { opacity: 1; pointer-events: auto; transition-delay: .1s; }
   .nav a { position: absolute; top: 0; pointer-events: auto; white-space: nowrap; transition: opacity .2s; }
   .nav a:hover { opacity: .45; }
   /* Il link della pagina che stai guardando non ha hover (menu e lista delle pagine progetto) */
@@ -183,7 +194,7 @@
   .view.enter { animation: enter .5s ease both; }
   @media (prefers-reduced-motion: reduce) {
     .view.enter { animation: none; }
-    .nav, .nav a, .shot img, .shot video, .shot .empty, .shot figcaption, .w-prev > *, .w-title { transition: none; }
+    .nav, .nav a, .nav-band, .shot img, .shot video, .shot .empty, .shot figcaption, .w-prev > *, .w-title { transition: none; }
   }
 
   /* ---------- Telefono (sotto i 600 px): impaginazione in colonna ---------- */
@@ -193,6 +204,11 @@
     .nav a { position: static; }
     .n-li, .n-ig { display: none; }
     body:not([data-view="home"]) .nav { --ns: 1; }
+    /* v1.33: sul telefono l'header è sempre in alto, sulla fascia bianca (al centro finiva sopra le immagini) */
+    :root { --hh: 45px; }
+    .nav, body.nav-top .nav { top: 16px; transform: none; transition: none; }
+    .nav-band { opacity: 1; pointer-events: auto; transition: none; }
+    main { padding-top: var(--hh); }
 
     .home { height: auto; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); column-gap: 10px; row-gap: 20vw; padding: 16px 16px 40vh; }
     .shot { position: relative; left: auto; top: auto; width: auto; height: auto; grid-column: var(--mc); }
@@ -222,6 +238,7 @@
 </head>
 <body>
 
+<div class="nav-band" aria-hidden="true"></div>
 <nav class="nav" aria-label="Navigazione principale">
   <a class="n-name" href="#home" data-go="home">Simone Buzzoni</a>
   <a class="n-work" href="#lavori" data-go="work">Lavori</a>
@@ -406,7 +423,7 @@ const PAGES = {
       { src: "img/come-cadono-i-fiori/09.jpg", x: 15, y: 4319, w: 1470, h: 979.755 }
     ],
     texts: [
-      { style: "desc",  x: 139,  y: 681,  lines: ["Il progetto finale del corso “Cultura Visiva” prevedeva la produzione di un", "libro fotografico, fedele alle opere di Edward Ruscha. Ho deciso quindi di", "dare una visione personale alla città nella quale sono cresciuto, Rozzano,", "cercando di creare un racconto attraverso i miei scatti. Il titolo che ho scelto", "indica il processo che porta un edificio al suo decadimento strutturale. La", "mia scelta è stata quella di mettere in relazione i nomi delle vie, rispetto a", "ciò che esiste e accade in quella strada. Si nota quindi un parallelismo netto,", "che ho scelto di ripetere creando un costante confronto e controsenso", "all’intero del libro."] },
+      { style: "desc",  x: 139,  y: 681,  lines: ["Il progetto finale del corso “Cultura Visiva” prevedeva la produzione di un", "libro fotografico, fedele alle opere di Edward Ruscha. Ho deciso quindi di", "dare una visione personale alla città nella quale sono cresciuto, Rozzano,", "cercando di creare un racconto attraverso i miei scatti. Il titolo che ho scelto", "indica il processo che porta un edificio al suo decadimento strutturale. La", "mia scelta è stata quella di mettere in relazione i nomi delle vie, rispetto a", "ciò che esiste e accade in quella strada. Si nota quindi un parallelismo netto,", "che ho scelto di ripetere creando un costante confronto e controsenso", "all’interno del libro."] },
       { style: "small", x: 1257, y: 677,  lines: ["Fotografia, Impaginazione", "editoriale, 2024"] },
       { style: "small", x: 139,  y: 2070, lines: ["Via delle Ginestre"] },
       { style: "small", x: 760,  y: 2969, lines: ["Via delle Margherite"] },
@@ -801,7 +818,16 @@ function show(v, animate, restore) {
   if (v === "work") loadPreviews();
   document.title = TITLES[v] || SITE;
   window.scrollTo(0, restore && SCROLL[v] != null ? SCROLL[v] : 0);
+  updateNav();
 }
+// v1.33: header al centro a inizio pagina, in alto appena la pagina scorre oltre l'altezza della fascia
+function updateNav() {
+  const limit = window.innerWidth > 600 ? 43 * window.innerWidth / 1500 : 45;
+  document.body.classList.toggle("nav-top", window.scrollY > limit);
+}
+let navTick = false;
+window.addEventListener("scroll", () => { if (!navTick) { navTick = true; requestAnimationFrame(() => { navTick = false; updateNav(); }); } }, { passive: true });
+window.addEventListener("resize", updateNav);
 const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 // Voci del menu: portano alla pagina; se sei già lì, riportano in cima.
 // "Simone Buzzoni" funziona da logo: riporta sempre all'inizio della Home.
