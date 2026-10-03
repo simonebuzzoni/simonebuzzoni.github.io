@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Portfolio Simone · v1.36 · da v1.35: didascalie più vicine alle immagini (30 px, prima 40,2), COP O FAN a destra della copertina, nuove anteprime in Lavori per Expo e Come cadono i fiori · 03/10/2026 -->
+<!-- Portfolio Simone · v1.37 · da v1.36: l'header al centro non tocca più immagini e testi (si sposta nella fascia libera più vicina al centro); nuova anteprima di Come cadono i fiori scelta da Simone · 03/10/2026 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -64,7 +64,7 @@
 
   /* ---------- Nav fissa al centro verticale ---------- */
   .nav {
-    position: fixed; left: 0; right: 0; top: 50%;
+    position: fixed; left: 0; right: 0; top: var(--nav-c, 50%);   /* v1.37: al centro, ma spostato nella fascia libera più vicina se lì c'è un'immagine (lo calcola placeNav) */
     height: var(--fs-nav);
     z-index: 20;
     font-size: var(--fs-nav);
@@ -87,6 +87,9 @@
     opacity: 0; pointer-events: none; transition: opacity .35s ease;
   }
   body.nav-top .nav-band { opacity: 1; pointer-events: auto; transition-delay: .1s; }
+  /* v1.37: pagine in cui al centro non c'è spazio libero per l'header (es. Expo, Come cadono i fiori):
+     l'header parte già in alto sulla fascia e la pagina scende della sua altezza, così niente finisce sotto la fascia. */
+  body.nav-start-top main { padding-top: var(--hh); }
   .nav a { position: absolute; top: 0; pointer-events: auto; white-space: nowrap; transition: opacity .2s; }
   .nav a:hover { opacity: .45; }
   /* Il link della pagina che stai guardando non ha hover (menu e lista delle pagine progetto) */
@@ -359,7 +362,7 @@
    ========================================================= */
 const PROJECTS = [
   { n: "01", title: "Expo Osaka 2025",             client: "Associazione Futuri Probabili", preview: "img/01-expo-osaka-2025-anteprima.webp" },   // v1.36: fotogramma "scuola 学校 school" dal video originale, intero su fondo nero
-  { n: "02", title: "Come cadono i fiori",         client: "CFP Bauer",             preview: "img/02-come-cadono-i-fiori-anteprima.webp" },   // v1.36: i balconi di Via Mandorli, taglio verticale dall'originale
+  { n: "02", title: "Come cadono i fiori",         client: "CFP Bauer",             preview: "img/02-come-cadono-i-fiori-anteprima-2.webp" },   // v1.37: taglio scelto da Simone, parte sinistra in basso di Via Mandorli (strada, palazzi, balconi con la tenda), dall'originale
   { n: "03", title: "ENGIE adv",                   client: "Plural" },
   { n: "04", title: "Artwork Design",              client: "Progetti indipendenti", preview: "img/04-artwork-design-2.webp" },
   { n: "05", title: "Humana Bilancio 2025-2026",   client: "Plural" },   // anteprima = la sua immagine in Home (blocco 10)
@@ -827,16 +830,64 @@ function show(v, animate, restore) {
   if (v === "work") loadPreviews();
   document.title = TITLES[v] || SITE;
   window.scrollTo(0, restore && SCROLL[v] != null ? SCROLL[v] : 0);
+  placeNav();
   updateNav();
 }
 // v1.33: header al centro a inizio pagina, in alto appena la pagina scorre oltre l'altezza della fascia
 function updateNav() {
   const limit = window.innerWidth > 600 ? 45 * window.innerWidth / 1500 : 45;
-  document.body.classList.toggle("nav-top", window.scrollY > limit);
+  document.body.classList.toggle("nav-top", navStartTop || window.scrollY > limit);
+}
+// v1.37: quando è al centro, l'header non deve toccare immagini né testi della pagina.
+// Si cerca la posizione libera più vicina al centro dello schermo: nessun elemento che sta sotto una voce del menu
+// deve arrivare a meno di 50 px (sopra o sotto). Se il centro è libero, l'header resta al centro.
+const NAV_EL = document.querySelector(".nav");
+const NAV_AVOID = ".shot, .shot figcaption, .pp-img, .pp-txt, .pp-list, .w-prev, .w-count, .w-list, .a-bio, .a-portrait, .a-contact, .a-p, .cv > div, .contact-block";
+function navCenter() {
+  const W = window.innerWidth, H = window.innerHeight;
+  if (W <= 600) return null;                                   // telefono: header sempre in alto
+  const u = W / 1500, ns = current === "home" ? 1 : 0.8527, cx = W / 2;
+  const h = 16.04 * u * ns, clear = 50 * u, padX = 15 * u;
+  const cols = [...NAV_EL.querySelectorAll("a")].filter(a => a.offsetWidth)
+    .map(a => [cx + (a.offsetLeft - cx) * ns - padX, cx + (a.offsetLeft + a.offsetWidth - cx) * ns + padX]);
+  const view = document.querySelector(".view:not([hidden])");
+  if (!view) return null;
+  const bad = [];
+  view.querySelectorAll(NAV_AVOID).forEach(el => {
+    const r = el.getBoundingClientRect();
+    if (!r.width || !r.height) return;
+    if (!cols.some(([l, rr]) => r.left < rr && r.right > l)) return;   // non sta sotto nessuna voce del menu
+    const top = r.top + window.scrollY, bottom = r.bottom + window.scrollY;
+    bad.push([top - clear - h / 2, bottom + clear + h / 2]);
+  });
+  bad.sort((a, b) => a[0] - b[0]);
+  const free = (lo, hi) => {                                     // tratti liberi tra lo e hi
+    const out = []; let y = lo;
+    for (const [a, b] of bad) { if (b <= y) continue; if (a >= hi) break; if (a > y) out.push([y, Math.min(a, hi)]); y = Math.max(y, b); if (y >= hi) break; }
+    if (y < hi) out.push([y, hi]);
+    return out;
+  };
+  const target = H / 2;
+  for (const [lo, hi] of [[H * 0.25, H * 0.75]]) {          // solo nella parte centrale dello schermo, non sui bordi
+    let best = null;
+    for (const [a, b] of free(lo, hi)) { const y = Math.min(b, Math.max(a, target)); if (best === null || Math.abs(y - target) < Math.abs(best - target)) best = y; }
+    if (best !== null) return best;
+  }
+  return null;                                                   // nessuno spazio libero: l'header parte in alto (placeNav)
+}
+let navStartTop = false;
+function placeNav() {
+  document.body.classList.remove("nav-start-top");           // le misure si prendono con la pagina al suo posto
+  const big = window.innerWidth > 600;
+  const c = navCenter();
+  navStartTop = big && c === null;
+  document.body.classList.toggle("nav-start-top", navStartTop);
+  if (c === null) NAV_EL.style.removeProperty("--nav-c"); else NAV_EL.style.setProperty("--nav-c", c.toFixed(1) + "px");
 }
 let navTick = false;
 window.addEventListener("scroll", () => { if (!navTick) { navTick = true; requestAnimationFrame(() => { navTick = false; updateNav(); }); } }, { passive: true });
-window.addEventListener("resize", updateNav);
+window.addEventListener("resize", () => { placeNav(); updateNav(); });
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(placeNav);
 const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 // Voci del menu: portano alla pagina; se sei già lì, riportano in cima.
 // "Simone Buzzoni" funziona da logo: riporta sempre all'inizio della Home.
