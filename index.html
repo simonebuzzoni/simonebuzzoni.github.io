@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Portfolio Simone · v1.35 · da v1.34: 53 immagini rifatte dai JPG originali di Simone (stesso ritaglio, più pixel, compressione leggera); codice invariato · 02/10/2026 -->
+<!-- Portfolio Simone · v1.36 · da v1.35: didascalie più vicine alle immagini (30 px, prima 40,2), COP O FAN a destra della copertina, nuove anteprime in Lavori per Expo e Come cadono i fiori · 03/10/2026 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -45,7 +45,7 @@
     --fs-cap: calc(14.25 * var(--u));      /* didascalie: Home e pagine progetto uguali */
     --fs-s: calc(14.25 * var(--u));        /* testi piccoli Chi sono */
     --fs-desc: calc(16.04 * var(--u));     /* descrizioni dei progetti */
-    --cap-gap: calc(40.2 * var(--u));      /* dal fondo dell'immagine all'inizio della didascalia (linea di base a 30,5 pt, come nel PDF) */
+    --cap-gap: calc(30 * var(--u));        /* v1.36: dal fondo dell'immagine all'inizio della didascalia, 30 px (prima 40,2): didascalie un po' più vicine */
     --lh-l: 1.2;
     --lh-list: 1.2;
     --lh-s: 1.2;
@@ -219,7 +219,7 @@
     .home { height: auto; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); column-gap: 10px; row-gap: 20vw; padding: 16px 16px 40vh; }
     .shot { position: relative; left: auto; top: auto; width: auto; height: auto; grid-column: var(--mc); }
     .shot img, .shot video, .shot .empty { height: auto; aspect-ratio: var(--ar); }
-    .shot figcaption { padding-top: 16px; }   /* come lo spazio tra immagine e didascalia nelle pagine progetto */
+    .shot figcaption { padding-top: 12px; }   /* v1.36: 12 px (prima 16), come nelle pagine progetto */
 
     .work, .about, #v-contact { padding: 16px; min-height: 0; height: auto; }
     .proj { height: auto; display: flex; flex-direction: column; gap: 16px; padding: 16px 16px 40vh; }
@@ -230,6 +230,7 @@
     .pp-desc { font-size: 14px; line-height: 1.3; }
     .pp-desc .ln.gap { height: 14px; }
     .pp-small { font-size: 12px; line-height: 1.3; }
+    .pp-cap { margin-top: -4px; }   /* v1.36: didascalia a 12 px dalla sua immagine (lo spazio della colonna è 16) */
     .w-prev, .w-count, .w-list, .a-bio, .a-portrait, .a-contact, .a-p, .cv > div, .contact-block { position: static; width: auto; height: auto; }
     .pp-next { margin-top: 24px; text-align: right; }
     .pp-txt.pp-next .ln { display: block; }
@@ -357,8 +358,8 @@
                   (sono quelle della bozza Figma, pagina Draft, frame "Home · v1.3.1")
    ========================================================= */
 const PROJECTS = [
-  { n: "01", title: "Expo Osaka 2025",             client: "Associazione Futuri Probabili", previewPos: "95% 50%" },   // anteprima spostata a destra, sul volto
-  { n: "02", title: "Come cadono i fiori",         client: "CFP Bauer",             preview: "img/02-come-cadono-i-fiori-2.webp" },
+  { n: "01", title: "Expo Osaka 2025",             client: "Associazione Futuri Probabili", preview: "img/01-expo-osaka-2025-anteprima.webp" },   // v1.36: fotogramma "scuola 学校 school" dal video originale, intero su fondo nero
+  { n: "02", title: "Come cadono i fiori",         client: "CFP Bauer",             preview: "img/02-come-cadono-i-fiori-anteprima.webp" },   // v1.36: i balconi di Via Mandorli, taglio verticale dall'originale
   { n: "03", title: "ENGIE adv",                   client: "Plural" },
   { n: "04", title: "Artwork Design",              client: "Progetti indipendenti", preview: "img/04-artwork-design-2.webp" },
   { n: "05", title: "Humana Bilancio 2025-2026",   client: "Plural" },   // anteprima = la sua immagine in Home (blocco 10)
@@ -432,10 +433,10 @@ const PAGES = {
     texts: [
       { style: "desc", x: 139, y: 681, lines: ["Il progetto finale del corso “Cultura Visiva” prevedeva la", "produzione di un libro fotografico, fedele alle opere di Edward", "Ruscha. Ho deciso quindi di dare una visione personale alla", "città nella quale sono cresciuto, Rozzano, cercando di creare", "un racconto attraverso i miei scatti. Il titolo che ho scelto", "indica il processo che porta un edificio al suo decadimento", "strutturale. La mia scelta è stata quella di mettere in relazione", "i nomi delle vie, rispetto a ciò che esiste e accade in quella", "strada. Si nota quindi un parallelismo netto, che ho scelto", "di ripetere creando un costante confronto e controsenso", "all’interno del libro."] },   // v1.34: a capo come nel PDF di Simone
       { style: "small", x: 1257, y: 677, lines: ["Fotografia, Impaginazione", "editoriale, 2024"] },   // v1.34: a capo come nel PDF di Simone
-      { style: "small", x: 139, y: 2080.2, lines: ["Via delle Ginestre"] },   // v1.34: 40,2 px sotto l'immagine, sul suo bordo sinistro
-      { style: "small", x: 760, y: 2979.2, lines: ["Via delle Margherite"] },   // v1.34: 40,2 px sotto l'immagine, sul suo bordo sinistro
-      { style: "small", x: 15, y: 4259, lines: ["Via Mandorli"] },   // v1.34: 40,2 px sotto l'immagine, sul suo bordo sinistro
-      { style: "small", x: 15, y: 5339, lines: ["Via Giacinti"] },   // v1.34: 40,2 px sotto l'immagine, sul suo bordo sinistro
+      { style: "small", x: 139, y: 2070, lines: ["Via delle Ginestre"] },   // v1.36: 30 px sotto l'immagine (prima 40,2), sul suo bordo sinistro
+      { style: "small", x: 760, y: 2969, lines: ["Via delle Margherite"] },   // v1.36: 30 px sotto l'immagine (prima 40,2), sul suo bordo sinistro
+      { style: "small", x: 15, y: 4248.8, lines: ["Via Mandorli"] },   // v1.36: 30 px sotto l'immagine (prima 40,2), sul suo bordo sinistro
+      { style: "small", x: 15, y: 5328.8, lines: ["Via Giacinti"] },   // v1.36: 30 px sotto l'immagine (prima 40,2), sul suo bordo sinistro
     ],
   },
   "03": {
@@ -478,16 +479,16 @@ const PAGES = {
       { src: "img/artwork-design/08.webp", x: 139, y: 3253, w: 353, h: 545 }
     ],
     texts: [
-      { style: "small", x: 15, y: 408.2, lines: ["COP O FAN - Off Nova"] },   // v1.34: 40,2 px sotto l'immagine, sul suo bordo sinistro (prima a destra della copertina)
+      { style: "small", x: 388, y: 15, lines: ["COP O FAN - Off Nova"] },   // v1.36: di nuovo a destra della copertina, in alto (sotto finiva sull'header al centro)
       { style: "small", x: 1257, y: 677, lines: ["Branding, Visual design,", "Motion design"] },   // v1.34: a capo come nel PDF di Simone
       { style: "desc", x: 15, y: 745, lines: ["Dal 2021 collaboro con diversi artisti nel campo musicale", "creando contenuti visivi per i loro progetti. Partendo da", "un’attenta comprensione del brano, sviluppo progetti", "coerenti con l’identità dell’artista. Ho iniziato come fotografo,", "imparando a gestire shooting, e ho poi esteso il mio ruolo,", "fino a curare l’intero immaginario visivo."] },   // v1.34: a capo come nel PDF di Simone
-      { style: "small", x: 760, y: 862.2, lines: ["Con Te - Peva feat. Hurri Keight"] },   // v1.34: 40,2 px sotto l'immagine, sul suo bordo sinistro
-      { style: "small", x: 25, y: 2001.2, lines: ["5 Secondi - Luca Vigentini"] },   // v1.34: 40,2 px sotto l'immagine, sul suo bordo sinistro
-      { style: "small", x: 885, y: 2001.2, lines: ["Inedito"] },   // v1.34: 40,2 px sotto l'immagine, sul suo bordo sinistro
+      { style: "small", x: 760, y: 852, lines: ["Con Te - Peva feat. Hurri Keight"] },   // v1.36: 30 px sotto l'immagine (prima 40,2), sul suo bordo sinistro
+      { style: "small", x: 25, y: 1991, lines: ["5 Secondi - Luca Vigentini"] },   // v1.36: 30 px sotto l'immagine (prima 40,2), sul suo bordo sinistro
+      { style: "small", x: 885, y: 1991, lines: ["Inedito"] },   // v1.36: 30 px sotto l'immagine (prima 40,2), sul suo bordo sinistro
       { style: "desc", x: 1008, y: 2401, lines: ["Questi progetti stimolano la mia creatività", "e rappresentano una sfida continua nel", "comprendere l’artista e il suo stile.", "Inoltre, sono ottime opportunità per costruire", "relazioni, crescere professionalmente e vivere", "nuove esperienze."] },   // v1.34: a capo come nel PDF di Simone
-      { style: "small", x: 139, y: 2846.2, lines: ["Correre - Sofia Del Grande"] },   // v1.34: 40,2 px sotto l'immagine, sul suo bordo sinistro
-      { style: "small", x: 139, y: 3838.2, lines: ["Polo G nel ‘19 - Off Nova feat. Lucky"] },   // v1.34: 40,2 px sotto l'immagine, sul suo bordo sinistro
-      { style: "small", x: 646, y: 3985.2, lines: ["È OK - Lucky"] },   // v1.34: 40,2 px sotto l'immagine, sul suo bordo sinistro
+      { style: "small", x: 139, y: 2836, lines: ["Correre - Sofia Del Grande"] },   // v1.36: 30 px sotto l'immagine (prima 40,2), sul suo bordo sinistro
+      { style: "small", x: 139, y: 3828, lines: ["Polo G nel ‘19 - Off Nova feat. Lucky"] },   // v1.36: 30 px sotto l'immagine (prima 40,2), sul suo bordo sinistro
+      { style: "small", x: 646, y: 3975, lines: ["È OK - Lucky"] },   // v1.36: 30 px sotto l'immagine (prima 40,2), sul suo bordo sinistro
     ],
   },
   "05": {
@@ -763,6 +764,7 @@ for (const [n, PG] of Object.entries(PAGES)) {
     const p = document.createElement("p"); p.className = "pp-txt pp-" + T.style; place(p, T);
     T.lines.forEach((l, k) => { const s = document.createElement("span"); s.className = l ? "ln" : "ln gap"; s.textContent = (l || "\u00a0") + (k < T.lines.length - 1 ? " " : ""); p.append(s); });   // riga vuota = spazio tra paragrafi
     const M = T.style === "small" ? ownerOf(T) : null;
+    if (M) p.classList.add("pp-cap");   // v1.36: didascalia di un'immagine (sul telefono sta più vicina)
     items.push(M ? [M.y, M.x, 1, p] : [T.y, T.x, 0, p]);
   });
   const cnt = document.createElement("div"); cnt.className = "pp-txt pp-count"; place(cnt, { x: 636, y: 14.5 });
