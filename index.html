@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Portfolio Simone · v1.37 · da v1.36: l'header al centro non tocca più immagini e testi (si sposta nella fascia libera più vicina al centro); nuova anteprima di Come cadono i fiori scelta da Simone · 03/10/2026 -->
+<!-- Portfolio Simone · v1.38 · da v1.37: nuova impaginazione di Chi sono (dalla reference di Simone: primo paragrafo come testo grande, contatti allineati a destra, ritratto piccolo con la bio sotto, secondo paragrafo accanto, CV sotto) · 04/10/2026 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -45,6 +45,7 @@
     --fs-cap: calc(14.25 * var(--u));      /* didascalie: Home e pagine progetto uguali */
     --fs-s: calc(14.25 * var(--u));        /* testi piccoli Chi sono */
     --fs-desc: calc(16.04 * var(--u));     /* descrizioni dei progetti */
+    --fs-big: calc(30 * var(--u));         /* v1.38: solo il primo paragrafo di Chi sono */
     --cap-gap: calc(30 * var(--u));        /* v1.36: dal fondo dell'immagine all'inizio della didascalia, 30 px (prima 40,2): didascalie un po' più vicine */
     --lh-l: 1.2;
     --lh-list: 1.2;
@@ -147,23 +148,26 @@
   .w-title:hover { opacity: .45; }
 
   /* ---------- Chi sono / CV (coordinate dal frame About della bozza) ---------- */
-  .about { position: relative; height: calc(1057.2 * var(--u)); font-size: var(--fs-s); line-height: var(--lh-s); }
+  /* v1.38: griglia di 12 colonne (margini e spazi 15, colonne da 108,75). In alto il primo paragrafo come testo grande
+     dalla colonna 4; sotto, contatti allineati a destra sulla colonna 3, ritratto piccolo con la bio sotto (colonne 4-7),
+     secondo paragrafo accanto (colonna 8), CV in fondo (colonne 4, 6, 8). */
+  .about { position: relative; height: calc(1240 * var(--u)); font-size: var(--fs-s); line-height: var(--lh-s); }
   .a-bio {
-    position: absolute; left: var(--m); top: var(--m); width: calc(723.5 * var(--u));
+    position: absolute; left: calc(386.25 * var(--u)); top: calc(781 * var(--u)); width: calc(480 * var(--u));
     font-size: var(--fs-l); line-height: var(--lh-l);
   }
-  .a-portrait { position: absolute; left: calc(882 * var(--u)); top: var(--m); width: calc(234 * var(--u)); height: calc(334 * var(--u)); }
+  .a-portrait { position: absolute; left: calc(386.25 * var(--u)); top: calc(545 * var(--u)); width: calc(232.5 * var(--u)); height: calc(206.18 * var(--u)); }
   .a-portrait img { width: 100%; height: 100%; object-fit: cover; background: var(--ph); }
-  .a-contact { position: absolute; left: calc(1254 * var(--u)); top: var(--m); display: flex; flex-direction: column; align-items: flex-start; }
-  .cv > div { position: absolute; top: calc(677 * var(--u)); }
+  .a-contact { position: absolute; left: var(--m); top: calc(545 * var(--u)); width: calc(340.25 * var(--u)); display: flex; flex-direction: column; align-items: flex-end; text-align: right; font-size: var(--fs-s); line-height: var(--lh-s); }
+  .cv > div { position: absolute; top: calc(960 * var(--u)); }
   .cv h2 { font-size: inherit; font-weight: 600; margin-bottom: calc(var(--lh-s) * 1em); }
-  .cv-1 { left: calc(14 * var(--u)); width: calc(229 * var(--u)); }
-  .cv-2 { left: calc(388 * var(--u)); width: calc(231 * var(--u)); }
-  .cv-3 { left: calc(760 * var(--u)); width: calc(231 * var(--u)); }   /* Clienti, sulla colonna della lista Lavori */
+  .cv-1 { left: calc(386.25 * var(--u)); width: calc(232.5 * var(--u)); }
+  .cv-2 { left: calc(634 * var(--u)); width: calc(232.5 * var(--u)); }
+  .cv-3 { left: calc(881.25 * var(--u)); width: calc(232.5 * var(--u)); }
   /* Due paragrafi sotto il menu, come nella reference (y 489.7), sulle colonne del CV */
-  .a-p { position: absolute; top: calc(489.7 * var(--u)); width: calc(352 * var(--u)); margin: 0; }
-  .a-p1 { left: var(--m); }
-  .a-p2 { left: calc(388 * var(--u)); }
+  .a-p { position: absolute; width: calc(352 * var(--u)); margin: 0; }
+  .a-p1 { left: calc(386.25 * var(--u)); top: var(--m); width: calc(1098.75 * var(--u)); font-size: var(--fs-big); line-height: 1.16; text-indent: calc(123.75 * var(--u)); }
+  .a-p2 { left: calc(881.25 * var(--u)); top: calc(545 * var(--u)); }
   .cv .entries li + li { margin-top: calc(var(--lh-s) * 1em); }
   /* Voci del CV: gli a capo seguono riga per riga quelli della bozza Figma */
 
@@ -208,7 +212,7 @@
 
   /* ---------- Telefono (sotto i 600 px): impaginazione in colonna ---------- */
   @media (max-width: 600px) {
-    :root { --m: 16px; --fs-nav: 13px; --fs-l: 17px; --fs-list: 14px; --fs-cap: 12px; --fs-s: 13px; --fs-desc: 14px; }
+    :root { --fs-big: 20px; --m: 16px; --fs-nav: 13px; --fs-l: 17px; --fs-list: 14px; --fs-cap: 12px; --fs-s: 13px; --fs-desc: 14px; }
     .nav { left: 16px; right: 16px; display: flex; justify-content: space-between; }
     .nav a { position: static; }
     .n-li, .n-ig { display: none; }
@@ -242,7 +246,9 @@
     .w-list { margin-top: 8px; }
     .row { grid-template-columns: 1fr 1fr; gap: 10px; }
     .about { display: grid; gap: 20px; }
-    .a-portrait { width: 55%; aspect-ratio: .7; }
+    .a-portrait { width: 55%; aspect-ratio: 1130 / 1002; }
+    .a-p1 { order: -1; text-indent: 2em; }
+    .a-contact { align-items: flex-start; text-align: left; }
     .cv { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 10px; margin-top: 20px; }
   }
 </style>
