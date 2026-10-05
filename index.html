@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Portfolio Simone · v1.41 · da v1.40: CV con l'a capo prima di "per la"; anteprima di Expo in Lavori = il video "scuola" intero su nero; header che parte al centro anche nelle pagine progetto (spazio libero cercato con 50, poi 30, poi 20 px di distanza) · 05/10/2026 -->
+<!-- Portfolio Simone · v1.42 · da v1.41: l'header parte sempre esattamente al centro dello schermo in tutte le pagine (stessa posizione di Home, Chi sono, Contatti), poi sale con la pagina e si ancora in alto · 05/10/2026 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -904,8 +904,10 @@ let navStartTop = false, navC = null;
 function placeNav() {
   document.body.classList.remove("nav-start-top");           // le misure si prendono con la pagina al suo posto
   const big = window.innerWidth > 600, u = window.innerWidth / 1500;
-  const c = navCenter();
-  navStartTop = big && c === null;
+  // v1.42: l'header parte sempre esattamente al centro dello schermo, nella stessa posizione in tutte le pagine
+  // (non cerca più la fascia libera: navCenter resta solo come riferimento)
+  const c = big ? window.innerHeight / 2 : null;
+  navStartTop = false;
   document.body.classList.toggle("nav-start-top", navStartTop);
   navC = navStartTop ? 14.5 * u + 16.04 * u / 2 : c;          // senza spazio libero: già ancorato in alto dall'inizio
   if (navC === null) NAV_EL.style.removeProperty("--nav-c"); else NAV_EL.style.setProperty("--nav-c", navC.toFixed(1) + "px");
