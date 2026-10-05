@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Portfolio Simone · v1.38 · da v1.37: nuova impaginazione di Chi sono (dalla reference di Simone: primo paragrafo come testo grande, contatti allineati a destra, ritratto piccolo con la bio sotto, secondo paragrafo accanto, CV sotto) · 04/10/2026 -->
+<!-- Portfolio Simone · v1.39 · da v1.38: header che segue lo scroll e si ancora in alto (dal test v1.37-b): parte nella fascia libera vicina al centro, sale con la pagina e si ferma a 14,5 px dal bordo; niente più salto animato · 05/10/2026 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -64,30 +64,34 @@
   .view { position: relative; }
 
   /* ---------- Nav fissa al centro verticale ---------- */
+  /* v1.39 (dal test v1.37-b): l'header parte al centro della prima schermata (o nella fascia libera più vicina, v1.37) e scorre con la pagina
+     come un elemento qualsiasi; quando arriva in alto (a 14,5 dal bordo) si ancora lì. È uno "sticky": lo muove il browser,
+     quindi segue lo scroll senza ritardi. .nav-rail è alto quanto tutta la pagina e fa da binario all'header. */
+  body { position: relative; }
+  .nav-rail { position: absolute; left: 0; right: 0; top: 0; bottom: 0; z-index: 20; pointer-events: none; }
   .nav {
-    position: fixed; left: 0; right: 0; top: var(--nav-c, 50%);   /* v1.37: al centro, ma spostato nella fascia libera più vicina se lì c'è un'immagine (lo calcola placeNav) */
+    position: sticky; top: calc(14.5 * var(--u));
+    margin-top: calc(var(--nav-c, 50vh) - var(--fs-nav) / 2);
     height: var(--fs-nav);
-    z-index: 20;
     font-size: var(--fs-nav);
     font-weight: 500;
     line-height: 1;
     pointer-events: none;
     --ns: 1;
-    transform: translateY(-50%) scale(var(--ns));
+    transform: scale(var(--ns));
     transform-origin: 50% 50%;
-    transition: transform .8s cubic-bezier(.22, .8, .2, 1), top .8s cubic-bezier(.22, .8, .2, 1);
   }
-  body:not([data-view="home"]) .nav { --ns: .8527; }
+  body:not([data-view="home"]) .nav { --ns: .8527; }   /* al centro, nelle pagine interne; cresce fino a 1 mentre sale (lo calcola lo script) */
   /* v1.33: appena la pagina scorre, l'header sale in alto (a 14,5 dal bordo, come i margini) e si ancora lì.
      Sotto compare una fascia bianca: le immagini ci scorrono sotto e le voci restano su fondo bianco.
      Tornando in cima alla pagina l'header torna al centro. */
-  body.nav-top .nav { --ns: 1; top: calc(14.5 * var(--u)); transform: translateY(0) scale(var(--ns)); }   /* in alto stessa misura in tutte le pagine, voci allineate ai margini */
+  body.nav-top .nav { --ns: 1; }   /* ancorato in alto: stessa misura in tutte le pagine, voci allineate ai margini */
   .nav-band {
     position: fixed; left: 0; right: 0; top: 0; height: var(--hh);
     z-index: 19; background: var(--bg);
     opacity: 0; pointer-events: none; transition: opacity .35s ease;
   }
-  body.nav-top .nav-band { opacity: 1; pointer-events: auto; transition-delay: .1s; }
+  body.nav-top .nav-band { opacity: 1; pointer-events: auto; transition: opacity .2s ease; }
   /* v1.37: pagine in cui al centro non c'è spazio libero per l'header (es. Expo, Come cadono i fiori):
      l'header parte già in alto sulla fascia e la pagina scende della sua altezza, così niente finisce sotto la fascia. */
   body.nav-start-top main { padding-top: var(--hh); }
@@ -213,13 +217,13 @@
   /* ---------- Telefono (sotto i 600 px): impaginazione in colonna ---------- */
   @media (max-width: 600px) {
     :root { --fs-big: 20px; --m: 16px; --fs-nav: 13px; --fs-l: 17px; --fs-list: 14px; --fs-cap: 12px; --fs-s: 13px; --fs-desc: 14px; }
-    .nav { left: 16px; right: 16px; display: flex; justify-content: space-between; }
+    .nav { margin: 16px 16px 0; display: flex; justify-content: space-between; }
     .nav a { position: static; }
     .n-li, .n-ig { display: none; }
     body:not([data-view="home"]) .nav { --ns: 1; }
     /* v1.33: sul telefono l'header è sempre in alto, sulla fascia bianca (al centro finiva sopra le immagini) */
     :root { --hh: 45px; }
-    .nav, body.nav-top .nav { top: 16px; transform: none; transition: none; }
+    .nav, body.nav-top .nav { top: 16px; transform: none; }
     .nav-band { opacity: 1; pointer-events: auto; transition: none; }
     main { padding-top: var(--hh); }
 
@@ -256,6 +260,7 @@
 <body>
 
 <div class="nav-band" aria-hidden="true"></div>
+<div class="nav-rail">
 <nav class="nav" aria-label="Navigazione principale">
   <a class="n-name" href="#home" data-go="home">Simone Buzzoni</a>
   <a class="n-work" href="#lavori" data-go="work">Lavori</a>
@@ -264,6 +269,7 @@
   <a class="n-li" href="https://www.linkedin.com/in/simone-buzzoni-6178a221a/" target="_blank" rel="noopener">LinkedIn</a>
   <a class="n-ig" href="https://www.instagram.com/simone_buzzoni/" target="_blank" rel="noopener">Instagram</a>
 </nav>
+</div>
 
 <main>
   <!-- HOME -->
@@ -839,10 +845,17 @@ function show(v, animate, restore) {
   placeNav();
   updateNav();
 }
-// v1.33: header al centro a inizio pagina, in alto appena la pagina scorre oltre l'altezza della fascia
+// v1.39 (dal test v1.37-b): l'header scorre con la pagina (sticky, lo muove il browser). Lo script dice solo quanto manca all'ancoraggio:
+// serve per la fascia bianca (compare quando l'header è arrivato in alto) e, nelle pagine interne, per farlo crescere da 0,8527 a 1 mentre sale.
 function updateNav() {
-  const limit = window.innerWidth > 600 ? 45 * window.innerWidth / 1500 : 45;
-  document.body.classList.toggle("nav-top", navStartTop || window.scrollY > limit);
+  const big = window.innerWidth > 600;
+  const u = window.innerWidth / 1500;
+  const c = navC === null ? window.innerHeight / 2 : navC;
+  const travel = big ? c - 16.04 * u / 2 - 14.5 * u : 0;       // quanto deve scorrere la pagina prima che l'header arrivi in alto
+  const k = travel > 0.5 ? Math.min(1, Math.max(0, window.scrollY / travel)) : 1;
+  document.body.classList.toggle("nav-top", !big || navStartTop || (k >= 1 && window.scrollY > 0));
+  if (big && current !== "home") NAV_EL.style.setProperty("--ns", (0.8527 + (1 - 0.8527) * k).toFixed(4));
+  else NAV_EL.style.removeProperty("--ns");
 }
 // v1.37: quando è al centro, l'header non deve toccare immagini né testi della pagina.
 // Si cerca la posizione libera più vicina al centro dello schermo: nessun elemento che sta sotto una voce del menu
@@ -855,7 +868,7 @@ function navCenter() {
   const u = W / 1500, ns = current === "home" ? 1 : 0.8527, cx = W / 2;
   const h = 16.04 * u * ns, clear = 50 * u, padX = 15 * u;
   const cols = [...NAV_EL.querySelectorAll("a")].filter(a => a.offsetWidth)
-    .map(a => [cx + (a.offsetLeft - cx) * ns - padX, cx + (a.offsetLeft + a.offsetWidth - cx) * ns + padX]);
+    .map(a => [Math.min(a.offsetLeft, cx + (a.offsetLeft - cx) * ns) - padX, Math.max(a.offsetLeft + a.offsetWidth, cx + (a.offsetLeft + a.offsetWidth - cx) * ns) + padX]);   // v1.39: mentre sale l'header cresce da 0,85 a 1, quindi conta tutto lo spazio che occupa
   const view = document.querySelector(".view:not([hidden])");
   if (!view) return null;
   const bad = [];
@@ -881,14 +894,15 @@ function navCenter() {
   }
   return null;                                                   // nessuno spazio libero: l'header parte in alto (placeNav)
 }
-let navStartTop = false;
+let navStartTop = false, navC = null;
 function placeNav() {
   document.body.classList.remove("nav-start-top");           // le misure si prendono con la pagina al suo posto
-  const big = window.innerWidth > 600;
+  const big = window.innerWidth > 600, u = window.innerWidth / 1500;
   const c = navCenter();
   navStartTop = big && c === null;
   document.body.classList.toggle("nav-start-top", navStartTop);
-  if (c === null) NAV_EL.style.removeProperty("--nav-c"); else NAV_EL.style.setProperty("--nav-c", c.toFixed(1) + "px");
+  navC = navStartTop ? 14.5 * u + 16.04 * u / 2 : c;          // senza spazio libero: già ancorato in alto dall'inizio
+  if (navC === null) NAV_EL.style.removeProperty("--nav-c"); else NAV_EL.style.setProperty("--nav-c", navC.toFixed(1) + "px");
 }
 let navTick = false;
 window.addEventListener("scroll", () => { if (!navTick) { navTick = true; requestAnimationFrame(() => { navTick = false; updateNav(); }); } }, { passive: true });
