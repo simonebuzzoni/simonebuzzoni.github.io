@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Portfolio Simone · v1.40 · da v1.39: il progetto 05 si chiama "Humana Bilancio di Sostenibilità 2024" (prima "Humana Bilancio 2025-2026"); nuovo indirizzo #humana-bilancio-di-sostenibilita-2024, il vecchio funziona ancora · 05/10/2026 -->
+<!-- Portfolio Simone · v1.41 · da v1.40: CV con l'a capo prima di "per la"; anteprima di Expo in Lavori = il video "scuola" intero su nero; header che parte al centro anche nelle pagine progetto (spazio libero cercato con 50, poi 30, poi 20 px di distanza) · 05/10/2026 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -316,7 +316,7 @@
         <div class="cv-2">
           <h2>Formazione</h2>
           <ul class="entries">
-            <li>ITS Strategic Visual Designer per la<br>Cultura e il Territorio<br>2022-2024</li>
+            <li>ITS Strategic Visual Designer<br>per la Cultura e il Territorio<br>2022-2024</li>
             <li>Corso di Graphic Design, Job<br>Formazione<br>2021-2022</li>
             <li>Diploma di maturità, indirizzo<br>Grafico W. Kandinsky<br>2016-2021</li>
           </ul>
@@ -363,6 +363,7 @@
      client = cliente nella lista Lavori
      preview = cosa compare in Lavori passando sul titolo: una foto o un video del progetto (il video va in loop).
      previewPos = (facoltativo) quale parte dell'immagine resta nel riquadro verticale dell'anteprima, es. "95% 50%" = tutta a destra.
+     previewFit, previewBg = (facoltativi, v1.41) "contain" + colore: foto o video interi nel riquadro, sul fondo indicato.
                Se manca, si usa la prima immagine del progetto in Home (dall'alto).
 
    IMAGES: le immagini della Home. Ogni immagine appartiene a un progetto (p = numero del progetto).
@@ -373,7 +374,7 @@
                   (sono quelle della bozza Figma, pagina Draft, frame "Home · v1.3.1")
    ========================================================= */
 const PROJECTS = [
-  { n: "01", title: "Expo Osaka 2025",             client: "Associazione Futuri Probabili", preview: "img/01-expo-osaka-2025-anteprima.webp" },   // v1.36: fotogramma "scuola 学校 school" dal video originale, intero su fondo nero
+  { n: "01", title: "Expo Osaka 2025",             client: "Associazione Futuri Probabili", preview: "video/01-expo-osaka-2025-2.mp4", previewFit: "contain", previewBg: "#000" },   // v1.36: fotogramma "scuola 学校 school" dal video originale, intero su fondo nero
   { n: "02", title: "Come cadono i fiori",         client: "CFP Bauer",             preview: "img/02-come-cadono-i-fiori-anteprima-2.webp" },   // v1.37: taglio scelto da Simone, parte sinistra in basso di Via Mandorli (strada, palazzi, balconi con la tenda), dall'originale
   { n: "03", title: "ENGIE adv",                   client: "Plural" },
   { n: "04", title: "Artwork Design",              client: "Progetti indipendenti", preview: "img/04-artwork-design-2.webp" },
@@ -692,6 +693,8 @@ const PREV = PROJECTS.map(P => {
     el.dataset.src = src; el.alt = ""; el.decoding = "async";
   }
   if (P.previewPos) el.style.objectPosition = P.previewPos;   // quale parte dell'immagine resta nel riquadro verticale
+  if (P.previewFit) el.style.objectFit = P.previewFit;         // v1.41: "contain" = intera nel riquadro
+  if (P.previewBg) el.style.background = P.previewBg;
   wPrev.append(el);
   return el;
 });
@@ -866,20 +869,19 @@ function navCenter() {
   const W = window.innerWidth, H = window.innerHeight;
   if (W <= 600) return null;                                   // telefono: header sempre in alto
   const u = W / 1500, ns = current === "home" ? 1 : 0.8527, cx = W / 2;
-  const h = 16.04 * u * ns, clear = 50 * u, padX = 15 * u;
+  const h = 16.04 * u * ns, padX = 15 * u;
   const cols = [...NAV_EL.querySelectorAll("a")].filter(a => a.offsetWidth)
     .map(a => [Math.min(a.offsetLeft, cx + (a.offsetLeft - cx) * ns) - padX, Math.max(a.offsetLeft + a.offsetWidth, cx + (a.offsetLeft + a.offsetWidth - cx) * ns) + padX]);   // v1.39: mentre sale l'header cresce da 0,85 a 1, quindi conta tutto lo spazio che occupa
   const view = document.querySelector(".view:not([hidden])");
   if (!view) return null;
-  const bad = [];
+  const boxes = [];
   view.querySelectorAll(NAV_AVOID).forEach(el => {
     const r = el.getBoundingClientRect();
     if (!r.width || !r.height) return;
     if (!cols.some(([l, rr]) => r.left < rr && r.right > l)) return;   // non sta sotto nessuna voce del menu
-    const top = r.top + window.scrollY, bottom = r.bottom + window.scrollY;
-    bad.push([top - clear - h / 2, bottom + clear + h / 2]);
+    boxes.push([r.top + window.scrollY, r.bottom + window.scrollY]);
   });
-  bad.sort((a, b) => a[0] - b[0]);
+  let bad = [];
   const free = (lo, hi) => {                                     // tratti liberi tra lo e hi
     const out = []; let y = lo;
     for (const [a, b] of bad) { if (b <= y) continue; if (a >= hi) break; if (a > y) out.push([y, Math.min(a, hi)]); y = Math.max(y, b); if (y >= hi) break; }
@@ -887,7 +889,11 @@ function navCenter() {
     return out;
   };
   const target = H / 2;
-  for (const [lo, hi] of [[H * 0.25, H * 0.75]]) {          // solo nella parte centrale dello schermo, non sui bordi
+  // v1.41: prima nella parte centrale con 50 px di distanza; se non c'è posto, più in alto o più in basso
+  // (dal 12% all'88% dello schermo) con 30 px, poi con 20 px. Solo se non basta l'header parte già in alto.
+  for (const [lo, hi, cl] of [[H * 0.25, H * 0.75, 50], [H * 0.12, H * 0.88, 30], [H * 0.12, H * 0.88, 20]]) {
+    const clear = cl * u;
+    bad = boxes.map(([t, b]) => [t - clear - h / 2, b + clear + h / 2]).sort((a, b) => a[0] - b[0]);
     let best = null;
     for (const [a, b] of free(lo, hi)) { const y = Math.min(b, Math.max(a, target)); if (best === null || Math.abs(y - target) < Math.abs(best - target)) best = y; }
     if (best !== null) return best;
