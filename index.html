@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Portfolio Simone · v1.52 · da v1.51: telefono (sotto i 600 px) con spaziature più ariose (margini 22, 40 px tra i blocchi dei progetti, interlinee più aperte); computer identico · 05/10/2026 -->
+<!-- Portfolio Simone · v1.53 · da v1.52: telefono, Chi sono con il ritratto prima del secondo paragrafo, crediti dei progetti subito dopo l'indice, meno bianco in fondo, più spazio tra indice e prima immagine; computer identico · 05/10/2026 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -281,6 +281,16 @@
     .cv { gap: 36px 16px; margin-top: 16px; }
     .cv h2 { margin-bottom: 12px; }
     .cv .entries li + li { margin-top: 16px; }
+
+    /* v1.53 (Simone, screenshot dal telefono) */
+    .a-p1 { order: -2; }                                /* Chi sono: testo grande, poi il ritratto, poi "Creatività e attenzione…" */
+    .a-portrait { order: -1; }
+    .pp-count, .pp-list { order: -2; }                  /* progetti: numero e indice, poi i crediti, poi il resto */
+    .pp-credit { order: -1; }
+    .pp-list { margin-bottom: 8px; }                    /* indice → crediti: 48 px */
+    .pp-credit { margin-bottom: 40px; }                 /* crediti → prima immagine: 80 px */
+    .home { padding-bottom: 80px; }                     /* meno bianco in fondo (prima 40% dell'altezza dello schermo) */
+    .proj { padding-bottom: 80px; }
   }
 </style>
 </head>
@@ -810,6 +820,7 @@ for (const [n, PG] of Object.entries(PAGES)) {
     T.lines.forEach((l, k) => { const s = document.createElement("span"); s.className = l ? "ln" : "ln gap"; s.textContent = (l || "\u00a0") + (k < T.lines.length - 1 ? " " : ""); p.append(s); });   // riga vuota = spazio tra paragrafi
     const M = T.style === "small" ? ownerOf(T) : null;
     if (M) p.classList.add("pp-cap");   // v1.36: didascalia di un'immagine (sul telefono sta più vicina)
+    else if (T.style === "small") p.classList.add("pp-credit");   // v1.53: crediti del progetto (sul telefono subito dopo l'indice)
     items.push(M ? [M.y, M.x, 1, p] : [T.y, T.x, 0, p]);
   });
   const cnt = document.createElement("div"); cnt.className = "pp-txt pp-count"; place(cnt, { x: 636, y: 14.5 });
