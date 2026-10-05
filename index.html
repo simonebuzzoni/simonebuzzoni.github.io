@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Portfolio Simone · v1.39 · da v1.38: header che segue lo scroll e si ancora in alto (dal test v1.37-b): parte nella fascia libera vicina al centro, sale con la pagina e si ferma a 14,5 px dal bordo; niente più salto animato · 05/10/2026 -->
+<!-- Portfolio Simone · v1.40 · da v1.39: il progetto 05 si chiama "Humana Bilancio di Sostenibilità 2024" (prima "Humana Bilancio 2025-2026"); nuovo indirizzo #humana-bilancio-di-sostenibilita-2024, il vecchio funziona ancora · 05/10/2026 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -144,7 +144,7 @@
   .w-prev > .on { opacity: 1; }
   .w-count { position: absolute; left: calc(636 * var(--u)); top: var(--m); font-weight: 600; }
   .w-list { position: absolute; left: calc(760 * var(--u)); top: var(--m); width: calc(600 * var(--u)); }
-  .row { display: grid; grid-template-columns: calc(249 * var(--u)) 1fr; }
+  .row { display: grid; grid-template-columns: calc(290 * var(--u)) 1fr; }   /* v1.40: colonna Progetto da 249 a 290, perché "Humana Bilancio di Sostenibilità 2024" stia su una riga */
   .row.head { font-weight: 600; margin-bottom: calc(var(--lh-list) * 1em); }
   #wList .row { cursor: default; }
   /* Titoli dei progetti: unico punto attivo della riga (anteprima + clic), hover come il menu */
@@ -377,7 +377,7 @@ const PROJECTS = [
   { n: "02", title: "Come cadono i fiori",         client: "CFP Bauer",             preview: "img/02-come-cadono-i-fiori-anteprima-2.webp" },   // v1.37: taglio scelto da Simone, parte sinistra in basso di Via Mandorli (strada, palazzi, balconi con la tenda), dall'originale
   { n: "03", title: "ENGIE adv",                   client: "Plural" },
   { n: "04", title: "Artwork Design",              client: "Progetti indipendenti", preview: "img/04-artwork-design-2.webp" },
-  { n: "05", title: "Humana Bilancio 2025-2026",   client: "Plural" },   // anteprima = la sua immagine in Home (blocco 10)
+  { n: "05", title: "Humana Bilancio di Sostenibilità 2024", client: "Plural" },   // anteprima = la sua immagine in Home (blocco 10)
   { n: "06", title: "Archivio",                    client: "",                      preview: "video/06-archivio-2.mp4" },
 ];
 
@@ -507,7 +507,7 @@ const PAGES = {
     ],
   },
   "05": {
-    slug: "humana-bilancio-2025-2026", h: 2998,
+    slug: "humana-bilancio-di-sostenibilita-2024", h: 2998,
     media: [
       { src: "img/humana-bilancio-2025-2026/01.webp", x: 15, y: 333, w: 725, h: 483 },
       { src: "img/humana-bilancio-2025-2026/02.webp", x: 1008, y: 577, w: 477, h: 317.921 },
@@ -814,7 +814,7 @@ const VIEWS = { home: "v-home", work: "v-work", about: "v-about", contact: "v-co
   ...Object.fromEntries(Object.values(PAGES).map(PG => [PG.slug, "v-" + PG.slug])) };
 // Indirizzi in italiano (#lavori, #chi-sono, #contatti); quelli vecchi (#work, #about, #contact) funzionano ancora
 const ROUTE_OUT = { work: "lavori", about: "chi-sono", contact: "contatti" };
-const ROUTE_IN = { lavori: "work", "chi-sono": "about", contatti: "contact", archivie: "archivio" };   // #archivie: indirizzo della pagina fino alla v1.24
+const ROUTE_IN = { lavori: "work", "chi-sono": "about", contatti: "contact", archivie: "archivio", "humana-bilancio-2025-2026": "humana-bilancio-di-sostenibilita-2024" };   // v1.40: vecchio indirizzo di Humana   // #archivie: indirizzo della pagina fino alla v1.24
 const route = () => { let h = location.hash.slice(1); try { h = decodeURIComponent(h); } catch (err) {} h = h || "home"; return ROUTE_IN[h] || h; };
 const hashOf = v => "#" + (ROUTE_OUT[v] || v);
 // Titolo della scheda del browser per ogni pagina
