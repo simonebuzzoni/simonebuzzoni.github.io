@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Portfolio Simone · v1.51 · da v1.50: icona del sito (scheda del browser e schermata Home del telefono) = fotogramma del video Lux Terrae, arancione e blu (06-archivio-1 a 6 s), al posto di «SB» · 05/10/2026 -->
+<!-- Portfolio Simone · v1.52 · da v1.51: telefono (sotto i 600 px) con spaziature più ariose (margini 22, 40 px tra i blocchi dei progetti, interlinee più aperte); computer identico · 05/10/2026 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -254,6 +254,33 @@
     .a-p1 { order: -1; text-indent: 2em; }
     .a-contact { align-items: flex-start; text-align: left; }
     .cv { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 10px; margin-top: 20px; }
+
+    /* v1.52: più respiro sul telefono (Simone: spaziature troppo strette). Solo qui dentro: il computer non cambia. */
+    :root { --m: 22px; --lh-l: 1.35; --lh-list: 1.4; --lh-s: 1.4; }
+    .nav { margin: 18px 22px 0; }
+    :root { --hh: 50px; }
+    .nav, body.nav-top .nav { top: 18px; }
+    .home { column-gap: 14px; row-gap: 24vw; padding: 28px 22px 40vh; }
+    .shot figcaption { padding-top: 10px; }
+    .work, .about, #v-contact { padding: 28px 22px 48px; }
+    .proj { gap: 40px; padding: 28px 22px 40vh; }
+    .pp-count { margin-bottom: -24px; }                 /* numero e lista restano vicini */
+    .pp-list { margin-bottom: 16px; }                   /* più aria prima della prima immagine */
+    .pp-desc { line-height: 1.5; }
+    .pp-desc .ln.gap { height: 21px; }
+    .pp-small { line-height: 1.45; }
+    .pp-cap { margin-top: -30px; }                      /* didascalia a 10 px dalla sua immagine (lo spazio della colonna è 40) */
+    .pp-next { margin-top: 32px; }
+    .w-count { margin-top: 32px; }
+    .w-list { margin-top: 12px; }
+    .row { column-gap: 16px; }
+    .row.head { margin-bottom: 12px; }
+    .work .row + .row, .pp-list .row + .row { margin-top: 4px; }
+    .about { gap: 32px; }
+    .a-contact { line-height: 1.6; }
+    .cv { gap: 36px 16px; margin-top: 16px; }
+    .cv h2 { margin-bottom: 12px; }
+    .cv .entries li + li { margin-top: 16px; }
   }
 </style>
 </head>
