@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Portfolio Simone · v1.56 · da v1.55: tornano gli anni nei crediti di Expo (2025) ed ENGIE (2025-26); restano «Generative AI» ed «editoriale 2024» per Humana · 05/10/2026 -->
+<!-- Portfolio Simone · v1.57 · da v1.56: telefono, crediti dei progetti esattamente a metà tra l'indice e la prima immagine o testo (64 px sopra e sotto) · 06/10/2026 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -284,8 +284,9 @@
     /* v1.53 (Simone, screenshot dal telefono) */
     .pp-count, .pp-list { order: -2; }                  /* progetti: numero e indice, poi i crediti, poi il resto */
     .pp-credit { order: -1; }
-    .pp-list { margin-bottom: 8px; }                    /* indice → crediti: 48 px */
-    .pp-credit { margin-bottom: 40px; }                 /* crediti → prima immagine: 80 px */
+    .pp-list { margin-bottom: 21px; }                   /* v1.57: crediti otticamente a metà: 69 px di bianco sopra e sotto, misurati sui pixel */
+    .pp-credit { margin-bottom: 27.5px; }
+    .pp-desc.pp-first { margin-top: -5px; }             /* se dopo i crediti c'è un testo, la sua interlinea aggiunge 5 px di bianco */
     .home { padding-bottom: 80px; }                     /* meno bianco in fondo (prima 40% dell'altezza dello schermo) */
     .proj { padding-bottom: 80px; }
   }
@@ -830,6 +831,7 @@ for (const [n, PG] of Object.entries(PAGES)) {
   box.append(list);
   // Ordine di lettura (conta su telefono): numero e lista, poi dall'alto; ogni didascalia subito dopo la sua immagine
   items.sort((a, b) => a[0] - b[0] || a[1] - b[1] || a[2] - b[2]).forEach(it => box.append(it[3]));
+  { const f = items.map(it => it[3]).find(e => !e.classList.contains("pp-credit")); if (f) f.classList.add("pp-first"); }   // v1.57: primo blocco dopo i crediti (sul telefono)
   // In fondo, nel margine destro e in piccolo (come crediti e didascalie): il progetto successivo.
   // Dopo l'ultimo si riparte dal primo.
   const nx = nextProject(n);
