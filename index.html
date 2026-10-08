@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Portfolio Simone · v1.57 · da v1.56: telefono, crediti dei progetti esattamente a metà tra l'indice e la prima immagine o testo (64 px sopra e sotto) · 06/10/2026 -->
+<!-- Portfolio Simone · v1.58 · da v1.57: testi e CV di Chi sono dal PDF InDesign di Simone (08/10), progetto 05 «Humana Bilancio 2024» · 08/10/2026 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -173,6 +173,7 @@
   .cv .entries li + li { margin-top: calc(var(--lh-s) * 1em); }
   /* Voci del CV: gli a capo seguono riga per riga quelli della bozza Figma */
   .cv li { white-space: nowrap; }   /* v1.54: solo gli a capo voluti, anche su finestre strette */
+  .a-bio .l, .a-p .l { display: block; white-space: nowrap; }   /* v1.58: righe di Chi sono come nel PDF InDesign di Simone */
 
   /* ---------- Pagina progetto (coordinate dal frame del progetto nella bozza Figma) ---------- */
   .proj { position: relative; height: calc(var(--page-h) * var(--u)); }
@@ -278,7 +279,9 @@
     .cv { gap: 36px 16px; margin-top: 16px; }
     .cv h2 { margin-bottom: 12px; }
     .cv { grid-template-columns: 1fr; }
-    .cv li { white-space: normal; }                 /* v1.54: CV su una colonna, così le righe delle voci non vanno a capo da sole */
+    .cv li { white-space: normal; }
+    .cv br.s { display: none; }
+    .a-bio .l, .a-p .l { display: inline; white-space: normal; }   /* sul telefono il testo va a capo da solo */                         /* v1.58: sul telefono le voci vanno a capo solo tra titolo e date */                 /* v1.54: CV su una colonna, così le righe delle voci non vanno a capo da sole */
     .cv .entries li + li { margin-top: 16px; }
 
     /* v1.53 (Simone, screenshot dal telefono) */
@@ -327,7 +330,7 @@
   <!-- CHI SONO / CURRICULUM -->
   <section class="view" id="v-about" aria-label="Chi sono" hidden>
     <div class="about">
-      <p class="a-bio">Creatività e attenzione ai dettagli sono i miei punti di forza. Sono positivo, collaborativo e capace di integrarmi in un team, contribuendo con idee e supporto in ogni fase del progetto.</p>
+      <p class="a-bio"><span class="l">La fotografia è stata la mia prima passione, ma il mio percorso è cambiato davvero</span> <span class="l">quando ho scoperto l’elaborazione digitale delle immagini. Da lì ho iniziato a lavorare</span> <span class="l">su entrambi i fronti, e con il tempo sono riuscito a far comunicare i due mondi.</span></p>
       <figure class="a-portrait"><img id="aImg" src="img/ritratto.jpg" alt="Ritratto di Simone Buzzoni" loading="lazy" decoding="async"></figure>
       <div class="a-contact">
         <a href="mailto:simonebuzzoni.02@gmail.com">simonebuzzoni.02@gmail.com</a>
@@ -336,24 +339,25 @@
         <a href="https://www.linkedin.com/in/simone-buzzoni-6178a221a/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
 
-      <p class="a-p a-p1">Il mio lavoro si muove tra identità visiva, impaginazione editoriale, fotografia e motion design. Ogni progetto parte dal contenuto (un brano, un testo, un tema) e cerca la forma che lo renda chiaro e riconoscibile. Mi piace capire prima cosa c’è da raccontare, e solo dopo come raccontarlo.</p>
-      <p class="a-p a-p2">Dal 2024 lavoro in Plural come Associate Junior Art Director, su campagne e progetti editoriali per clienti come ENGIE e Humana People to People. Dal 2021 collaboro con artisti della scena musicale, curando artwork, fotografia e immaginario visivo. Uso l’AI come strumento di produzione, sempre guidato da una direzione creativa precisa.</p>
+      <p class="a-p a-p1"><span class="l">Ogni progetto per me parte dal contenuto, che</span> <span class="l">sia un brano, un testo o un tema. Mi piace capire</span> <span class="l">prima cosa c’è da raccontare, e solo dopo come</span> <span class="l">raccontarlo, cercando la forma che lo renda</span> <span class="l">chiaro e riconoscibile.</span></p>
+      <p class="a-p a-p2"><span class="l">Creatività e attenzione ai dettagli sono i miei punti</span> <span class="l">di forza. Sono una persona disponibile e positiva,</span> <span class="l">e ci tengo a costruire buoni rapporti con le</span> <span class="l">persone con cui lavoro.</span></p>
 
       <div class="cv">
         <div class="cv-1">
           <h2>Esperienza</h2>
           <ul class="entries">
-            <li>Associate Junior Art Director<br>Plural<br>26.06.2024 - attualmente in corso</li>
-            <li>Visual Designer<br>Rude Records<br>8.05.2023 - 28.07.2023</li>
-            <li>Visual Designer e Fotografo<br>Freelance<br>2021 - Attualmente in corso</li>
+            <li>Plural — Associate Junior Art <br class="s">Director<br>06/2024 — attualmente in corso</li>
+            <li>Visual Designer e Fotografo <br class="s">freelance<br>2021 — attualmente in corso</li>
+            <li>Talent Garden — Co-docente, <br class="s">Master in Branding<br>03/2026 — 05/2026</li>
+            <li>Padiglione Italia, Expo 2025 <br class="s">Osaka — per Associazione Futuri <br class="s">Probabili<br>02/2025 — 03/2025</li>
           </ul>
         </div>
         <div class="cv-2">
           <h2>Formazione</h2>
           <ul class="entries">
-            <li>ITS Strategic Visual Designer<br>per la Cultura e il Territorio<br>2022-2024</li>
-            <li>Corso di Graphic Design, Job<br>Formazione<br>2021-2022</li>
-            <li>Diploma di maturità, indirizzo<br>Grafico W. Kandinsky<br>2016-2021</li>
+            <li>ITS Strategic Visual Designer <br class="s">per la Cultura e il Territorio<br>2022-2024</li>
+            <li>Corso di Graphic Design, Job <br class="s">Formazione<br>2021-2022</li>
+            <li>Diploma di maturità, indirizzo <br class="s">Grafico W. Kandinsky<br>2016-2021</li>
           </ul>
         </div>
         <div class="cv-3">
@@ -413,7 +417,7 @@ const PROJECTS = [
   { n: "02", title: "Come cadono i fiori",         client: "CFP Bauer",             preview: "img/02-come-cadono-i-fiori-anteprima-2.webp" },   // v1.37: taglio scelto da Simone, parte sinistra in basso di Via Mandorli (strada, palazzi, balconi con la tenda), dall'originale
   { n: "03", title: "ENGIE adv",                   client: "Plural" },
   { n: "04", title: "Artwork Design",              client: "Progetti indipendenti", preview: "img/04-artwork-design-2.webp" },
-  { n: "05", title: "Humana Bilancio di Sostenibilità 2024", client: "Plural" },   // anteprima = la sua immagine in Home (blocco 10)
+  { n: "05", title: "Humana Bilancio 2024", client: "Plural" },   // v1.58: come nel PDF di Simone (08/10)   // anteprima = la sua immagine in Home (blocco 10)
   { n: "06", title: "Archivio",                    client: "",                      preview: "video/06-archivio-2.mp4" },
 ];
 
