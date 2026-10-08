@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Portfolio Simone · v1.58 · da v1.57: testi e CV di Chi sono dal PDF InDesign di Simone (08/10), progetto 05 «Humana Bilancio 2024» · 08/10/2026 -->
+<!-- Portfolio Simone · v1.59 · da v1.58: «Junior Art Director» al posto di «Visual designer» nel titolo del sito, nella descrizione e nell'anteprima dei link (come nel PDF e nel CV) · 08/10/2026 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -7,12 +7,12 @@
 <!-- Sito da condividere solo tramite link: i motori di ricerca non devono mostrarlo nei risultati.
      Nessun robots.txt che blocca: altrimenti Google non leggerebbe questa istruzione. -->
 <meta name="robots" content="noindex, nofollow, noarchive">
-<title>Simone Buzzoni — Visual designer</title>
-<meta name="description" content="Portfolio di Simone Buzzoni, visual designer: identità visiva, impaginazione editoriale, fotografia, motion design e artwork per la musica.">
+<title>Simone Buzzoni — Junior Art Director</title>
+<meta name="description" content="Portfolio di Simone Buzzoni, Junior Art Director: identità visiva, impaginazione editoriale, fotografia, motion design e artwork per la musica.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="it_IT">
-<meta property="og:title" content="Simone Buzzoni — Visual designer">
-<meta property="og:description" content="Portfolio di Simone Buzzoni, visual designer: identità visiva, impaginazione editoriale, fotografia, motion design e artwork per la musica.">
+<meta property="og:title" content="Simone Buzzoni — Junior Art Director">
+<meta property="og:description" content="Portfolio di Simone Buzzoni, Junior Art Director: identità visiva, impaginazione editoriale, fotografia, motion design e artwork per la musica.">
 <meta property="og:url" content="https://simonebuzzoni.github.io/">
 <meta property="og:image" content="https://simonebuzzoni.github.io/anteprima.jpg">
 <meta property="og:image:width" content="1200">
@@ -863,7 +863,7 @@ const route = () => { let h = location.hash.slice(1); try { h = decodeURICompone
 const hashOf = v => "#" + (ROUTE_OUT[v] || v);
 // Titolo della scheda del browser per ogni pagina
 const SITE = "Simone Buzzoni";
-const TITLES = { home: SITE + " — Visual designer", work: "Lavori — " + SITE, about: "Chi sono — " + SITE, contact: "Contatti — " + SITE,
+const TITLES = { home: SITE + " — Junior Art Director", work: "Lavori — " + SITE, about: "Chi sono — " + SITE, contact: "Contatti — " + SITE,
   ...Object.fromEntries(Object.entries(PAGES).map(([n, PG]) => [PG.slug, (projectByN[n] ? projectByN[n].title : PG.slug) + " — " + SITE])) };
 // Punto in cui eri in ogni pagina: tornando indietro (freccia del browser) si riparte da lì
 const SCROLL = {};
