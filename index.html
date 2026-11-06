@@ -1,20 +1,17 @@
 <!doctype html>
-<!-- Portfolio Simone · v1.61 · da v1.60: "Plural" sostituito con "SUBSENSE" ovunque (Chi sono, clienti di ENGIE adv e Humana, testo di Humana) · 22/10/2026 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Sito da condividere solo tramite link: i motori di ricerca non devono mostrarlo nei risultati.
-     Nessun robots.txt che blocca: altrimenti Google non leggerebbe questa istruzione. -->
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Simone Buzzoni</title>
 <meta name="robots" content="noindex, nofollow, noarchive">
-<title>Simone Buzzoni — Junior Art Director</title>
-<meta name="description" content="Portfolio di Simone Buzzoni, Junior Art Director: identità visiva, impaginazione editoriale, fotografia, motion design e artwork per la musica.">
+<meta name="description" content="Portfolio di Simone Buzzoni, visual designer: identità visiva, impaginazione editoriale, fotografia, motion design e artwork per la musica.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="it_IT">
-<meta property="og:title" content="Simone Buzzoni — Junior Art Director">
-<meta property="og:description" content="Portfolio di Simone Buzzoni, Junior Art Director: identità visiva, impaginazione editoriale, fotografia, motion design e artwork per la musica.">
+<meta property="og:title" content="Simone Buzzoni — Visual Designer">
+<meta property="og:description" content="Portfolio di Simone Buzzoni, visual designer: identità visiva, impaginazione editoriale, fotografia, motion design e artwork per la musica.">
 <meta property="og:url" content="https://simonebuzzoni.github.io/">
-<meta property="og:image" content="https://simonebuzzoni.github.io/anteprima.jpg">
+<meta property="og:image" content="https://simonebuzzoni.github.io/anteprima-v14.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="La Home del portfolio di Simone Buzzoni">
@@ -23,957 +20,367 @@
 <link rel="icon" href="favicon.ico?v=lux" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=lux">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=lux">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300..600&family=Inter+Tight:wght@300..600&display=swap">
 <style>
-  /* Sistema di misura: tutte le quote sono i pixel del template su una finestra larga 1500 px.
-     --u è un pixel del template; il sito scala in proporzione con la larghezza della finestra. */
-  :root {
-    color-scheme: light;
-    --bg: #ffffff;
-    --ink: #111111;
-    --ph: #ececea;
-    --u: calc(100vw / 1500);
-    --m: calc(14.5 * var(--u));            /* margine esterno */
-    /* v1.34: corpi presi dal PDF di Simone (A4 orizzontale: 1 pt = 1500 / 841,89 = 1,7817 px), interlinea 1,2 ovunque.
-       10 pt = 17,82 px (bio, contatti) · 9 pt = 16,04 px (menu in Medium, descrizioni dei progetti)
-       8 pt = 14,25 px (lista lavori, didascalie, crediti, testi piccoli di Chi sono) */
-    --fs-nav: calc(16.04 * var(--u));
-    --fs-l: calc(17.82 * var(--u));        /* bio, pagina contatti */
-    --fs-list: calc(14.25 * var(--u));     /* lista lavori */
-    --fs-cap: calc(14.25 * var(--u));      /* didascalie: Home e pagine progetto uguali */
-    --fs-s: calc(14.25 * var(--u));        /* testi piccoli Chi sono */
-    --fs-desc: calc(16.04 * var(--u));     /* descrizioni dei progetti */
-    --fs-big: calc(30 * var(--u));         /* v1.38: solo il primo paragrafo di Chi sono */
-    --cap-gap: calc(30 * var(--u));        /* v1.36: dal fondo dell'immagine all'inizio della didascalia, 30 px (prima 40,2): didascalie un po' più vicine */
-    --lh-l: 1.2;
-    --lh-list: 1.2;
-    --lh-s: 1.2;
-    --serif: "Noto Serif", Georgia, "Times New Roman", serif;
-    --hh: calc(45 * var(--u));             /* altezza della fascia quando l'header è in alto: 14,5 + menu 16 + 14,5 */
-  }
-  html { overflow-x: clip; }
-  html, body { background: var(--bg); color: var(--ink); }
-  body { margin: 0; font-family: var(--serif); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
-  a { color: inherit; text-decoration: none; }
-  a:focus-visible, [tabindex]:focus-visible { outline: 1px solid currentColor; outline-offset: 3px; }
-  p, h2, ul, figure { margin: 0; }
-  ul { list-style: none; padding: 0; }
-  img { display: block; }
-  .view { position: relative; }
+/* v14.0 — reference quatriemeetage.studio (PDF della home e registrazione di Simone del 30/10, 16:50).
+   Misure prese dalla pagina della reference larga 1500 px: due colonne larghe 41,67% (da 4,2% e da 54,2%), immagini nel loro formato,
+   didascalia monospaziata 15 px sotto, 92 px tra una voce e l'altra. Testata ferma fatta di etichette con un riquadro di fondo. */
+/* v14.29: nuova coppia di caratteri liberi (Google Fonts), uguale su ogni computer e telefono, scelta confrontandola con i due ritagli
+   mandati da Simone: Inter Tight (il più vicino al bastoni del ritaglio tra 32 provati: spaziatura stretta, g a un occhiello)
+   e Geist Mono (il più vicino a «(MARCH)»: stessa larghezza, M, R e C uguali). Peso 450, tra regular e medium, come nei ritagli.
+   Tolti Helvetica Neue di sistema e i Monument installati: tutti vedono lo stesso sito */
+:root{--line:rgba(255,255,255,.16);--bg:#0b0a0a;--box:#0b0a0a;--ink:#fff;--dim:#5c5a5b;--hov:#6d6b6c;--sans:"Inter Tight",Helvetica,Arial,sans-serif;--mono:"Geist Mono",ui-monospace,Menlo,monospace;
+  --cx1:4.2vw;--cx2:54.2vw;--cw:41.67vw;color-scheme:dark}
+/* v14.23: riquadri della testata dello stesso colore del fondo (bianco 100% nel chiaro), nessuno scalino visibile
+   chiaro: il quadratino vuoto della testata (nella registrazione il fondo diventa bianco e i riquadri grigio chiarissimo) */
+/* v14.38: solo fondo chiaro (Simone): questi valori valgono sempre */
+:root{--line:rgba(0,0,0,.14);--bg:#fff;--box:#fff;--ink:#000;--dim:#a3a1a2;--hov:#9a9899;color-scheme:light}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font:450 13px/1.2 var(--sans);-webkit-font-smoothing:antialiased;min-height:100vh}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+img,video{display:block;width:100%;height:100%;object-fit:cover}
 
-  /* ---------- Nav fissa al centro verticale ---------- */
-  /* v1.39 (dal test v1.37-b): l'header parte al centro della prima schermata (o nella fascia libera più vicina, v1.37) e scorre con la pagina
-     come un elemento qualsiasi; quando arriva in alto (a 14,5 dal bordo) si ancora lì. È uno "sticky": lo muove il browser,
-     quindi segue lo scroll senza ritardi. .nav-rail è alto quanto tutta la pagina e fa da binario all'header. */
-  body { position: relative; }
-  .nav-rail { position: absolute; left: 0; right: 0; top: 0; bottom: 0; z-index: 20; pointer-events: none; }
-  .nav {
-    position: sticky; top: calc(14.5 * var(--u));
-    margin-top: calc(var(--nav-c, 50vh) - var(--fs-nav) / 2);
-    height: var(--fs-nav);
-    font-size: var(--fs-nav);
-    font-weight: 500;
-    line-height: 1;
-    pointer-events: none;
-    --ns: 1;
-    transform: scale(var(--ns));
-    transform-origin: 50% 50%;
-  }
-  body:not([data-view="home"]) .nav { --ns: .8527; }   /* al centro, nelle pagine interne; cresce fino a 1 mentre sale (lo calcola lo script) */
-  /* v1.33: appena la pagina scorre, l'header sale in alto (a 14,5 dal bordo, come i margini) e si ancora lì.
-     Sotto compare una fascia bianca: le immagini ci scorrono sotto e le voci restano su fondo bianco.
-     Tornando in cima alla pagina l'header torna al centro. */
-  body.nav-top .nav { --ns: 1; }   /* ancorato in alto: stessa misura in tutte le pagine, voci allineate ai margini */
-  .nav-band {
-    position: fixed; left: 0; right: 0; top: 0; height: var(--hh);
-    z-index: 19; background: var(--bg);
-    opacity: 0; pointer-events: none; transition: opacity .35s ease;
-  }
-  body.nav-top .nav-band { opacity: 1; pointer-events: auto; transition: opacity .2s ease; }
-  /* v1.37: pagine in cui al centro non c'è spazio libero per l'header (es. Expo, Come cadono i fiori):
-     l'header parte già in alto sulla fascia e la pagina scende della sua altezza, così niente finisce sotto la fascia. */
-  body.nav-start-top main { padding-top: var(--hh); }
-  .nav a { position: absolute; top: 0; pointer-events: auto; white-space: nowrap; transition: opacity .2s; }
-  .nav a:hover { opacity: .45; }
-  /* Il link della pagina che stai guardando non ha hover (menu e lista delle pagine progetto) */
-  .nav a[aria-current]:hover, .w-title[aria-current]:hover { opacity: 1; }
-  .nav a[aria-current], .w-title[aria-current] { cursor: default; }
-  .n-name    { left: calc(15.2 * var(--u)); }
-  .n-work    { left: calc(260.3 * var(--u)); }
-  .n-about   { left: calc(384 * var(--u)); }
-  .n-contact { left: calc(508.7 * var(--u)); }
-  .n-li      { right: calc((1500 - 1365.9) * var(--u)); }
-  .n-ig      { right: calc((1500 - 1487.9) * var(--u)); }
+/* ---------- testata ferma ---------- */
+.hd{position:fixed;z-index:5;background:var(--box);top:0;height:24px;display:flex;align-items:center;white-space:nowrap}
+.hd a:hover,.hd button:hover,a.hd:hover{color:var(--hov)}
+#nm{left:0;width:250px;padding-left:10px}
+#tg{position:fixed;z-index:6;top:13px;left:364px;display:flex;gap:11px}
+#tg button{width:9px;height:9px;border:1px solid var(--ink);padding:0;display:block}
+/* v14.36: quadratini con colore fisso — il nero porta al fondo scuro, il bianco al fondo chiaro (prima si riempiva quello attivo, e i colori si invertivano) */
+#tg button[data-t=dark]{background:#000;border-color:#fff}
+#tg button[data-t=light]{background:#fff;border-color:#000}
+:root:not([data-theme=light]) #tg button[data-t=dark],:root[data-theme=light] #tg button[data-t=light]{border-color:var(--ink)}
+/* v14.6: il riquadro si adatta al testo (con Helvetica Neue «LAVORI / CHI SONO» usciva dal riquadro largo 125 px), con lo stesso respiro a destra della reference */
+#nav{left:50vw;width:auto;padding:0 24px 0 6px}
+#ct{left:66.67vw;height:auto;padding:4px 6px;flex-direction:column;align-items:flex-start;justify-content:center;line-height:14px;width:auto}
+#fs{position:fixed;z-index:6;top:5px;right:10px;font-size:13px;display:none}
+body.pj #fs,body.ab #fs{display:block}   /* v14.38: niente [ ] in Home; nel progetto e in Chi sono «CHIUDI» */
+#fs:hover{color:var(--hov)}
+#yr{left:50vw;top:193px;padding:0 24px 0 6px}   /* v14.38: il ruolo al posto di «2026» */
+#ct .sm{display:none}
+#bar{display:contents}   /* v14.61: su desktop non cambia nulla; su telefono diventa una sola barra */
 
-  /* ---------- Home: 11 immagini, coordinate esatte ---------- */
-  .home { position: relative; height: calc(5623.5 * var(--u)); overflow: hidden; } /* come il frame Figma: ciò che esce dal bordo viene tagliato */
-  .shot {
-    position: absolute;
-    left: calc(var(--x) * var(--u));
-    top: calc(var(--y) * var(--u));
-    width: calc(var(--w) * var(--u));
-    height: calc(var(--h) * var(--u));
-  }
-  .shot img, .shot video, .shot .empty { display: block; width: 100%; height: 100%; object-fit: cover; background: var(--ph); transition: opacity .25s ease; }
-  /* .empty = blocco ancora senza foto: resta un riquadro grigio */
-  /* Hover (misurato sul template): l'immagine scende all'80% di opacità sul fondo bianco
-     e sotto compare la didascalia. Misure e posizione non cambiano. */
-  .shot:hover img, .shot:hover video, .shot:hover .empty { opacity: .8; }
-  .shot figcaption {
-    position: absolute; top: 100%; left: 0; width: max-content;
-    padding-top: var(--cap-gap);           /* v1.34: stessa distanza delle didascalie dei progetti (prima 5,4) */
-    font-size: var(--fs-cap);
-    line-height: 1.2;
-    opacity: 0;
-    transition: opacity .25s ease;
-    pointer-events: none;
-  }
-  .shot:hover figcaption { opacity: 1; }
-  @media (hover: none) { .shot figcaption { opacity: 1; } }
+/* ---------- home: due colonne di lavori ---------- */
+#feed{position:relative;padding-top:64px}
+.col{position:absolute;top:64px;width:var(--cw)}
+.col.l{left:var(--cx1)}.col.r{left:var(--cx2);padding-top:14vw}   /* v14.35: colonna destra più in basso, così l'Archivio arriva per ultimo */
+.it{display:block;margin-bottom:92px}
+.it .fr{position:relative;overflow:hidden;background:#1a1a1a}
+:root .it .fr{background:#eee}
+.it.narrow .fr{width:62%;margin:0 auto}
+.cap{margin-top:15px;font:450 9.5px/15px var(--mono);text-transform:uppercase;letter-spacing:.01em}
+.cap .ds{color:var(--dim)}
+/* v14.7b: due font con ruoli fissi — il bastoni dei link della testata per titoli e descrizioni, il monospaziato solo per i testi secondari
+   (cliente, anno, servizi, numeri, CLIENTE/ANNO) */
+.tt{font:450 13px/16px var(--sans);text-transform:uppercase;letter-spacing:0}
 
-  /* ---------- Lavori ---------- */
-  .work { position: relative; min-height: 100vh; font-size: var(--fs-list); line-height: var(--lh-list); }
-  .w-prev {
-    position: absolute; left: calc(15 * var(--u)); top: calc(15 * var(--u));
-    width: calc(228 * var(--u)); height: calc(334 * var(--u));
-  }
-  /* Un'anteprima per progetto (foto o video), sovrapposte: si vede solo quella attiva */
-  .w-prev > * { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .18s ease; }
-  .w-prev > .on { opacity: 1; }
-  .w-count { position: absolute; left: calc(636 * var(--u)); top: var(--m); font-weight: 600; }
-  .w-list { position: absolute; left: calc(760 * var(--u)); top: var(--m); width: calc(600 * var(--u)); }
-  .row { display: grid; grid-template-columns: calc(290 * var(--u)) 1fr; }   /* v1.40: colonna Progetto da 249 a 290, perché "Humana Bilancio di Sostenibilità 2024" stia su una riga */
-  .row.head { font-weight: 600; margin-bottom: calc(var(--lh-list) * 1em); }
-  #wList .row { cursor: default; }
-  /* Titoli dei progetti: unico punto attivo della riga (anteprima + clic), hover come il menu */
-  .w-title { justify-self: start; cursor: pointer; transition: opacity .2s; }
-  .w-title:hover { opacity: .45; }
+/* ---------- pagina del progetto (PDF «Buddy» e registrazione del 30/10, 17:30) ----------
+   a sinistra le immagini una sotto l'altra nella colonna della home (larga 41,67%), 97 px tra l'una e l'altra, numero 001… accanto;
+   a destra, fermo: © 2026, la fila delle miniature (80×100, 12 px tra l'una e l'altra) che scorre insieme alla pagina, titolo e testo */
+body.pj #feed{display:none}
+#pj{display:none;position:relative;padding:48px 0 120px}
+body.pj #pj{display:block}
+#pj .im{position:relative;width:var(--cw);margin-left:var(--cx1);margin-bottom:97px}
+#pj .im .fr{position:relative;overflow:hidden;background:#1a1a1a;margin:0 auto}
+:root #pj .im .fr{background:#eee}
+#pj .im .n{position:absolute;left:calc(100% + 32px);top:6px;font:450 8px/1 var(--mono);letter-spacing:.04em}
+#side{position:fixed;left:50vw;top:232px;right:0;z-index:3}
+/* v14.5: la fila non è tagliata a sinistra — le miniature che avanzano passano sopra la colonna delle immagini, come nella reference */
+#strip{height:101px}
+html,body{overflow-x:clip}
+#strip .tr{display:flex;gap:12px;will-change:transform;transition:transform .35s cubic-bezier(.3,.1,.25,1)}
+#strip .tr.now{transition:none}
+#strip button{flex:none;width:80px;height:101px;padding:0;overflow:hidden;background:#1a1a1a}
+#strip button img,#strip button video{pointer-events:none}
+#strip button:hover{opacity:.75}
+/* v14.11 (screenshot di Simone, Les Traits Français e Tiffany Square): testo del progetto come nella reference — tutto monospaziato maiuscolo,
+   «[ TITOLO ] ( SERVIZI )» sotto le miniature, un cubetto pieno (largo quanto una lettera, alto una riga) tra un blocco e l'altro:
+   titolo ■ primo paragrafo ■ altri paragrafi separati da una riga vuota ■ CLIENTE / ANNO, etichetta e valore su due righe */
+/* v14.27: tutti i caratteri un po' più piccoli (Simone): principale 14→13 px, monospaziato circa −1,3 px.
+   v14.26: monospaziato Fragment Mono (libero, Google Fonts), il più vicino a quello della reference tra 23 provati: stessa larghezza
+   delle lettere e stesso peso del tratto; 12,1 px = 7,5 px per lettera come nella reference */
+#info{margin-top:22px;padding-right:20px;font:450 10.6px/13.4px var(--mono);text-transform:uppercase;letter-spacing:0;max-height:calc(100vh - 380px);overflow:auto;scrollbar-width:none}
+#info::-webkit-scrollbar{display:none}
+#info .ttl{margin-bottom:14.6px}
+#info .meta{margin-top:14.6px}
+#info p{margin:0}
+#info p+p{margin-top:14.5px}
+/* v14.18: regola per computer e telefono — titolo, servizi, CLIENTE / ANNO nel monospaziato; la descrizione completa nel carattere principale */
+/* v14.22 (Simone, screenshot B-NICE-T): la descrizione torna nel monospaziato maiuscolo come la reference; paragrafi separati da una riga vuota */
+#info .dp+.dp{margin-top:14.5px}
 
-  /* ---------- Chi sono / CV (coordinate dal frame About della bozza) ---------- */
-  /* v1.54: di nuovo l'impaginazione della v1.37 (Simone: tornare all'About precedente) */
-  .about { position: relative; height: calc(1057.2 * var(--u)); font-size: var(--fs-s); line-height: var(--lh-s); }
-  .a-bio {
-    position: absolute; left: var(--m); top: var(--m); width: calc(723.5 * var(--u));
-    font-size: var(--fs-l); line-height: var(--lh-l);
-  }
-  .a-portrait { position: absolute; left: calc(882 * var(--u)); top: var(--m); width: calc(234 * var(--u)); height: calc(334 * var(--u)); }
-  .a-portrait img { width: 100%; height: 100%; object-fit: cover; background: var(--ph); }
-  .a-contact { position: absolute; left: calc(1254 * var(--u)); top: var(--m); display: flex; flex-direction: column; align-items: flex-start; }
-  .cv > div { position: absolute; top: calc(677 * var(--u)); }
-  .cv h2 { font-size: inherit; font-weight: 600; margin-bottom: calc(var(--lh-s) * 1em); }
-  .cv-1 { left: calc(14 * var(--u)); width: calc(229 * var(--u)); }
-  .cv-2 { left: calc(388 * var(--u)); width: calc(231 * var(--u)); }
-  .cv-3 { left: calc(760 * var(--u)); width: calc(231 * var(--u)); }   /* Clienti, sulla colonna della lista Lavori */
-  /* Due paragrafi sotto il menu, come nella reference (y 489.7), sulle colonne del CV */
-  .a-p { position: absolute; top: calc(489.7 * var(--u)); width: calc(352 * var(--u)); margin: 0; }
-  .a-p1 { left: var(--m); }
-  .a-p2 { left: calc(388 * var(--u)); }
-  .cv .entries li + li { margin-top: calc(var(--lh-s) * 1em); }
-  /* Voci del CV: gli a capo seguono riga per riga quelli della bozza Figma */
-  .cv li { white-space: nowrap; }   /* v1.54: solo gli a capo voluti, anche su finestre strette */
-  .a-bio .l, .a-p .l { display: block; white-space: nowrap; }   /* v1.58: righe di Chi sono come nel PDF InDesign di Simone */
+/* ---------- Chi sono (v14.13): testi e ritratto del sito online (v1.61), nella griglia a due colonne della Home.
+   A sinistra il ritratto; a destra la presentazione grande, i due paragrafi, i contatti e il curriculum su tre colonne.
+   Il monospaziato solo per le tre etichette (ESPERIENZA, FORMAZIONE, CLIENTI); tutto il resto nel carattere della testata. */
+body.ab #feed{display:none}
+/* v14.14: informazioni ridistribuite — a sinistra ritratto e, sotto, le esperienze di lavoro; a destra presentazione, due paragrafi,
+   poi contatti e clienti affiancati, infine la formazione. Esperienza e formazione come elenchi a righe: voce a sinistra, date a destra in grigio */
+#ab{display:none;position:relative;padding:64px 0 140px}
+body.ab #ab{display:grid;grid-template-columns:var(--cw) var(--cw);column-gap:calc(var(--cx2) - var(--cx1) - var(--cw));padding-left:var(--cx1);align-items:start}
+#ab .lf img{height:auto}
+#ab .rt{padding-top:178px}
+#ab .bio{font:450 22px/1.22 var(--sans);letter-spacing:-.005em}
+#ab .ps{margin-top:32px;display:grid;grid-template-columns:1fr 1fr;gap:24px;font:450 13px/1.4 var(--sans)}
+#ab .two{margin-top:56px;display:grid;grid-template-columns:1fr;gap:24px;font:450 13px/1.4 var(--sans)}
+#ab .ct a{display:block;text-transform:uppercase}
+#ab .ct a:hover{color:var(--hov)}
+#ab section{margin-top:56px}
+#ab .lf section{margin-top:40px}
+#ab h2{font:450 9.5px/14px var(--mono);text-transform:uppercase;margin-bottom:10px}
+#ab ul{list-style:none}
+/* v14.16: esperienza e formazione una sotto l'altra sotto il ritratto, senza filetti */
+/* v14.37: esperienza e formazione nel monospaziato maiuscolo, come le date; tolti i clienti */
+#ab .rows li{display:grid;grid-template-columns:1fr auto;gap:24px;padding:4px 0;font:450 10.6px/16px var(--mono);text-transform:uppercase}
+#ab .rows .d{color:var(--dim);white-space:nowrap;text-align:right}
+/* v14.15: il monospaziato per le informazioni di servizio — etichette, date, contatti e clienti; il carattere principale per presentazione,
+   paragrafi, ruoli e scuole */
+#ab .rows .d,#ab .ct a,#ab .cl{font:450 10.6px/16px var(--mono);text-transform:uppercase}
+#ab .rows .d{line-height:19px}
+#ab .ct a{line-height:19px}
+#ab .cl{columns:1}
 
-  /* ---------- Pagina progetto (coordinate dal frame del progetto nella bozza Figma) ---------- */
-  .proj { position: relative; height: calc(var(--page-h) * var(--u)); }
-  .pp-img, .pp-txt { position: absolute; left: calc(var(--x) * var(--u)); top: calc(var(--y) * var(--u)); margin: 0; }
-  .pp-img { width: calc(var(--w) * var(--u)); height: calc(var(--h) * var(--u)); }
-  .pp-img img, .pp-img video { display: block; width: 100%; height: 100%; object-fit: cover; background: var(--ph); }
-  .pp-txt { white-space: nowrap; }
-  .pp-txt .ln { display: block; }
-  .pp-desc { font-size: var(--fs-desc); line-height: 1.2; }
-  .pp-desc .ln.gap { height: var(--fs-desc); }   /* tra due paragrafi 9 pt di spazio, come nel PDF */
-  .pp-small { font-size: var(--fs-cap); line-height: 1.2; }
-  .pp-count { font-size: var(--fs-list); line-height: var(--lh-list); font-weight: 600; }
-  .pp-list { position: absolute; left: calc(760 * var(--u)); top: calc(14.5 * var(--u)); width: calc(600 * var(--u)); font-size: var(--fs-list); line-height: var(--lh-list); }
-  /* Nella lista del progetto gli altri progetti sono al 20%; passando sul titolo tornano pieni */
-  .pp-list .row.dim { opacity: .2; transition: opacity .2s; }
-  .pp-list .row.dim:has(.w-title:hover), .pp-list .row.dim:has(.w-title:focus-visible) { opacity: 1; }
-  .pp-list .row.dim .w-title:hover { opacity: 1; }
-  .shot.has-page { cursor: pointer; }
-  /* In fondo a ogni pagina progetto: il progetto successivo, impaginato come una riga della lista */
-  /* "Progetto successivo": nel margine destro, allineato a destra (bordo delle immagini, x 1485) */
-  .pp-txt.pp-next { left: auto; right: calc(15 * var(--u)); text-align: right; }
-  .pp-next .w-title { display: inline-block; }
-
-  /* ---------- Contatti ---------- */
-  .contact-block {
-    position: absolute; left: var(--m); top: var(--m);
-    font-size: var(--fs-l); line-height: var(--lh-l);
-    display: flex; flex-direction: column; align-items: flex-start;
-  }
-  .contact-block a:hover, .a-contact a:hover { opacity: .45; }
-  #v-contact { min-height: 100vh; }
-
-  /* ---------- Transizioni ---------- */
-  @keyframes enter { from { opacity: 0; } to { opacity: 1; } }
-  .view.enter { animation: enter .5s ease both; }
-  @media (prefers-reduced-motion: reduce) {
-    .view.enter { animation: none; }
-    .nav, .nav a, .nav-band, .shot img, .shot video, .shot .empty, .shot figcaption, .w-prev > *, .w-title { transition: none; }
-  }
-
-  /* ---------- Telefono (sotto i 600 px): impaginazione in colonna ---------- */
-  @media (max-width: 600px) {
-    :root { --fs-big: 20px; --m: 16px; --fs-nav: 13px; --fs-l: 17px; --fs-list: 14px; --fs-cap: 12px; --fs-s: 13px; --fs-desc: 14px; }
-    .nav { margin: 16px 16px 0; display: flex; justify-content: space-between; }
-    .nav a { position: static; }
-    .n-li, .n-ig { display: none; }
-    body:not([data-view="home"]) .nav { --ns: 1; }
-    /* v1.33: sul telefono l'header è sempre in alto, sulla fascia bianca (al centro finiva sopra le immagini) */
-    :root { --hh: 45px; }
-    .nav, body.nav-top .nav { top: 16px; transform: none; }
-    .nav-band { opacity: 1; pointer-events: auto; transition: none; }
-    main { padding-top: var(--hh); }
-
-    .home { height: auto; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); column-gap: 10px; row-gap: 20vw; padding: 16px 16px 40vh; }
-    .shot { position: relative; left: auto; top: auto; width: auto; height: auto; grid-column: var(--mc); }
-    .shot img, .shot video, .shot .empty { height: auto; aspect-ratio: var(--ar); }
-    .shot figcaption { padding-top: 12px; }   /* v1.36: 12 px (prima 16), come nelle pagine progetto */
-
-    .work, .about, #v-contact { padding: 16px; min-height: 0; height: auto; }
-    .proj { height: auto; display: flex; flex-direction: column; gap: 16px; padding: 16px 16px 40vh; }
-    .pp-img, .pp-txt, .pp-list { position: static; width: auto; height: auto; }
-    .pp-img img, .pp-img video { height: auto; aspect-ratio: var(--w) / var(--h); }
-    .pp-txt { white-space: normal; }
-    .pp-txt .ln { display: inline; }
-    .pp-desc { font-size: 14px; line-height: 1.3; }
-    .pp-desc .ln.gap { height: 14px; }
-    .pp-small { font-size: 12px; line-height: 1.3; }
-    .pp-cap { margin-top: -4px; }   /* v1.36: didascalia a 12 px dalla sua immagine (lo spazio della colonna è 16) */
-    .w-prev, .w-count, .w-list, .a-bio, .a-portrait, .a-contact, .a-p, .cv > div, .contact-block { position: static; width: auto; height: auto; }
-    .pp-next { margin-top: 24px; text-align: right; }
-    .pp-txt.pp-next .ln { display: block; }
-    .w-prev { position: relative; width: 40%; aspect-ratio: 228 / 334; }
-    .w-count { margin-top: 20px; }
-    .w-list { margin-top: 8px; }
-    .row { grid-template-columns: 1fr 1fr; gap: 10px; }
-    .about { display: grid; gap: 20px; }
-    .a-portrait { width: 55%; aspect-ratio: .7; }
-    .cv { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 10px; margin-top: 20px; }
-
-    /* v1.52: più respiro sul telefono (Simone: spaziature troppo strette). Solo qui dentro: il computer non cambia. */
-    :root { --m: 22px; --lh-l: 1.35; --lh-list: 1.4; --lh-s: 1.4; }
-    .nav { margin: 18px 22px 0; }
-    :root { --hh: 50px; }
-    .nav, body.nav-top .nav { top: 18px; }
-    .home { column-gap: 14px; row-gap: 24vw; padding: 28px 22px 40vh; }
-    .shot figcaption { padding-top: 10px; }
-    .work, .about, #v-contact { padding: 28px 22px 48px; }
-    .proj { gap: 40px; padding: 28px 22px 40vh; }
-    .pp-count { margin-bottom: -24px; }                 /* numero e lista restano vicini */
-    .pp-list { margin-bottom: 16px; }                   /* più aria prima della prima immagine */
-    .pp-desc { line-height: 1.5; }
-    .pp-desc .ln.gap { height: 21px; }
-    .pp-small { line-height: 1.45; }
-    .pp-cap { margin-top: -30px; }                      /* didascalia a 10 px dalla sua immagine (lo spazio della colonna è 40) */
-    .pp-next { margin-top: 32px; }
-    .w-count { margin-top: 32px; }
-    .w-list { margin-top: 12px; }
-    .row { column-gap: 16px; }
-    .row.head { margin-bottom: 12px; }
-    .work .row + .row, .pp-list .row + .row { margin-top: 4px; }
-    .about { gap: 32px; }
-    .a-contact { line-height: 1.6; }
-    .cv { gap: 36px 16px; margin-top: 16px; }
-    .cv h2 { margin-bottom: 12px; }
-    .cv { grid-template-columns: 1fr; }
-    .cv li { white-space: normal; }
-    .cv br.s { display: none; }
-    .a-bio .l, .a-p .l { display: inline; white-space: normal; }   /* sul telefono il testo va a capo da solo */                         /* v1.58: sul telefono le voci vanno a capo solo tra titolo e date */                 /* v1.54: CV su una colonna, così le righe delle voci non vanno a capo da sole */
-    .cv .entries li + li { margin-top: 16px; }
-
-    /* v1.53 (Simone, screenshot dal telefono) */
-    .pp-count, .pp-list { order: -2; }                  /* progetti: numero e indice, poi i crediti, poi il resto */
-    .pp-credit { order: -1; }
-    .pp-list { margin-bottom: 21px; }                   /* v1.57: crediti otticamente a metà: 69 px di bianco sopra e sotto, misurati sui pixel */
-    .pp-credit { margin-bottom: 27.5px; }
-    .pp-desc.pp-first { margin-top: -5px; }             /* se dopo i crediti c'è un testo, la sua interlinea aggiunge 5 px di bianco */
-    .home { padding-bottom: 80px; }                     /* meno bianco in fondo (prima 40% dell'altezza dello schermo) */
-    .proj { padding-bottom: 80px; }
-  }
+@media (max-width:760px){
+  /* v14.17: testata su telefono come la reference (registrazione di Simone del 31/10, 01:07, misurata su schermo largo 390 px):
+     riga 1 il nome in un riquadro largo 2/3 e i quadratini a destra; riga 2 a 48 px CHI SONO (1/3), MAIL / INSTAGRAM da metà, [ ] a destra;
+     2026 fermo a sinistra più in basso; immagini a 33 px dai bordi, una sotto l'altra */
+  :root{--cx1:33px;--cw:calc(100vw - 66px)}
+  .hd{font-size:11px;height:17px}
+  /* v14.61 (Simone: «questa disposizione non mi piace per niente»): una sola barra bianca a tutta larghezza,
+     il nome a sinistra e CHI SONO / MAIL / INSTAGRAM / [ X ] in fila a destra, niente riquadri staccati */
+  #bar{display:flex;position:fixed;z-index:5;top:0;left:0;right:0;height:32px;background:var(--box);align-items:center;gap:14px;padding:0 12px;font-size:11px;white-space:nowrap}
+  #bar .hd,#bar #fs{position:static;height:auto;padding:0;width:auto!important;background:none;font-size:11px;line-height:1}
+  #nav{margin-left:auto}
+  #ct{flex-direction:row;gap:14px}
+  #fs{display:none}
+  body.pj #fs,body.ab #fs{display:block}
+  #ct .lg{display:none}
+  #ct .sm{display:inline}
+  body.pj #yr,body.ab #yr{display:none}   /* nella reference 2026 sta solo sulla Home; qui coprirebbe il titolo del progetto */
+  #yr{display:flex;left:0;top:200px;padding:0 14px 0 12px}   /* v14.62 (Simone): torna blocco separato, fermo e più in basso */
+  #feed{padding-top:72px}
+  .cap{font-size:9px;line-height:12px;margin-top:10px}
+  .col{position:static;margin:0 var(--cx1)}
+  .col.r{margin-top:0;padding-top:0}
+  .col.l{padding-top:0}
+  .it{margin-bottom:56px}
+  #pj{padding-top:72px;display:none;flex-direction:column}
+  body.pj #pj{display:flex}
+  /* v14.19, telefono: in alto titolo e servizi, niente miniature, poi le immagini, in fondo descrizione e CLIENTE / ANNO */
+  #side,#info{display:contents}
+  #strip{display:none}
+  #pj #info>*{margin-left:33px;margin-right:33px;order:2}
+  #pj #info>.ttl{order:-1;margin-bottom:32px}
+  #pj #info>.meta{order:2;margin-top:0;margin-bottom:14.6px} #pj #info>*:not(.ttl):not(.meta){order:3}   /* v14.20: prima CLIENTE / ANNO, poi la descrizione */
+  #imgs{order:1;margin-bottom:8px}
+  #strip .tr{transform:none!important}
+  #pj .im{margin-bottom:48px}
+  #pj .im .n{left:auto;right:0;top:-14px}
+  /* su telefono: ritratto, presentazione, paragrafi, esperienza, contatti e clienti, formazione */
+  body.ab #ab{display:flex;flex-direction:column;padding:72px 33px 120px}
+  #ab .lf,#ab .rt{display:contents}
+  #ab .lf img{order:1} #ab .bio{order:2;margin-top:32px} #ab .ps{order:3} #ab .lf section{order:4;margin-top:48px} #ab .two{order:5;margin-top:48px} #ab .lf section+section{order:5} #ab .two{order:6}
+  #ab .bio{font-size:18px}
+  #ab .ps,#ab .two{grid-template-columns:1fr}
+  #ab .rows li{gap:16px}
+}
 </style>
 </head>
 <body>
-
-<div class="nav-band" aria-hidden="true"></div>
-<div class="nav-rail">
-<nav class="nav" aria-label="Navigazione principale">
-  <a class="n-name" href="#home" data-go="home">Simone Buzzoni</a>
-  <a class="n-work" href="#lavori" data-go="work">Lavori</a>
-  <a class="n-about" href="#chi-sono" data-go="about">Chi sono</a>
-  <a class="n-contact" href="#contatti" data-go="contact">Contatti</a>
-  <a class="n-li" href="https://www.linkedin.com/in/simone-buzzoni-6178a221a/" target="_blank" rel="noopener">LinkedIn</a>
-  <a class="n-ig" href="https://www.instagram.com/simone_buzzoni/" target="_blank" rel="noopener">Instagram</a>
-</nav>
-</div>
-
-<main>
-  <!-- HOME -->
-  <section class="view" id="v-home" aria-label="Home">
-    <div class="home" id="homeGrid"></div>
-  </section>
-
-  <!-- LAVORI -->
-  <section class="view" id="v-work" aria-label="Lavori" hidden>
-    <div class="work">
-      <div class="w-prev" id="wPrev" aria-hidden="true"></div>
-      <div class="w-count" id="wCount"></div>
-      <div class="w-list">
-        <div class="row head"><span>Progetto</span><span>Cliente</span></div>
-        <ul id="wList"></ul>
-      </div>
+<div id="bar"><a class="hd" id="nm" href="#/">SIMONE BUZZONI</a>
+<div class="hd" id="nav"><a href="#/chi-sono">CHI SONO</a></div>
+<div class="hd" id="ct"><a href="mailto:simonebuzzoni.02@gmail.com"><span class="lg">SIMONEBUZZONI.02@GMAIL.COM</span><span class="sm">MAIL</span></a><a href="https://www.instagram.com/simone_buzzoni/" target="_blank" rel="noopener">INSTAGRAM</a></div>
+<button id="fs" aria-label="Chiudi">[ X ]</button></div>
+<div class="hd" id="yr">VISUAL DESIGNER</div>
+<main id="feed"><div class="col l"></div><div class="col r"></div></main>
+<div id="ab" role="region" aria-label="Chi sono">
+  <div class="lf">
+    <img src="img/ritratto.jpg" alt="Ritratto di Simone Buzzoni" width="1130" height="1002" decoding="async">
+    <section><h2>Esperienza</h2><ul class="rows">
+      <li><span>SUBSENSE — Associate Junior Art Director</span><span class="d">06/2024 — in corso</span></li>
+      <li><span>Visual Designer e Fotografo freelance</span><span class="d">2021 — in corso</span></li>
+      <li><span>Talent Garden — Co-docente, Master in Branding</span><span class="d">03/2026 — 05/2026</span></li>
+      <li><span>Padiglione Italia, Expo 2025 Osaka — per Associazione Futuri Probabili</span><span class="d">02/2025 — 03/2025</span></li>
+    </ul></section>
+    <section><h2>Formazione</h2><ul class="rows">
+      <li><span>ITS Strategic Visual Designer per la Cultura e il Territorio</span><span class="d">2022 — 2024</span></li>
+      <li><span>Corso di Graphic Design, Job Formazione</span><span class="d">2021 — 2022</span></li>
+      <li><span>Diploma di maturità, indirizzo Grafico W. Kandinsky</span><span class="d">2016 — 2021</span></li>
+    </ul></section>
+  </div>
+  <div class="rt">
+    <p class="bio">La fotografia è stata la mia prima passione, ma il mio percorso è cambiato davvero quando ho scoperto l’elaborazione digitale delle immagini. Da lì ho iniziato a lavorare su entrambi i fronti, e con il tempo sono riuscito a far comunicare i due mondi.</p>
+    <div class="ps">
+      <p>Ogni progetto per me parte dal contenuto, che sia un brano, un testo o un tema. Mi piace capire prima cosa c’è da raccontare, e solo dopo come raccontarlo, cercando la forma che lo renda chiaro e riconoscibile.</p>
+      <p>Creatività e attenzione ai dettagli sono i miei punti di forza. Sono una persona disponibile e positiva, e ci tengo a costruire buoni rapporti con le persone con cui lavoro.</p>
     </div>
-  </section>
-
-  <!-- CHI SONO / CURRICULUM -->
-  <section class="view" id="v-about" aria-label="Chi sono" hidden>
-    <div class="about">
-      <p class="a-bio"><span class="l">La fotografia è stata la mia prima passione, ma il mio percorso è cambiato davvero</span> <span class="l">quando ho scoperto l’elaborazione digitale delle immagini. Da lì ho iniziato a lavorare</span> <span class="l">su entrambi i fronti, e con il tempo sono riuscito a far comunicare i due mondi.</span></p>
-      <figure class="a-portrait"><img id="aImg" src="img/ritratto.jpg" alt="Ritratto di Simone Buzzoni" loading="lazy" decoding="async"></figure>
-      <div class="a-contact">
+    <div class="two">
+      <div class="ct"><h2>Contatti</h2>
         <a href="mailto:simonebuzzoni.02@gmail.com">simonebuzzoni.02@gmail.com</a>
-        <span>+39 329 754 0738</span>
+        <a href="tel:+393297540738">+39 329 754 0738</a>
         <a href="https://www.instagram.com/simone_buzzoni/" target="_blank" rel="noopener">Instagram</a>
         <a href="https://www.linkedin.com/in/simone-buzzoni-6178a221a/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
-
-      <p class="a-p a-p1"><span class="l">Ogni progetto per me parte dal contenuto, che</span> <span class="l">sia un brano, un testo o un tema. Mi piace capire</span> <span class="l">prima cosa c’è da raccontare, e solo dopo come</span> <span class="l">raccontarlo, cercando la forma che lo renda</span> <span class="l">chiaro e riconoscibile.</span></p>
-      <p class="a-p a-p2"><span class="l">Creatività e attenzione ai dettagli sono i miei punti</span> <span class="l">di forza. Sono una persona disponibile e positiva,</span> <span class="l">e ci tengo a costruire buoni rapporti con le</span> <span class="l">persone con cui lavoro.</span></p>
-
-      <div class="cv">
-        <div class="cv-1">
-          <h2>Esperienza</h2>
-          <ul class="entries">
-            <li>SUBSENSE — Associate Junior Art <br class="s">Director<br>06/2024 — attualmente in corso</li>
-            <li>Visual Designer e Fotografo <br class="s">freelance<br>2021 — attualmente in corso</li>
-            <li>Talent Garden — Co-docente, <br class="s">Master in Branding<br>03/2026 — 05/2026</li>
-            <li>Padiglione Italia, Expo 2025 <br class="s">Osaka — per Associazione Futuri <br class="s">Probabili<br>02/2025 — 03/2025</li>
-          </ul>
-        </div>
-        <div class="cv-2">
-          <h2>Formazione</h2>
-          <ul class="entries">
-            <li>ITS Strategic Visual Designer <br class="s">per la Cultura e il Territorio<br>2022-2024</li>
-            <li>Corso di Graphic Design, Job <br class="s">Formazione<br>2021-2022</li>
-            <li>Diploma di maturità, indirizzo <br class="s">Grafico W. Kandinsky<br>2016-2021</li>
-          </ul>
-        </div>
-        <div class="cv-3">
-          <h2>Clienti</h2>
-          <ul class="clients">
-            <li>ENGIE</li>
-            <li>Humana People to People</li>
-            <li>Pavesini</li>
-            <li>Associazione Futuri Probabili</li>
-            <li>Off Nova</li>
-            <li>Peva</li>
-            <li>Luca Vigentini</li>
-            <li>Sofia Del Grande</li>
-            <li>Lucky</li>
-          </ul>
-        </div>
-      </div>
     </div>
-  </section>
-
-  <!-- PAGINE PROGETTO: create dallo script a partire da PAGES -->
-  <div id="pages"></div>
-
-  <!-- CONTATTI -->
-  <section class="view" id="v-contact" aria-label="Contatti" hidden>
-    <div class="contact-block">
-      <span>Simone Buzzoni</span>
-      <a href="mailto:simonebuzzoni.02@gmail.com">simonebuzzoni.02@gmail.com</a>
-      <span>+39 329 754 0738</span>
-      <a href="https://www.instagram.com/simone_buzzoni/" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://www.linkedin.com/in/simone-buzzoni-6178a221a/" target="_blank" rel="noopener">LinkedIn</a>
-    </div>
-  </section>
-</main>
+  </div>
+</div>
+<section id="pj" aria-label="Progetto"><div id="imgs"></div><aside id="side"><div id="strip"><div class="tr"></div></div><div id="info"></div></aside></section>
 
 <script>
-/* =========================================================
-   CONTENUTI — modifica qui.
+const PROJ = [{"id": "expo-osaka-2025", "title": "Expo Osaka 2025", "client": "Associazione Futuri Probabili", "year": "2025", "serv": ["Motion design", "Identità visiva"], "desc": ["Ho collaborato alla realizzazione della videoinstallazione FuturiProbabili, esposta nella sala principale del Padiglione Italia a Expo 2025 Osaka e proiettata in loop su due schermi verticali alti 3 metri.", "Il progetto raccoglie pensieri, speranze e paure di circa 40 ragazze e ragazzi di diversa età, provenienza ed estrazione sociale: gli italiani del futuro raccontati attraverso le loro parole, la musica, la danza e le loro idee.", "Il mio contributo è stato la progettazione dei type in motion che aprivano i diversi temi affrontati dai ragazzi, dando ritmo e identità visiva alla narrazione. I titoli introducevano ogni sezione, accompagnando lo spettatore tra i grandi nodi del progetto: bullismo e mondo digitale, empatia, continuità culturale, inclusione.", "Il Padiglione Italia, diretto da Roberto Malfatto (Multimedia Director e Set Designer), ha ricevuto il primo premio assoluto della Giuria del Bureau International des Expositions (BIE) nella categoria “Theme Development”."], "slides": [{"src": "video/expo-hq/01.mp4", "r": 1.0, "v": 1, "poster": "img/expo-hq/01.webp"}, {"src": "video/expo-hq/06.mp4", "r": 1.0, "v": 1, "poster": "img/expo-hq/06.webp"}, {"src": "video/expo-hq/07.mp4", "r": 1.0, "v": 1, "poster": "img/expo-hq/07.webp"}, {"src": "img/expo-hq/02c.webp", "r": 1.7778}, {"src": "video/expo-hq/03.mp4", "r": 1.7778, "v": 1, "poster": "img/expo-hq/03.webp"}, {"src": "video/expo-hq/05.mp4", "r": 1.7778, "v": 1, "poster": "img/expo-hq/05.webp"}, {"src": "video/expo-hq/04.mp4", "r": 1.7778, "v": 1, "poster": "img/expo-hq/04.webp"}]}, {"id": "come-cadono-i-fiori", "title": "Come cadono i fiori", "client": "CFP Bauer", "year": "2024", "serv": ["Fotografia", "Impaginazione editoriale"], "desc": ["Il progetto finale del corso “Cultura Visiva” prevedeva la produzione di un libro fotografico, fedele alle opere di Edward Ruscha. Ho deciso quindi di dare una visione personale alla città nella quale sono cresciuto, Rozzano, cercando di creare un racconto attraverso i miei scatti. Il titolo che ho scelto indica il processo che porta un edificio al suo decadimento strutturale. La mia scelta è stata quella di mettere in relazione i nomi delle vie, rispetto a ciò che esiste e accade in quella strada. Si nota quindi un parallelismo netto, che ho scelto di ripetere creando un costante confronto e controsenso all’interno del libro."], "slides": [{"src": "video/ccif-hq/06.mp4", "r": 0.78, "v": 1, "poster": "img/ccif-hq/06.webp"}, {"src": "img/ccif-hq/01c.webp", "r": 0.9012}, {"src": "img/ccif-hq/04c.webp", "r": 0.902}, {"src": "img/ccif-hq/05c.webp", "r": 1.4997}, {"src": "img/ccif-hq/02c.webp", "r": 1.5001}, {"src": "img/ccif-hq/03c.webp", "r": 1.5004, "cap": "Via delle Ginestre"}, {"src": "img/ccif-hq/07c.webp", "r": 1.5004, "cap": "Via delle Margherite"}, {"src": "img/ccif-hq/08c.webp", "r": 1.5004, "cap": "Via Mandorli"}]}, {"id": "engie-adv", "title": "ENGIE adv", "client": "SUBSENSE", "year": "2025-26", "serv": ["Art direction", "Character design", "Generative AI"], "desc": ["L’energia è presente nei momenti di ogni giorno, anche quando non la notiamo. Il lavoro ha preso forma per passaggi: prima gli ambienti e gli oggetti che rendono riconoscibile una casa; poi lo studio dei personaggi, delle loro proporzioni e delle texture; infine le scene abitate, in cui un gesto o una relazione suggeriscono una storia.", "Per raccontarla in una campagna social luce e gas, siamo partiti dalle immagini fornite da DUDE e abbiamo esplorato un linguaggio visivo a metà tra scena quotidiana e diorama contemporaneo.", "L’AI è stata lo strumento di produzione, guidato da una direzione creativa precisa. L’obiettivo non era ottenere immagini isolate, ma costruire un linguaggio capace di passare dalle scene narrative ai diversi formati social, mantenendo riconoscibili personaggi e atmosfera."], "slides": [{"src": "img/03-engie-adv-1.webp", "r": 0.78, "fit": "cover", "pos": "50% 50%"}, {"src": "img/engie-adv/01.webp", "r": 0.78, "fit": "cover", "pos": "50% 0%"}, {"src": "img/engie-hq/19.webp", "r": 1.676}, {"src": "img/engie-adv/08.webp", "r": 1.2368}, {"src": "img/engie-adv/09.webp", "r": 1.2395}, {"src": "img/engie-adv/02.webp", "r": 1.24, "fit": "cover", "pos": "50% 50%"}, {"src": "img/engie-adv/11.webp", "r": 0.78, "fit": "cover", "pos": "0% 50%"}, {"src": "img/engie-adv/12.webp", "r": 0.78, "fit": "cover", "pos": "50% 50%"}, {"src": "img/engie-adv/14.webp", "r": 1.0}, {"src": "img/engie-adv/15.webp", "r": 0.5}, {"src": "img/engie-hq/17.webp", "r": 1.5003}, {"src": "img/engie-hq/18.webp", "r": 0.78, "fit": "cover", "pos": "50% 29%"}]}, {"id": "artwork-design", "title": "Artwork Design", "client": "Progetti indipendenti", "year": "", "serv": ["Branding", "Visual design", "Motion design"], "desc": ["Dal 2021 collaboro con diversi artisti nel campo musicale creando contenuti visivi per i loro progetti. Partendo da un’attenta comprensione del brano, sviluppo progetti coerenti con l’identità dell’artista. Ho iniziato come fotografo, imparando a gestire shooting, e ho poi esteso il mio ruolo, fino a curare l’intero immaginario visivo.", "Questi progetti stimolano la mia creatività e rappresentano una sfida continua nel comprendere l’artista e il suo stile. Inoltre, sono ottime opportunità per costruire relazioni, crescere professionalmente e vivere nuove esperienze."], "slides": [{"src": "img/artwork-hq/01c.webp", "r": 1.0, "cap": "È OK – Lucky"}, {"src": "img/artwork-hq/08c.webp", "r": 1.0, "cap": "Polo G nel ‘19 – Off Nova feat. Lucky"}, {"src": "img/artwork-hq/02c.webp", "r": 1.0, "cap": "COP O FAN – Off Nova"}, {"src": "img/artwork-hq/03c.webp", "r": 1.0, "cap": "Con Te – Peva feat. Hurri Keight"}, {"src": "img/artwork-hq/04c.webp", "r": 1.0, "cap": "5 Secondi – Luca Vigentini"}, {"src": "img/artwork-hq/05c.webp", "r": 1.0, "cap": "Inedito"}, {"src": "img/artwork-hq/06c.webp", "r": 1.0, "cap": "Correre – Sofia Del Grande"}, {"src": "img/artwork-hq/07c.webp", "r": 1.0, "cap": "Correre – Sofia Del Grande"}, {"src": "img/artwork-hq/12c.webp", "r": 1.0}, {"src": "img/artwork-hq/10c.webp", "r": 1.0}, {"src": "img/artwork-hq/11c.webp", "r": 1.0}]}, {"id": "humana-bilancio-di-sostenibilita-2024", "title": "Humana Bilancio di sostenibilità", "client": "SUBSENSE", "year": "2023-24", "serv": ["Impaginazione editoriale"], "desc": ["Durante la mia esperienza in SUBSENSE ho collaborato alla realizzazione di due edizioni del bilancio di sostenibilità di Humana People to People: quella del 2023 e quella del 2024. Il progetto ha previsto la riorganizzazione di un ampio volume di testi in una struttura più chiara e leggibile.", "Rispetto alle edizioni precedenti, caratterizzate esclusivamente dal verde istituzionale, abbiamo introdotto un sistema cromatico che assegna un colore diverso a ciascun capitolo, rendendo la lettura più fluida e i contenuti più riconoscibili. La copertina combina il tema dell’economia tessile con l’impegno umanitario e sociale dell’organizzazione."], "slides": [{"src": "img/humana-hq/03.webp", "r": 0.78, "fit": "cover", "pos": "50% 0%"}, {"src": "img/humana-hq/02.webp", "r": 0.78, "fit": "cover", "pos": "50% 0%"}, {"src": "img/humana-hq/01.webp", "r": 0.78, "fit": "cover", "pos": "50% 15%"}, {"src": "img/humana-bilancio-2025-2026/02.webp", "r": 1.5}, {"src": "img/humana-bilancio-2025-2026/07.webp", "r": 1.5}, {"src": "img/humana-bilancio-2025-2026/03.webp", "r": 1.5, "fit": "cover", "pos": "50% 29%"}, {"src": "img/humana-bilancio-2025-2026/06.webp", "r": 1.5}, {"src": "img/humana-bilancio-2025-2026/01.webp", "r": 1.5, "fit": "cover", "pos": "50% 50%"}]}, {"id": "lux-terrae", "title": "Lux Terrae", "client": "Corso di Exhibition Design", "year": "2023", "serv": ["Exhibition design", "Identità visiva", "Motion design"], "desc": ["Per il progetto finale del corso di Exhibition Design abbiamo scelto il tema del Santo Patrono, con San Nicola come figura rappresentativa, raccontato da prospettive didattiche, ecclesiastiche, ironiche, giornalistiche e personali.", "Al centro non c’è la figura del santo, ma le feste patronali e le tradizioni locali, con le emozioni che suscitano. In particolare le luminarie, da cui nasce il titolo «Lux Terrae»: il legame tra cielo e terra durante la festa.", "Mi sono occupato dello sviluppo del concept e delle applicazioni visive, dall’identità ai materiali coordinati."], "slides": [{"src": "video/06-archivio-1.mp4", "r": 1.0, "v": 1, "poster": "video/06-archivio-1.webp"}, {"src": "img/lux/01b.webp", "r": 1.7778}, {"src": "img/lux/02.webp", "r": 1.7778}, {"src": "img/archivio-hq/22.webp", "r": 0.78, "fit": "cover", "pos": "50% 62%"}, {"src": "img/archivio-hq/24.webp", "r": 0.78, "fit": "cover", "pos": "50% 50%"}]}, {"id": "unlock-your-aura", "title": "Unlock your Aura", "client": "", "year": "", "serv": ["Identità visiva", "Motion design"], "desc": [], "slides": [{"src": "video/06-archivio-2.mp4", "r": 1.5, "fit": "cover", "pos": "50% 50%", "v": 1, "poster": "video/06-archivio-2.webp"}, {"src": "img/archivio/07.webp", "r": 0.8, "fit": "cover", "pos": "50% 50%"}, {"src": "img/aura/10.webp", "r": 0.8}, {"src": "img/aura/04.webp", "r": 0.8}, {"src": "img/archivio/08.webp", "r": 1, "fit": "cover", "pos": "50% 50%"}, {"src": "img/aura/01.webp", "r": 1}, {"src": "img/aura/03.webp", "r": 1}, {"src": "img/aura/02.webp", "r": 1}, {"src": "img/archivio/06.webp", "r": 1, "fit": "cover", "pos": "50% 50%"}, {"src": "img/aura/05.webp", "r": 1.5}, {"src": "img/aura/06.webp", "r": 1.5}]}, {"id": "merch-design-rude-records", "title": "Merch Design – Rude Records", "client": "", "year": "2023", "serv": ["Graphic design", "Illustrazione"], "desc": ["Durante la mia esperienza in un’etichetta discografica indipendente ho realizzato il merch design per due artisti: Izzy Mahoubi e Have Mercy.", "La cosa più bella è stata dover raccontare attraverso vestiti e grafiche la personalità, o meglio il carattere, di ogni artista."], "slides": [{"src": "img/archivio/15.webp", "r": 1.6674}, {"src": "img/archivio-hq/19.webp", "r": 0.78, "fit": "cover", "pos": "50% 45%"}, {"src": "img/merch/01.webp", "r": 0.78, "fit": "cover", "pos": "50% 62%"}, {"src": "img/archivio-hq/21.webp", "r": 0.78, "fit": "cover", "pos": "50% 20%"}, {"src": "img/archivio/17.webp", "r": 0.78, "fit": "cover", "pos": "50% 50%"}, {"src": "img/archivio/18.webp", "r": 0.78, "fit": "cover", "pos": "50% 16%"}]}, {"id": "leporello", "title": "Leporello", "client": "", "year": "", "serv": ["Impaginazione editoriale"], "desc": [], "slides": [{"src": "img/archivio/14.webp", "r": 1.5, "fit": "cover", "pos": "50% 50%"}, {"src": "img/archivio/01.webp", "r": 1, "fit": "cover", "pos": "50% 50%"}, {"src": "img/leporello/01.webp", "r": 1.3313}, {"src": "img/leporello/02.webp", "r": 1.3313}, {"src": "img/leporello/03.webp", "r": 1.3313}]}, {"id": "archivio", "title": "Archivio", "client": "", "year": "", "serv": ["Impaginazione editoriale", "Motion design"], "desc": [], "slides": [{"src": "img/archivio/13.webp", "r": 1.5, "fit": "cover", "pos": "82% 50%"}, {"src": "img/archivio-hq/25.webp", "r": 1.4993}, {"src": "video/archivio/12.mp4", "r": 0.5625, "v": 1}]}];
+const FEED = [[0, 0], [1, 0], [2, 0], [3, 0], [4, 0], [5, 0], [6, 0], [7, 0], [8, 0], [9, 0]];
 
-   PROJECTS: i progetti, nell'ordine della lista Lavori.
-     title  = nome del progetto (è anche la didascalia delle sue immagini)
-     client = cliente nella lista Lavori
-     preview = cosa compare in Lavori passando sul titolo: una foto o un video del progetto (il video va in loop).
-     previewPos = (facoltativo) quale parte dell'immagine resta nel riquadro verticale dell'anteprima, es. "95% 50%" = tutta a destra.
-     previewFit, previewBg = (facoltativi, v1.41) "contain" + colore: foto o video interi nel riquadro, sul fondo indicato.
-               Se manca, si usa la prima immagine del progetto in Home (dall'alto).
-
-   IMAGES: le immagini della Home. Ogni immagine appartiene a un progetto (p = numero del progetto).
-     src    = percorso della foto (es. "img/03-engie-adv-1.webp") o del video .mp4 (va in loop, senza audio);
-              con null il blocco resta vuoto (grigio)
-     poster = solo per i video: fotogramma mostrato finché il video non parte
-     x, y, w, h = posizione e misure in pixel su una finestra larga 1500 px
-                  (sono quelle della bozza Figma, pagina Draft, frame "Home · v1.3.1")
-   ========================================================= */
-const PROJECTS = [
-  { n: "01", title: "Expo Osaka 2025",             client: "Associazione Futuri Probabili", preview: "video/01-expo-osaka-2025-2.mp4", previewFit: "contain", previewBg: "#000" },   // v1.36: fotogramma "scuola 学校 school" dal video originale, intero su fondo nero
-  { n: "02", title: "Come cadono i fiori",         client: "CFP Bauer",             preview: "img/02-come-cadono-i-fiori-anteprima-2.webp" },   // v1.37: taglio scelto da Simone, parte sinistra in basso di Via Mandorli (strada, palazzi, balconi con la tenda), dall'originale
-  { n: "03", title: "ENGIE adv",                   client: "SUBSENSE" },
-  { n: "04", title: "Artwork Design",              client: "Progetti indipendenti", preview: "img/04-artwork-design-2.webp" },
-  { n: "05", title: "Humana Bilancio 2024", client: "SUBSENSE" },   // v1.58: come nel PDF di Simone (08/10)   // anteprima = la sua immagine in Home (blocco 10)
-  { n: "06", title: "Archivio",                    client: "",                      preview: "video/06-archivio-2.mp4" },
-];
-
-const IMAGES = [
-  { p: "01", src: "img/01-expo-osaka-2025-1.webp",                                           x: 14,   y: 15,     w: 478,   h: 272 },
-  { p: "01", src: "video/01-expo-osaka-2025-2.mp4", poster: "video/01-expo-osaka-2025-2.webp", x: 263,  y: 2021,   w: 477,   h: 477 }, // v1.8: quadrato 1:1 come il video
-  { p: "02", src: "img/02-come-cadono-i-fiori-1.webp",                                       x: 1008, y: 478,    w: 477,   h: 688 },
-  { p: "02", src: "img/02-come-cadono-i-fiori-2.webp",                                       x: 14.5, y: 1047.5, w: 353,   h: 469.5 },
-  { p: "03", src: "img/03-engie-adv-1.webp",                                                 x: 884,  y: 1588,   w: 477,   h: 689 },
-  { p: "03", src: "img/03-engie-adv-2.webp",                                                 x: 388,  y: 3532,   w: 352,   h: 468 },
-  { p: "04", src: "img/04-artwork-design-2.webp",                                            x: 15,   y: 2977,   w: 228,   h: 322 },
-  { p: "04", src: "img/04-artwork-design-1.jpg",                                            x: 884,  y: 2759,   w: 601,   h: 480 },
-  { p: "05", src: "img/05-humana-bilancio-2025-2026-1.webp",                                 x: 15,   y: 4418,   w: 477,   h: 689 },   // v1.23: copertina del bilancio (foto 2 della sua pagina, in verticale)
-  { p: "06", src: "video/06-archivio-1.mp4",        poster: "video/06-archivio-1.webp",        x: 1133, y: 3917,   w: 352,   h: 268 },
-  { p: "06", src: "video/06-archivio-2.mp4",        poster: "video/06-archivio-2.webp",        x: 884,  y: 5032,   w: 477,   h: 354 },
-];
-
-
-/* =========================================================
-   Costruzione pagine
-   ========================================================= */
-function mobileCols(x, w) {
-  if (w > 450) return x < 500 ? "1 / span 5" : "2 / span 5";
-  if (w > 300) return x < 200 ? "1 / span 4" : x > 800 ? "3 / span 4" : "2 / span 4";
-  return "1 / span 3";
+/* ======================= SCORRIMENTO MORBIDO =======================
+   v14.4 (registrazione del 30/10, 17:52): nella reference la pagina non segue la rotella di colpo, ci arriva con un rallentamento.
+   Misurato fotogramma per fotogramma: dopo l'ultimo colpo di rotella la velocità scende di circa il 12% ogni 1/30 s e si ferma in circa 0,8 s.
+   Qui: la rotella sposta un punto d'arrivo e la pagina lo raggiunge ogni fotogramma del 6,5% della distanza che manca (a 60 fps).
+   Solo con mouse e trackpad: tastiera, barra di scorrimento e dita restano quelle del browser; spento con «riduci movimento». */
+const LERP = .1;   // v14.6: un po' più svelto (prima ,065, come misurato sulla reference; Simone: «un po' troppo lento»)
+let sTo = scrollY, sAt = scrollY, sRun = false, sLast = 0;
+const sMax = () => document.documentElement.scrollHeight - innerHeight;
+const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+function sLoop(t) {
+  const dt = sLast ? Math.min((t - sLast) / 1000, .1) : 1 / 60; sLast = t;
+  sAt += (sTo - sAt) * (1 - Math.pow(1 - LERP, dt * 60));
+  if (Math.abs(sTo - sAt) < .5) { sAt = sTo; sRun = false; }
+  scrollTo(0, sAt);
+  if (sRun) requestAnimationFrame(sLoop); else sLast = 0;
 }
-/* PAGES: le pagine progetto, una per numero di progetto (dalla bozza Figma, un frame per progetto).
-     slug  = indirizzo della pagina (es. #come-cadono-i-fiori)
-     h     = altezza della pagina in pixel su finestra larga 1500 px
-     media = immagini o video (.mp4) con posizione e misure (x, y, w, h) come nella bozza.
-             Video: in loop e senza audio; poster = immagine mostrata finché parte;
-             fit "contain" = video intero dentro il riquadro (pos = dove sta, bg = colore attorno)
-     texts = testi: stile "desc" (descrizione), "small" (crediti e didascalie); lines = righe come nella bozza
-   I progetti senza pagina aprono la Home sulla loro prima immagine. */
-const PAGES = {
-  "01": {
-    slug: "expo-osaka-2025", h: 5094,
-    media: [
-      { src: "img/expo-osaka-2025/01.webp", x: 14, y: 15, w: 478, h: 272 },
-      { src: "video/expo-osaka-2025/02.mp4", poster: "img/expo-osaka-2025/02.webp", x: 760, y: 381, w: 726, h: 514 },
-      { src: "video/expo-osaka-2025/03.mp4", poster: "img/expo-osaka-2025/03.webp", x: 15, y: 1195, w: 1470, h: 856 },
-      { src: "video/expo-osaka-2025/04.mp4", poster: "img/expo-osaka-2025/04.webp", x: 139, y: 2351, w: 849, h: 477.282 },
-      { src: "video/expo-osaka-2025/05.mp4", poster: "img/expo-osaka-2025/05.webp", x: 636, y: 3129, w: 849, h: 472 },
-      { src: "video/expo-osaka-2025/06.mp4", poster: "img/expo-osaka-2025/06.webp", x: 15, y: 3701, w: 477, h: 472 },
-      { src: "video/01-expo-osaka-2025-2.mp4", poster: "img/expo-osaka-2025/07.webp", fit: "contain", bg: "#000", x: 512, y: 4473, w: 477, h: 520.812 },   // stesso video "scuola" della Home, intero su fondo nero
-      { src: "video/expo-osaka-2025/08.mp4", poster: "img/expo-osaka-2025/08.webp", fit: "contain", pos: "center top", bg: "#000", x: 1009, y: 4473, w: 477, h: 521 }   // intero, in alto, fascia nera sotto come nella bozza
-    ],
-    texts: [
-      { style: "small", x: 760, y: 334, lines: ["Motion design, Identità visiva, 2025"] },   // v1.56: di nuovo con l'anno
-      { style: "desc", x: 15, y: 713, lines: ["Ho collaborato alla realizzazione della videoinstallazione", "FuturiProbabili, esposta nella sala principale del Padiglione", "Italia a Expo 2025 Osaka e proiettata in loop su due schermi", "verticali alti 3 metri.", "", "Il progetto raccoglie pensieri, speranze e paure di circa 40", "ragazze e ragazzi di diversa età, provenienza ed estrazione", "sociale: gli italiani del futuro raccontati attraverso le loro", "parole, la musica, la danza e le loro idee."] },   // v1.34: a capo come nel PDF di Simone
-      { style: "desc", x: 137, y: 3451.25, lines: ["Il mio contributo è stato la progettazione dei", "type in motion che aprivano i diversi temi", "affrontati dai ragazzi, dando ritmo e identità", "visiva alla narrazione. I titoli introducevano", "ogni sezione, accompagnando lo spettatore", "tra i grandi nodi del progetto: bullismo e", "mondo digitale, empatia, continuità", "culturale, inclusione."] },   // v1.34: a capo come nel PDF di Simone
-      { style: "desc", x: 15, y: 4473, lines: ["Il Padiglione Italia, diretto da Roberto", "Malfatto (Multimedia Director e Set", "Designer), ha ricevuto il primo premio", "assoluto della Giuria del Bureau", "International des Expositions (BIE) nella", "categoria \"Theme Development”."] },   // v1.34: a capo come nel PDF di Simone
-    ],
-  },
-  "02": {
-    slug: "come-cadono-i-fiori", h: 5356.94,
-    media: [
-      { src: "img/come-cadono-i-fiori/01.webp", x: 722, y: 279.31, w: 384, h: 484.63 },   // v1.49: nel riquadro rosso di Simone (x 722–1106), fondo a 763,94 come prima; nella prima schermata, nel vuoto dell'header tra Contatti e LinkedIn
-      { src: "img/come-cadono-i-fiori/02.webp", x: 139, y: 15, w: 353, h: 284 },   // v1.45: il libro in alto a sinistra, a una colonna dal margine (sopra la descrizione)
-      { src: "img/come-cadono-i-fiori/03.webp", x: 139, y: 1063.94, w: 725, h: 934 },
-      { src: "img/come-cadono-i-fiori/04.jpg", x: 1132, y: 1063.94, w: 353, h: 456 },
-      { src: "img/come-cadono-i-fiori/05.webp", x: 1132, y: 1541.94, w: 353, h: 456 },
-      { src: "img/come-cadono-i-fiori/06.webp", x: 263, y: 2297.94, w: 477, h: 598.936 },
-      { src: "img/come-cadono-i-fiori/07.webp", x: 760, y: 2297.94, w: 477, h: 599 },
-      { src: "img/come-cadono-i-fiori/08.webp", x: 15, y: 3196.94, w: 1470, h: 979.755 },
-      { src: "img/come-cadono-i-fiori/09.jpg", x: 15, y: 4276.94, w: 1470, h: 979.755 }
-    ],
-    texts: [
-      { style: "desc", x: 139, y: 556.44, lines: ["Il progetto finale del corso “Cultura Visiva” prevedeva la", "produzione di un libro fotografico, fedele alle opere di Edward", "Ruscha. Ho deciso quindi di dare una visione personale alla", "città nella quale sono cresciuto, Rozzano, cercando di creare", "un racconto attraverso i miei scatti. Il titolo che ho scelto", "indica il processo che porta un edificio al suo decadimento", "strutturale. La mia scelta è stata quella di mettere in relazione", "i nomi delle vie, rispetto a ciò che esiste e accade in quella", "strada. Si nota quindi un parallelismo netto, che ho scelto", "di ripetere creando un costante confronto e controsenso", "all’interno del libro."] },   // v1.34: a capo come nel PDF di Simone
-      { style: "small", x: 1257, y: 677, lines: ["Fotografia, Impaginazione", "editoriale, 2024"] },   // v1.34: a capo come nel PDF di Simone
-      { style: "small", x: 139, y: 2027.94, lines: ["Via delle Ginestre"] },   // v1.36: 30 px sotto l'immagine (prima 40,2), sul suo bordo sinistro
-      { style: "small", x: 760, y: 2926.94, lines: ["Via delle Margherite"] },   // v1.36: 30 px sotto l'immagine (prima 40,2), sul suo bordo sinistro
-      { style: "small", x: 15, y: 4206.74, lines: ["Via Mandorli"] },   // v1.36: 30 px sotto l'immagine (prima 40,2), sul suo bordo sinistro
-      { style: "small", x: 15, y: 5286.74, lines: ["Via Giacinti"] },   // v1.36: 30 px sotto l'immagine (prima 40,2), sul suo bordo sinistro
-    ],
-  },
-  "03": {
-    slug: "engie-adv", h: 7769.29,
-    media: [
-      { src: "img/engie-adv/01.webp", x: 760, y: 323, w: 353, h: 502 },
-      { src: "img/engie-adv/02.webp", x: 15, y: 541, w: 353, h: 284 },
-      { src: "img/engie-adv/03.webp", x: 1008.1, y: 1122.97, w: 352.9, h: 292.49 },
-      { src: "img/engie-adv/04.webp", x: 512, y: 1367.53, w: 352, h: 468.87 },
-      { src: "img/engie-adv/05.webp", x: 1008, y: 1560.18, w: 352.58, h: 469.64 },
-      { src: "img/engie-adv/06-angoli.webp", x: 15, y: 2140.06, w: 849, h: 800.887 },      // schermata della tavola dei personaggi; v1.60: angoli stondati su bianco come la 16 (prima c'era lo sfondo blu)
-      { src: "img/engie-adv/07-frame3.webp", x: 512, y: 3241, w: 973, h: 404.872 },        // v1.44: foto + figurina con gli occhiali + prompt (Frame 3 di Simone, 05/10)
-      { src: "img/engie-adv/08.webp", x: 139, y: 3946.29, w: 601, h: 486 },
-      { src: "img/engie-adv/09.webp", x: 760, y: 3947.29, w: 601, h: 485 },
-      { src: "img/engie-adv/10.webp", x: 15, y: 4732.29, w: 725, h: 417 },
-      { src: "img/engie-adv/11.webp", x: 1133, y: 4732.29, w: 352, h: 417 },
-      { src: "img/engie-adv/12.webp", x: 15, y: 5249.29, w: 353, h: 508 },
-      { src: "img/engie-adv/13.webp", x: 759, y: 5249.29, w: 726, h: 508 },
-      { src: "img/engie-adv/14.webp", x: 15, y: 6057.29, w: 726, h: 726 },             // post social 1080×1080
-      { src: "img/engie-adv/15.webp", x: 1008, y: 6057.29, w: 363, h: 726 },           // banner 300×600, composto come nella bozza (ragazza specchiata, dalla v1.14)
-      { src: "img/engie-adv/16.webp", x: 15, y: 7084.29, w: 1345, h: 585 }             // schermata della tavola di lavoro
-    ],
-    texts: [
-      { style: "desc", x: 15, y: 15, lines: ["L’energia è presente nei momenti di ogni giorno, anche", "quando non la notiamo. Il lavoro ha preso forma per", "passaggi: prima gli ambienti e gli oggetti che rendono", "riconoscibile una casa; poi lo studio dei personaggi, delle loro", "proporzioni e delle texture; infine le scene abitate, in cui un", "gesto o una relazione suggeriscono una storia."] },   // v1.34: a capo come nel PDF di Simone
-      { style: "small", x: 1257, y: 677, lines: ["Art direction, Character", "design, Generative AI,", "2025-26"] },   // v1.56: «Generative AI» (v1.55) e di nuovo l'anno
-      { style: "desc", x: 15, y: 1125, lines: ["Per raccontarla in una campagna social luce e gas, siamo", "partiti dalle immagini fornite da DUDE e abbiamo esplorato", "un linguaggio visivo a metà tra scena quotidiana e diorama", "contemporaneo."] },   // v1.34: a capo come nel PDF di Simone
-      { style: "desc", x: 1008, y: 2333, lines: ["L’AI è stata lo strumento di produzione,", "guidato da una direzione creativa precisa.", "L’obiettivo non era ottenere immagini isolate,", "ma costruire un linguaggio capace di passare", "dalle scene narrative ai diversi formati social,", "mantenendo riconoscibili personaggi e", "atmosfera."] },   // v1.34: a capo come nel PDF di Simone
-    ],
-  },
-  "04": {
-    slug: "artwork-design", h: 4045,
-    media: [
-      { src: "img/artwork-design/01.webp", x: 15, y: 15, w: 353, h: 353 },
-      { src: "img/artwork-design/02.webp", x: 760, y: 469, w: 353, h: 353 },
-      { src: "img/artwork-design/03.jpg", x: 885, y: 1119, w: 477, h: 842 },
-      { src: "img/artwork-design/04.jpg", x: 25, y: 1122, w: 839, h: 839 },
-      { src: "img/artwork-design/05.webp", x: 139, y: 2261, w: 353, h: 545 },
-      { src: "img/artwork-design/06.webp", x: 512, y: 2261, w: 353, h: 545 },
-      { src: "img/artwork-design/07.jpg", x: 646, y: 3106, w: 839, h: 839 },
-      { src: "img/artwork-design/08.webp", x: 139, y: 3253, w: 353, h: 545 }
-    ],
-    texts: [
-      { style: "small", x: 388, y: 15, lines: ["COP O FAN - Off Nova"] },   // v1.36: di nuovo a destra della copertina, in alto (sotto finiva sull'header al centro)
-      { style: "small", x: 1257, y: 677, lines: ["Branding, Visual design,", "Motion design"] },   // v1.34: a capo come nel PDF di Simone
-      { style: "desc", x: 15, y: 710.75, lines: ["Dal 2021 collaboro con diversi artisti nel campo musicale", "creando contenuti visivi per i loro progetti. Partendo da", "un’attenta comprensione del brano, sviluppo progetti", "coerenti con l’identità dell’artista. Ho iniziato come fotografo,", "imparando a gestire shooting, e ho poi esteso il mio ruolo,", "fino a curare l’intero immaginario visivo."] },   // v1.34: a capo come nel PDF di Simone
-      { style: "small", x: 760, y: 852, lines: ["Con Te - Peva feat. Hurri Keight"] },   // v1.36: 30 px sotto l'immagine (prima 40,2), sul suo bordo sinistro
-      { style: "small", x: 25, y: 1991, lines: ["5 Secondi - Luca Vigentini"] },   // v1.36: 30 px sotto l'immagine (prima 40,2), sul suo bordo sinistro
-      { style: "small", x: 885, y: 1991, lines: ["Inedito"] },   // v1.36: 30 px sotto l'immagine (prima 40,2), sul suo bordo sinistro
-      { style: "desc", x: 1008, y: 2475.75, lines: ["Questi progetti stimolano la mia creatività", "e rappresentano una sfida continua nel", "comprendere l’artista e il suo stile.", "Inoltre, sono ottime opportunità per costruire", "relazioni, crescere professionalmente e vivere", "nuove esperienze."] },   // v1.34: a capo come nel PDF di Simone
-      { style: "small", x: 139, y: 2836, lines: ["Correre - Sofia Del Grande"] },   // v1.36: 30 px sotto l'immagine (prima 40,2), sul suo bordo sinistro
-      { style: "small", x: 139, y: 3828, lines: ["Polo G nel ‘19 - Off Nova feat. Lucky"] },   // v1.36: 30 px sotto l'immagine (prima 40,2), sul suo bordo sinistro
-      { style: "small", x: 646, y: 3975, lines: ["È OK - Lucky"] },   // v1.36: 30 px sotto l'immagine (prima 40,2), sul suo bordo sinistro
-    ],
-  },
-  "05": {
-    slug: "humana-bilancio-di-sostenibilita-2024", h: 2998,
-    media: [
-      { src: "img/humana-bilancio-2025-2026/01.webp", x: 15, y: 333, w: 725, h: 483 },
-      { src: "img/humana-bilancio-2025-2026/02.webp", x: 1008, y: 577, w: 477, h: 317.921 },
-      { src: "img/humana-bilancio-2025-2026/03.webp", x: 15, y: 1116, w: 477, h: 442 },
-      { src: "img/humana-bilancio-2025-2026/04.webp", x: 760, y: 1116, w: 725, h: 517 },   // v1.44: alla stessa altezza della 03
-      { src: "img/humana-bilancio-2025-2026/05.webp", x: 15, y: 2012, w: 849, h: 624 },
-      { src: "img/humana-bilancio-2025-2026/06.webp", x: 1008, y: 2242, w: 477, h: 318 },
-      { src: "img/humana-bilancio-2025-2026/07.webp", x: 1008, y: 2580, w: 477, h: 318 }
-    ],
-    texts: [
-      { style: "desc", x: 15, y: 15, lines: ["Durante la mia esperienza in SUBSENSE ho collaborato alla", "realizzazione del bilancio di sostenibilità di Humana People", "to People. Il progetto ha previsto la riorganizzazione di un", "ampio volume di testi in una struttura più chiara e leggibile."] },   // v1.34: a capo come nel PDF di Simone
-      { style: "small", x: 810, y: 683, lines: ["Impaginazione", "editoriale 2024"] },   // v1.55: 2024 (prima 2024-25)
-      { style: "desc", x: 388, y: 1822, lines: ["Rispetto alle edizioni precedenti, caratterizzate", "esclusivamente dal verde istituzionale, abbiamo introdotto", "un sistema cromatico che assegna un colore diverso a ciascun", "capitolo, rendendo la lettura più fluida e i contenuti più", "riconoscibili. La copertina combina il tema dell’economia", "tessile con l’impegno umanitario e sociale", "dell’organizzazione."] },   // v1.34: a capo come nel PDF di Simone
-    ],
-  },
-  "06": {
-    slug: "archivio", h: 4249,
-    media: [
-      { src: "img/archivio/01.webp", x: 15, y: 15, w: 353, h: 365.094 },
-      { src: "video/06-archivio-1.mp4", poster: "video/06-archivio-1.webp", x: 760, y: 277.976, w: 353.001, h: 352.534 },   // nella bozza c'è uno screenshot di questo video: qui va il video in loop
-      { src: "img/archivio/03.webp", x: 15, y: 890, w: 339, h: 484 },
-      { src: "img/archivio/04.webp", x: 354, y: 890, w: 646, h: 484 },
-      { src: "video/06-archivio-2.mp4", poster: "video/06-archivio-2.webp", x: 1000, y: 890, w: 485, h: 484 },   // v1.20: diamante che ruota (stesso video della Home), al posto della foto
-      { src: "img/archivio/06.webp", x: 15, y: 1374, w: 510, h: 511 },
-      { src: "img/archivio/07.webp", x: 524, y: 1374, w: 452, h: 511 },
-      { src: "img/archivio/08.webp", x: 975, y: 1374, w: 510, h: 511 },
-      { src: "img/archivio/09.jpg", x: 15, y: 1885, w: 491, h: 490 },
-      { src: "img/archivio/10.webp", x: 506, y: 1885, w: 490, h: 490 },
-      { src: "img/archivio/11.jpg", x: 995, y: 1885, w: 490, h: 490 },
-      { src: "video/archivio/12.mp4", poster: "img/archivio/12.webp", x: 15, y: 2375, w: 351, h: 630 },   // animazione Pavesini "Gioca a Pave Beach", in loop
-      { src: "img/archivio/13.webp", x: 366, y: 2375, w: 1119, h: 630 },
-      { src: "img/archivio/14.webp", x: 15, y: 3005, w: 630.52, h: 503.204 },
-      { src: "img/archivio/15.webp", x: 645.52, y: 3005, w: 839.48, h: 503.204 },   // fondo grigio scuro con 6 mockup, composto come nella bozza
-      { src: "img/archivio/16.webp", x: 15, y: 3508, w: 563, h: 641 },
-      { src: "img/archivio/17.webp", x: 577, y: 3508, w: 481, h: 641 },
-      { src: "img/archivio/18.webp", x: 1058, y: 3508, w: 427, h: 641 }
-    ],
-    texts: [],
-  },
-};
-
-document.documentElement.lang = "it";
-const projectByN = Object.fromEntries(PROJECTS.map(P => [P.n, P]));
-const FIRST_MEDIA = {};                  // prima foto o video (dall'alto) di ogni progetto: anteprima di riserva in Lavori
-const POSTER = {};                       // fotogramma di ogni video, per src
-const FIRST_FIG = {};                    // e il suo riquadro in Home, per il clic sul titolo in Lavori
-const homeGrid = document.getElementById("homeGrid");
-// Chi ha chiesto al sistema di ridurre le animazioni vede il fotogramma fisso al posto del video
-const NO_MOTION = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-// Video in loop, senza audio (i browser li fanno partire da soli solo se muti).
-// Partono quando sono davvero sullo schermo (almeno il 15% visibile) e si fermano quando escono del tutto.
-// v1.31: prima partivano già 300 px prima di entrare; Safari su iPhone a volte rifiutava quell'avvio
-// (o lo rifiuta sempre col risparmio energetico) e il video restava fermo sul fotogramma.
-// Ora, oltre a partire solo quando si vedono, i video visibili ma fermi riprovano a partire
-// appena il video è pronto e a ogni tocco, clic o tasto sulla pagina.
-const IN_VIEW = new Set();
-function tryPlay(v) {
-  if (NO_MOTION || !v.paused || !v.currentSrc && !v.src) return;
-  const p = v.play();
-  if (p && p.catch) p.catch(err => { if (err && err.name === "NotAllowedError") asAnimatedImage(v); });
-}
-// v1.32: se il browser rifiuta di far partire il video senza un tocco (Safari su iPhone col risparmio
-// energetico, o con l'avvio automatico disattivato), il video diventa un'immagine animata.
-// Safari sa mostrare un .mp4 dentro un <img>, come una GIF, e quella parte da sola e va in loop.
-// Gli altri browser non caricano l'<img>: lì resta il video col suo fotogramma, come prima.
-function asAnimatedImage(v) {
-  if (v.dataset.asImg) return;
-  v.dataset.asImg = "1";
-  const src = v.currentSrc || v.src;
-  if (!src) return;
-  const im = new Image();
-  im.onload = () => {
-    if (!v.isConnected) return;
-    im.className = v.className;
-    const st = v.getAttribute("style"); if (st) im.setAttribute("style", st);
-    im.alt = "";
-    if (VIDEO_IO) VIDEO_IO.unobserve(v);
-    IN_VIEW.delete(v); v.pause();
-    v.replaceWith(im);
-  };
-  im.src = src;
-}
-const VIDEO_IO = "IntersectionObserver" in window ? new IntersectionObserver(entries => {
-  for (const e of entries) {
-    const v = e.target;
-    if (e.isIntersecting && e.intersectionRatio >= 0.15) { IN_VIEW.add(v); tryPlay(v); }
-    else if (!e.isIntersecting) { IN_VIEW.delete(v); v.pause(); }
-  }
-}, { threshold: [0, 0.15] }) : null;
-const retryInView = () => IN_VIEW.forEach(v => { if (v.isConnected && v.offsetParent !== null) tryPlay(v); });
-["touchend", "click", "keydown"].forEach(t => document.addEventListener(t, retryInView, { passive: true }));
-document.addEventListener("visibilitychange", () => { if (!document.hidden) retryInView(); });
-// Caricamento su richiesta: un video (e il suo fotogramma d'attesa) si scarica solo quando arriva
-// a meno di 800 px dallo schermo. Le pagine nascoste non entrano mai nello schermo, quindi non pesano
-// finché non le apri. Le foto fanno lo stesso con loading="lazy".
-const LAZY_IO = "IntersectionObserver" in window ? new IntersectionObserver(entries => {
-  for (const e of entries) if (e.isIntersecting) { LAZY_IO.unobserve(e.target); wake(e.target); }
-}, { rootMargin: "800px 0px" }) : null;
-function wake(v) {
-  if (v.dataset.poster) { v.poster = v.dataset.poster; delete v.dataset.poster; }
-  if (v.dataset.src) { v.src = v.dataset.src; delete v.dataset.src; }
-  if (VIDEO_IO) VIDEO_IO.observe(v); else if (!NO_MOTION) { v.autoplay = true; v.play().catch(() => {}); }
-}
-function loopVideo(src, poster, preload) {
-  const v = document.createElement("video");
-  v.muted = true; v.defaultMuted = true; v.setAttribute("muted", "");
-  v.loop = true; v.playsInline = true; v.setAttribute("playsinline", "");
-  v.preload = preload || "auto";
-  if (poster) v.dataset.poster = poster;
-  v.dataset.src = src;
-  // Se era sullo schermo quando non era ancora pronto, parte appena può
-  v.addEventListener("canplay", () => { if (IN_VIEW.has(v)) tryPlay(v); });
-  if (LAZY_IO) LAZY_IO.observe(v); else wake(v);
-  return v;
-}
-[...IMAGES].sort((a, b) => a.y - b.y).forEach((I, i) => {
-  const P = projectByN[I.p];
-  const ar = I.w / I.h;
-  const isVideo = !!I.src && /\.mp4$/i.test(I.src);
-  if (I.src && !FIRST_MEDIA[I.p]) FIRST_MEDIA[I.p] = I.src;
-  if (isVideo && I.poster) POSTER[I.src] = I.poster;
-
-  const fig = document.createElement("figure");
-  fig.className = "shot";
-  for (const k of ["x", "y", "w", "h"]) fig.style.setProperty("--" + k, I[k]);
-  fig.style.setProperty("--ar", ar);
-  fig.style.setProperty("--mc", mobileCols(I.x, I.w));
-  let img;
-  if (isVideo) {
-    img = loopVideo(I.src, I.poster, "auto");
-    img.setAttribute("aria-label", P.title);
-  } else if (I.src) {
-    img = document.createElement("img");
-    img.alt = P.title; img.decoding = "async";
-    if (I.y > 895) img.loading = "lazy";            // sotto la prima schermata: si scarica scorrendo
-    else if (I.y < 100) img.fetchPriority = "high";  // la prima immagine arriva per prima
-    img.src = I.src;
-  } else {
-    img = document.createElement("div");
-    img.className = "empty";
-  }
-  const cap = document.createElement("figcaption");
-  cap.textContent = P.title;
-  fig.append(img, cap);
-  if (PAGES[I.p]) { fig.classList.add("has-page"); fig.addEventListener("click", () => go(PAGES[I.p].slug)); }
-  homeGrid.append(fig);
-  if (!FIRST_FIG[I.p]) FIRST_FIG[I.p] = fig;
-});
-
-// Lavori
-const wList = document.getElementById("wList"), wPrev = document.getElementById("wPrev");
-document.getElementById("wCount").textContent = `(${PROJECTS.length})`;
-// Righe della lista progetti (usata in Lavori e nelle pagine progetto). current = progetto della pagina.
-function fillList(ul, current) {
-  PROJECTS.forEach((P, i) => {
-    const li = document.createElement("li");
-    li.className = "row" + (current && P.n !== current ? " dim" : "");
-    const t = document.createElement("a");
-    t.className = "w-title"; t.href = "#" + (PAGES[P.n] ? PAGES[P.n].slug : "home"); t.dataset.i = i; t.textContent = P.title;
-    if (current && P.n === current) t.setAttribute("aria-current", "page");   // progetto della pagina aperta: niente hover
-    const c = document.createElement("span");
-    c.className = "w-client"; c.textContent = P.client;
-    li.append(t, c);
-    ul.append(li);
-  });
-}
-fillList(wList, null);
-// Anteprime: una per progetto, create una volta sola (i video si caricano subito e restano pronti)
-const PREV = PROJECTS.map(P => {
-  const src = P.preview || FIRST_MEDIA[P.n];
-  if (!src) return null;
-  let el;
-  if (/\.mp4$/i.test(src)) {
-    el = document.createElement("video");
-    el.muted = true; el.defaultMuted = true; el.setAttribute("muted", "");
-    el.loop = true; el.playsInline = true; el.setAttribute("playsinline", "");
-    el.preload = "auto";
-    if (POSTER[src]) el.dataset.poster = POSTER[src];
-    el.dataset.src = src;
-  } else {
-    el = document.createElement("img");
-    el.dataset.src = src; el.alt = ""; el.decoding = "async";
-  }
-  if (P.previewPos) el.style.objectPosition = P.previewPos;   // quale parte dell'immagine resta nel riquadro verticale
-  if (P.previewFit) el.style.objectFit = P.previewFit;         // v1.41: "contain" = intera nel riquadro
-  if (P.previewBg) el.style.background = P.previewBg;
-  wPrev.append(el);
-  return el;
-});
-// Le anteprime si scaricano la prima volta che apri Lavori, non all'arrivo sul sito
-let prevLoaded = false;
-function loadPreviews() {
-  if (prevLoaded) return; prevLoaded = true;
-  for (const el of PREV) { if (!el) continue;
-    if (el.dataset.poster) { el.poster = el.dataset.poster; delete el.dataset.poster; }
-    if (el.dataset.src) { el.src = el.dataset.src; delete el.dataset.src; } }
-}
-let prevOn = null;
-function hideEl(el) { el.classList.remove("on"); if (el.tagName === "VIDEO") el.pause(); }
-function showPrev(i) {
-  const el = PREV[i];
-  if (prevOn && prevOn !== el) hideEl(prevOn);
-  prevOn = el || null;
-  if (!el) return;
-  el.classList.add("on");
-  if (el.tagName === "VIDEO" && !NO_MOTION) el.play().catch(() => {});
-}
-function hidePrev() { if (prevOn) { hideEl(prevOn); prevOn = null; } }
-const titleOf = el => el && el.closest ? el.closest(".w-title") : null;
-// L'anteprima compare solo sopra il titolo del progetto, non sul cliente
-wList.addEventListener("pointerover", e => { const t = titleOf(e.target); if (t) showPrev(+t.dataset.i); });
-wList.addEventListener("pointerout", e => { const t = titleOf(e.target); if (t && !t.contains(e.relatedTarget)) hidePrev(); });
-wList.addEventListener("focusin", e => { const t = titleOf(e.target); if (t) showPrev(+t.dataset.i); });
-wList.addEventListener("focusout", e => { if (!titleOf(e.relatedTarget)) hidePrev(); });
-// Clic sul titolo: apre la pagina del progetto; se non c'è ancora, la Home sulla sua prima immagine
-wList.addEventListener("click", e => {
-  const t = titleOf(e.target); if (!t) return;
+function glide(y) { sTo = Math.max(0, Math.min(sMax(), y)); if (calm) { jump(sTo); return; } if (!sRun) { sAt = scrollY; sRun = true; requestAnimationFrame(sLoop); } }
+function jump(y) { sRun = false; sTo = sAt = Math.max(0, Math.min(sMax(), y)); scrollTo(0, sAt); }
+if (!calm) addEventListener("wheel", e => {
+  if (e.ctrlKey || e.defaultPrevented) return;                                   // zoom col trackpad
+  const sc = e.target.closest && e.target.closest("#info");                      // il testo del progetto scorre da sé quando è lungo
+  if (sc && sc.scrollHeight > sc.clientHeight) return;
+  if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
   e.preventDefault();
-  openProject(PROJECTS[+t.dataset.i].n);
+  glide((sRun ? sTo : scrollY) + e.deltaY * (e.deltaMode === 1 ? 40 : e.deltaMode === 2 ? innerHeight : 1));
+}, { passive: false });
+addEventListener("scroll", () => { if (!sRun || Math.abs(scrollY - sAt) > 3) { sRun = false; sTo = sAt = scrollY; } }, { passive: true });   // tastiera, barra, dita: si riparte da lì
+
+function h(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; }
+const plays = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.play().catch(() => {}); else e.target.pause(); }), { rootMargin: "200px" }) : null;
+function media(s, alt, eager) {
+  let m;
+  if (s.v) { m = document.createElement("video"); m.muted = true; m.loop = true; m.playsInline = true; m.preload = "metadata"; if (s.poster) m.poster = s.poster; m.src = s.src; if (plays) plays.observe(m); else m.autoplay = true; }
+  else { m = new Image(); m.src = s.src; m.alt = alt || ""; m.loading = eager ? "eager" : "lazy"; m.decoding = "async"; }
+  if (s.fit) m.style.objectFit = s.fit; if (s.pos) m.style.objectPosition = s.pos;
+  return m;
+}
+/* didascalia come nella reference: [ TITOLO ] descrizione in grigio ( SERVIZI ) — qui cliente e anno, e i servizi del progetto */
+function caption(p) {
+  const c = h("p", "cap"); c.append(p.title + " ");   // v14.38: senza parentesi quadre
+  const d = [p.client, p.year].filter(Boolean).join(" "); if (d) c.append(h("span", "ds", d + " "));
+  if (p.serv.length) c.append("( " + p.serv.join(" / ") + " )"); return c;   // v14.12: niente parentesi vuote (Archivio)
+}
+
+/* ---------- home: ogni immagine va nella colonna più corta, così le due colonne scendono sfalsate come nella reference ---------- */
+const cols = [...document.querySelectorAll(".col")];
+const items = FEED.map(([pi, si]) => {
+  const p = PROJ[pi], s = p.slides[si], it = h("a", "it" + (s.r < .66 ? " narrow" : "")), fr = h("div", "fr"); it.href = "#/progetto/" + p.id;
+  fr.style.aspectRatio = s.r; fr.append(media(s, s.cap || p.title)); it.append(fr, caption(p)); it._r = s.r; return it;
 });
-function openProject(n) {
-  if (PAGES[n]) { go(PAGES[n].slug); return; }
-  go("home");
-  const fig = FIRST_FIG[n]; if (!fig) return;
-  const m = window.innerWidth > 600 ? 14.5 * window.innerWidth / 1500 : 16;
-  window.scrollTo({ top: Math.max(0, fig.getBoundingClientRect().top + window.scrollY - m), behavior: "auto" });
+function place() {
+  const mobile = innerWidth <= 760;
+  cols.forEach(c => c.textContent = "");
+  if (mobile) { items.forEach(it => cols[0].append(it)); document.getElementById("feed").style.height = ""; return; }
+  items.forEach((it, i) => cols[i % 2].append(it));   // v14.45: a turno sinistra / destra; l'Archivio, ultimo, sta di fianco al penultimo (Simone)
+  document.getElementById("feed").style.height = Math.max(...cols.map(c => c.offsetHeight)) + 64 + "px";
 }
+place();
+let rt = 0; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(place, 150); });
 
-// About
 
 
-// Pagine progetto
-const pagesRoot = document.getElementById("pages");
-const NEXT_H = 190;   // spazio aggiunto in fondo per "Progetto successivo" (px su finestra da 1500)
-const NEXT_GAP = 60;  // distanza in più tra la fine della pagina della bozza e "Progetto successivo"
-function nextProject(n) {   // il primo progetto dopo n che ha una pagina, ripartendo dall'inizio
-  const i = PROJECTS.findIndex(P => P.n === n);
-  for (let k = 1; k < PROJECTS.length; k++) { const P = PROJECTS[(i + k) % PROJECTS.length]; if (PAGES[P.n]) return P; }
-  return null;
+
+
+/* ---------- [ ] schermo intero in home; [ X ] nel progetto chiude e torna alla home ---------- */
+const fs = document.getElementById("fs");
+fs.addEventListener("click", () => { location.hash = "#/"; });
+/* v14.12: tolto LAVORI; il nome riporta alla Home (dal progetto) o in cima (dalla Home) */
+document.getElementById("nm").addEventListener("click", e => { e.preventDefault(); if (body.classList.contains("pj") || body.classList.contains("ab")) location.hash = "#/"; else glide(0); });
+
+/* ======================= PROGETTO ======================= */
+const body = document.body, imgs = document.getElementById("imgs"), stripTr = document.querySelector("#strip .tr"), strip = document.getElementById("strip"), info = document.getElementById("info");
+let ims = [], homeY = 0;
+function openProject(p) {
+  imgs.textContent = ""; stripTr.textContent = ""; info.textContent = "";
+  ims = p.slides.map((s, i) => {
+    const d = h("div", "im"), fr = h("div", "fr");
+    fr.style.aspectRatio = s.r; fr.style.width = (s.r >= .75 ? 100 : 125 * s.r) + "%";   // le molto alte si stringono (nella reference il manifesto stretto)
+    fr.append(media(s, s.cap || p.title)); d.append(fr, h("span", "n", String(i + 1).padStart(3, "0"))); imgs.append(d);
+    const b = h("button"); b.setAttribute("aria-label", "Immagine " + (i + 1)); b.append(media(s, "", true));
+    b.addEventListener("click", () => { shiftStrip(i); glide(d.getBoundingClientRect().top + scrollY - 48); });
+    stripTr.append(b); return d;
+  });
+  const t1 = h("p", "ttl"); t1.textContent = p.title + (p.serv.length ? " ( " + p.serv.join(" / ") + " )" : ""); info.append(t1);
+  p.desc.forEach(x => info.append(h("p", "dp", x)));   // v14.38: senza cubetti
+  const meta = [];
+  if (p.client) meta.push("CLIENTE: " + p.client); if (p.year) meta.push("ANNO: " + p.year);   // v14.19: etichetta e valore sulla stessa riga
+  if (meta.length) { const m = h("p", "meta"); meta.forEach((x, i) => { if (i) m.append(h("br")); m.append(x); }); info.append(m); }
+  document.title = p.title + " — Simone Buzzoni";
 }
-for (const [n, PG] of Object.entries(PAGES)) {
-  const P = projectByN[n];
-  const sec = document.createElement("section");
-  sec.className = "view"; sec.id = "v-" + PG.slug; sec.hidden = true;
-  sec.setAttribute("aria-label", P ? P.title : PG.slug);
-  const box = document.createElement("div");
-  box.className = "proj"; box.style.setProperty("--page-h", PG.h + NEXT_H);
-  const place = (el, o) => { for (const k of ["x", "y", "w", "h"]) if (o[k] !== undefined) el.style.setProperty("--" + k, o[k]); };
-  const items = [];
-  // Immagine a cui appartiene una didascalia: quella subito sopra (stessa colonna) o subito a sinistra (stessa altezza)
-  const ownerOf = T => PG.media.find(M => {
-    const below = T.y - (M.y + M.h), beside = T.x - (M.x + M.w);
-    return (T.x >= M.x - 2 && T.x < M.x + M.w && below >= 0 && below <= 60) || (beside >= 0 && beside <= 40 && Math.abs(T.y - M.y) <= 4);
-  });
-  PG.media.forEach((M, k) => {
-    const f = document.createElement("figure"); f.className = "pp-img"; place(f, M);
-    let im;
-    if (/\.mp4$/i.test(M.src)) {
-      im = loopVideo(M.src, M.poster, "metadata");
-      im.setAttribute("aria-label", (P ? P.title : "") + " · " + (k + 1));
-    } else {
-      im = document.createElement("img"); im.alt = (P ? P.title : "") + " · " + (k + 1); im.decoding = "async";
-      im.loading = "lazy"; im.src = M.src;   // si scarica solo quando apri la pagina e l'immagine sta per entrare nello schermo
-    }
-    if (M.fit) im.style.objectFit = M.fit;
-    if (M.pos) im.style.objectPosition = M.pos;
-    if (M.bg) im.style.background = M.bg;
-    f.append(im); items.push([M.y, M.x, 0, f]);
-  });
-  PG.texts.forEach(T => {
-    const p = document.createElement("p"); p.className = "pp-txt pp-" + T.style; place(p, T);
-    T.lines.forEach((l, k) => { const s = document.createElement("span"); s.className = l ? "ln" : "ln gap"; s.textContent = (l || "\u00a0") + (k < T.lines.length - 1 ? " " : ""); p.append(s); });   // riga vuota = spazio tra paragrafi
-    const M = T.style === "small" ? ownerOf(T) : null;
-    if (M) p.classList.add("pp-cap");   // v1.36: didascalia di un'immagine (sul telefono sta più vicina)
-    else if (T.style === "small") p.classList.add("pp-credit");   // v1.53: crediti del progetto (sul telefono subito dopo l'indice)
-    items.push(M ? [M.y, M.x, 1, p] : [T.y, T.x, 0, p]);
-  });
-  const cnt = document.createElement("div"); cnt.className = "pp-txt pp-count"; place(cnt, { x: 636, y: 14.5 });
-  cnt.textContent = "(" + parseInt(n, 10) + ")";
-  box.append(cnt);
-  const list = document.createElement("div"); list.className = "pp-list";
-  list.innerHTML = '<div class="row head"><span>Progetto</span><span>Cliente</span></div>';
-  const ul = document.createElement("ul"); fillList(ul, n); list.append(ul);
-  ul.addEventListener("click", e => { const t = titleOf(e.target); if (!t) return; e.preventDefault(); openProject(PROJECTS[+t.dataset.i].n); });
-  box.append(list);
-  // Ordine di lettura (conta su telefono): numero e lista, poi dall'alto; ogni didascalia subito dopo la sua immagine
-  items.sort((a, b) => a[0] - b[0] || a[1] - b[1] || a[2] - b[2]).forEach(it => box.append(it[3]));
-  { const f = items.map(it => it[3]).find(e => !e.classList.contains("pp-credit")); if (f) f.classList.add("pp-first"); }   // v1.57: primo blocco dopo i crediti (sul telefono)
-  // In fondo, nel margine destro e in piccolo (come crediti e didascalie): il progetto successivo.
-  // Dopo l'ultimo si riparte dal primo.
-  const nx = nextProject(n);
-  if (nx) {
-    const nb = document.createElement("p"); nb.className = "pp-txt pp-small pp-next"; place(nb, { x: 15, y: PG.h + NEXT_GAP });
-    const l1 = document.createElement("span"); l1.className = "ln"; l1.textContent = "Progetto successivo";
-    const l2 = document.createElement("span"); l2.className = "ln";
-    const a = document.createElement("a"); a.className = "w-title"; a.href = "#" + PAGES[nx.n].slug; a.textContent = nx.title;
-    a.addEventListener("click", e => { e.preventDefault(); openProject(nx.n); });
-    l2.append(a); nb.append(l1, l2);
-    box.append(nb);
+/* v14.3 (registrazione del 30/10, 17:49): la fila delle miniature resta ferma mentre si scorre la pagina;
+   al clic su una miniatura la fila avanza verso sinistra finché quella miniatura è la prima (senza andare oltre l'ultima), in circa 0,35 s */
+let stripI = 0;
+function shiftStrip(i, now) {
+  if (innerWidth <= 760) return;
+  const b = stripTr.children[i]; if (!b) return; stripI = i;
+  const max = Math.max(0, stripTr.scrollWidth - (innerWidth - strip.getBoundingClientRect().left - 8)), x = Math.min(b.offsetLeft, max);   // l'ultima si ferma a 8 px dal bordo destro
+  stripTr.classList.toggle("now", !!now); stripTr.style.transform = `translate3d(${-x}px,0,0)`;
+  if (now) { stripTr.offsetWidth; stripTr.classList.remove("now"); }
+}
+function syncStrip() { shiftStrip(0, true); }
+addEventListener("resize", () => { if (body.classList.contains("pj")) shiftStrip(stripI, true); });
+
+const away = () => body.classList.contains("pj") || body.classList.contains("ab");
+function route() {
+  const [a, b] = location.hash.replace(/^#\/?/, "").split("/");
+  const p = a === "progetto" && PROJ.find(p => p.id === b);
+  if (!away() && (p || a === "chi-sono")) homeY = scrollY;
+  if (p) {
+    body.classList.remove("ab"); openProject(p); body.classList.add("pj"); jump(0); syncStrip(); return;
   }
-  sec.append(box); pagesRoot.append(sec);
+  if (a === "chi-sono") {
+    if (body.classList.contains("pj")) { body.classList.remove("pj"); imgs.textContent = ""; stripTr.textContent = ""; }
+    body.classList.add("ab"); document.title = "Chi sono — Simone Buzzoni"; jump(0); return;
+  }
+  if (away()) {
+    body.classList.remove("pj", "ab"); imgs.textContent = ""; stripTr.textContent = "";
+    document.title = "Simone Buzzoni";
+    requestAnimationFrame(() => jump(homeY));
+  }
 }
+addEventListener("hashchange", route); route();
+addEventListener("keydown", e => { if (e.key === "Escape" && away()) location.hash = "#/"; });
 
-/* =========================================================
-   Navigazione tra le pagine
-   ========================================================= */
-const VIEWS = { home: "v-home", work: "v-work", about: "v-about", contact: "v-contact",
-  ...Object.fromEntries(Object.values(PAGES).map(PG => [PG.slug, "v-" + PG.slug])) };
-// Indirizzi in italiano (#lavori, #chi-sono, #contatti); quelli vecchi (#work, #about, #contact) funzionano ancora
-const ROUTE_OUT = { work: "lavori", about: "chi-sono", contact: "contatti" };
-const ROUTE_IN = { lavori: "work", "chi-sono": "about", contatti: "contact", archivie: "archivio", "humana-bilancio-2025-2026": "humana-bilancio-di-sostenibilita-2024" };   // v1.40: vecchio indirizzo di Humana   // #archivie: indirizzo della pagina fino alla v1.24
-const route = () => { let h = location.hash.slice(1); try { h = decodeURIComponent(h); } catch (err) {} h = h || "home"; return ROUTE_IN[h] || h; };
-const hashOf = v => "#" + (ROUTE_OUT[v] || v);
-// Titolo della scheda del browser per ogni pagina
-const SITE = "Simone Buzzoni";
-const TITLES = { home: SITE + " — Junior Art Director", work: "Lavori — " + SITE, about: "Chi sono — " + SITE, contact: "Contatti — " + SITE,
-  ...Object.fromEntries(Object.entries(PAGES).map(([n, PG]) => [PG.slug, (projectByN[n] ? projectByN[n].title : PG.slug) + " — " + SITE])) };
-// Punto in cui eri in ogni pagina: tornando indietro (freccia del browser) si riparte da lì
-const SCROLL = {};
-try { history.scrollRestoration = "manual"; } catch (err) {}
-let current = null;
-function show(v, animate, restore) {
-  if (!VIEWS[v]) v = "home";
-  if (v === current) return;
-  if (current) SCROLL[current] = window.scrollY;
-  current = v;
-  for (const [k, id] of Object.entries(VIEWS)) {
-    const el = document.getElementById(id);
-    el.hidden = k !== v;
-    el.classList.remove("enter");
-    if (k === v && animate) { void el.offsetWidth; el.classList.add("enter"); }
-  }
-  document.body.dataset.view = v;
-  document.querySelectorAll("[data-go]").forEach(a => a.toggleAttribute("aria-current", a.dataset.go === v && v !== "home"));
-  hidePrev();
-  if (v === "work") loadPreviews();
-  document.title = TITLES[v] || SITE;
-  window.scrollTo(0, restore && SCROLL[v] != null ? SCROLL[v] : 0);
-  placeNav();
-  updateNav();
+/* ======================= SUONO =======================
+   misurato sulla registrazione del 30/10, 17:30: passando sopra una miniatura un «blip» morbido (tono pulito sui 470 Hz, circa 70 ms),
+   cliccando un «tic» secco (2–4 ms, acuto, sui 1,8 e 6 kHz), circa cinque volte più forte del blip. Sintetizzati qui, non presi dalla reference.
+   Il browser lascia partire l'audio solo dopo il primo clic o tocco sulla pagina. */
+let ac = null, on = true;
+// v14.21: tolti il pulsante e il riquadro del suono (Simone); i suoni restano sempre attivi
+function ctx() { if (!ac) { const C = window.AudioContext || window.webkitAudioContext; if (!C) return null; ac = new C(); } if (ac.state === "suspended") ac.resume(); return ac; }
+addEventListener("pointerdown", () => { if (on) ctx(); }, { once: true, capture: true });
+function blip() {
+  if (!on || !ac || ac.state !== "running") return;
+  const t = ac.currentTime, o = ac.createOscillator(), g = ac.createGain();
+  o.type = "sine"; o.frequency.setValueAtTime(472, t);
+  g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.05, t + .004); g.gain.exponentialRampToValueAtTime(.0001, t + .08);
+  o.connect(g).connect(ac.destination); o.start(t); o.stop(t + .09);
 }
-// v1.39 (dal test v1.37-b): l'header scorre con la pagina (sticky, lo muove il browser). Lo script dice solo quanto manca all'ancoraggio:
-// serve per la fascia bianca (compare quando l'header è arrivato in alto) e, nelle pagine interne, per farlo crescere da 0,8527 a 1 mentre sale.
-function updateNav() {
-  const big = window.innerWidth > 600;
-  const u = window.innerWidth / 1500;
-  const c = navC === null ? window.innerHeight / 2 : navC;
-  const travel = big ? c - 16.04 * u / 2 - 14.5 * u : 0;       // quanto deve scorrere la pagina prima che l'header arrivi in alto
-  const k = travel > 0.5 ? Math.min(1, Math.max(0, window.scrollY / travel)) : 1;
-  document.body.classList.toggle("nav-top", !big || navStartTop || (k >= 1 && window.scrollY > 0));
-  if (big && current !== "home") NAV_EL.style.setProperty("--ns", (0.8527 + (1 - 0.8527) * k).toFixed(4));
-  else NAV_EL.style.removeProperty("--ns");
+let noise = null;
+function tick() {
+  if (!on) return; const a = ctx(); if (!a) return;
+  if (!noise) { noise = a.createBuffer(1, Math.round(a.sampleRate * .006), a.sampleRate); const d = noise.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / d.length, 3); }
+  const t = a.currentTime, s = a.createBufferSource(), f = a.createBiquadFilter(), g = a.createGain();
+  s.buffer = noise; f.type = "bandpass"; f.frequency.value = 3800; f.Q.value = .7; g.gain.value = .35;
+  s.connect(f).connect(g).connect(a.destination); s.start(t);
 }
-// v1.37: quando è al centro, l'header non deve toccare immagini né testi della pagina.
-// Si cerca la posizione libera più vicina al centro dello schermo: nessun elemento che sta sotto una voce del menu
-// deve arrivare a meno di 50 px (sopra o sotto). Se il centro è libero, l'header resta al centro.
-const NAV_EL = document.querySelector(".nav");
-const NAV_AVOID = ".shot, .shot figcaption, .pp-img, .pp-txt, .pp-list, .w-prev, .w-count, .w-list, .a-bio, .a-portrait, .a-contact, .a-p, .cv > div, .contact-block";
-function navCenter() {
-  const W = window.innerWidth, H = window.innerHeight;
-  if (W <= 600) return null;                                   // telefono: header sempre in alto
-  const u = W / 1500, ns = current === "home" ? 1 : 0.8527, cx = W / 2;
-  const h = 16.04 * u * ns, padX = 15 * u;
-  const cols = [...NAV_EL.querySelectorAll("a")].filter(a => a.offsetWidth)
-    .map(a => [Math.min(a.offsetLeft, cx + (a.offsetLeft - cx) * ns) - padX, Math.max(a.offsetLeft + a.offsetWidth, cx + (a.offsetLeft + a.offsetWidth - cx) * ns) + padX]);   // v1.39: mentre sale l'header cresce da 0,85 a 1, quindi conta tutto lo spazio che occupa
-  const view = document.querySelector(".view:not([hidden])");
-  if (!view) return null;
-  const boxes = [];
-  view.querySelectorAll(NAV_AVOID).forEach(el => {
-    const r = el.getBoundingClientRect();
-    if (!r.width || !r.height) return;
-    if (!cols.some(([l, rr]) => r.left < rr && r.right > l)) return;   // non sta sotto nessuna voce del menu
-    boxes.push([r.top + window.scrollY, r.bottom + window.scrollY]);
-  });
-  let bad = [];
-  const free = (lo, hi) => {                                     // tratti liberi tra lo e hi
-    const out = []; let y = lo;
-    for (const [a, b] of bad) { if (b <= y) continue; if (a >= hi) break; if (a > y) out.push([y, Math.min(a, hi)]); y = Math.max(y, b); if (y >= hi) break; }
-    if (y < hi) out.push([y, hi]);
-    return out;
-  };
-  const target = H / 2;
-  // v1.41: prima nella parte centrale con 50 px di distanza; se non c'è posto, più in alto o più in basso
-  // (dal 12% all'88% dello schermo) con 30 px, poi con 20 px. Solo se non basta l'header parte già in alto.
-  for (const [lo, hi, cl] of [[H * 0.25, H * 0.75, 50], [H * 0.12, H * 0.88, 30], [H * 0.12, H * 0.88, 20]]) {
-    const clear = cl * u;
-    bad = boxes.map(([t, b]) => [t - clear - h / 2, b + clear + h / 2]).sort((a, b) => a[0] - b[0]);
-    let best = null;
-    for (const [a, b] of free(lo, hi)) { const y = Math.min(b, Math.max(a, target)); if (best === null || Math.abs(y - target) < Math.abs(best - target)) best = y; }
-    if (best !== null) return best;
-  }
-  return null;                                                   // nessuno spazio libero: l'header parte in alto (placeNav)
-}
-let navStartTop = false, navC = null;
-function placeNav() {
-  document.body.classList.remove("nav-start-top");           // le misure si prendono con la pagina al suo posto
-  const big = window.innerWidth > 600, u = window.innerWidth / 1500;
-  // v1.42: l'header parte sempre esattamente al centro dello schermo, nella stessa posizione in tutte le pagine
-  // (non cerca più la fascia libera: navCenter resta solo come riferimento)
-  // v1.54-b: non più a metà dell'altezza della finestra ma a metà della finestra di riferimento (895/2 = 447,5 su 1500),
-  // che scala con la larghezza come tutto il resto: l'header sta sempre nello stesso punto rispetto a immagini e testi
-  const c = big ? 447.5 * u : null;
-  navStartTop = false;
-  document.body.classList.toggle("nav-start-top", navStartTop);
-  navC = navStartTop ? 14.5 * u + 16.04 * u / 2 : c;          // senza spazio libero: già ancorato in alto dall'inizio
-  if (navC === null) NAV_EL.style.removeProperty("--nav-c"); else NAV_EL.style.setProperty("--nav-c", navC.toFixed(1) + "px");
-}
-let navTick = false;
-window.addEventListener("scroll", () => { if (!navTick) { navTick = true; requestAnimationFrame(() => { navTick = false; updateNav(); }); } }, { passive: true });
-window.addEventListener("resize", () => { placeNav(); updateNav(); });
-if (document.fonts && document.fonts.ready) document.fonts.ready.then(placeNav);
-const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-// Voci del menu: portano alla pagina; se sei già lì, riportano in cima.
-// "Simone Buzzoni" funziona da logo: riporta sempre all'inizio della Home.
-function go(v) {
-  if (v === current) { window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" }); return; }
-  show(v, true);
-  try { history.pushState(null, "", hashOf(v)); } catch (err) {}
-}
-document.querySelectorAll("[data-go]").forEach(a => a.addEventListener("click", e => {
-  e.preventDefault();
-  go(a.dataset.go);
-}));
-window.addEventListener("popstate", () => show(route(), true, true));
-window.addEventListener("hashchange", () => show(route(), true, true));
-show(route(), false);
+/* v14.38 (Simone): nessun suono al passaggio; l'unico suono è il tic al clic sulle miniature del progetto */
+document.addEventListener("click", e => { if (e.target.closest("#strip button")) tick(); }, true);
 </script>
 </body>
 </html>
